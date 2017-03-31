@@ -15,17 +15,20 @@
 
 /**
  * Aufruf direkt!
- * http://deine-domain.de/system/modules/botdetection/test/ModuleBotDetectionTest.php   TODO PFAD  MUSS NACH web\
+ * http://deine-domain.de/system/modules/botdetection/test/ModuleBotDetectionTest.php   
+ * 
+ * TODO PFAD  MUSS NACH web\ oder wie macht man das nun?
  */
 
 /**
  * Run in a custom namespace, so the class can be replaced
  */
-namespace BugBuster\BotDetection;
+//namespace BugBuster\BotDetection;
 
 /**
  * Initialize the system
  */
+define('TL_SCRIPT', 'ModuleBotDetectionTest.php');
 define('TL_MODE', 'FE');
 $dir = __DIR__;
  
