@@ -2,7 +2,7 @@
 [![Latest Stable Version](https://poser.pugx.org/bugbuster/contao-botdetection-bundle/v/stable.svg)](https://packagist.org/packages/bugbuster/contao-botdetection-bundle) [![Total Downloads](https://poser.pugx.org/bugbuster/contao-botdetection-bundle/downloads.svg)](https://packagist.org/packages/bugbuster/contao-botdetection-bundle) [![Latest Unstable Version](https://poser.pugx.org/bugbuster/contao-botdetection-bundle/v/unstable.svg)](https://packagist.org/packages/bugbuster/contao-botdetection-bundle) [![License](https://poser.pugx.org/bugbuster/contao-botdetection-bundle/license.svg)](https://packagist.org/packages/bugbuster/contao-botdetection-bundle)
 
 
-This Contao 4 extension is still in development.
+Notice: Need the Contao Core-Bundle Bugfix [\#748](https://github.com/contao/core-bundle/issues/748)
 
 
 ## For Translators
@@ -13,9 +13,8 @@ Project Link: [https://www.transifex.com/projects/p/contao-botdetection-bundle/]
 Howto: [http://docs.transifex.com/faq/#translating](http://docs.transifex.com/faq/#translating)
 
 
-## Installation 
+## Installation
 
 Installation Guide (EN): [INSTALLATION_EN.md](INSTALLATION_EN.md)
 
 Installationsanleitung (DE): [INSTALLATION_DE.md](INSTALLATION_DE.md)
- 
