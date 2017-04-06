@@ -26,25 +26,25 @@
 		"nabble/semalt-blocker": "~1.3"
 	},
 	"require-dev": {
-        "contao/manager-plugin": "^2.0"
+			"contao/manager-plugin": "^2.0"
 	},
 	"conflict": {
-		"contao/manager-plugin": "<2.0 || >=3.0"
+			"contao/manager-plugin": "<2.0 || >=3.0"
 	},
 	"autoload":{
-		"psr-4": {
-			"BugBuster\\BotdetectionBundle\\": "src/"
+			"psr-4": {
+					"BugBuster\\BotdetectionBundle\\": "src/"
 		},
-        "classmap": [
-            "src/Resources/contao/"
+		"classmap": [
+					"src/Resources/contao/"
 		],
 		"exclude-from-classmap": [
-			"src/Resources/contao/cache/",
-            "src/Resources/contao/config/",
-            "src/Resources/contao/dca/",
-            "src/Resources/contao/languages/",
-            "src/Resources/contao/templates/",
-            "src/Resources/contao/test/"
+					"src/Resources/contao/cache/",
+					"src/Resources/contao/config/",
+					"src/Resources/contao/dca/",
+					"src/Resources/contao/languages/",
+					"src/Resources/contao/templates/",
+					"src/Resources/contao/test/"
 		]
 	},
 	"extra":{
