@@ -14,6 +14,7 @@
  */
 
 namespace BugBuster\BotDetection;
+use Nabble\SemaltBlocker\Blocker;
 
 /**
  * Class CheckBotReferrer 
@@ -43,7 +44,7 @@ class CheckBotReferrer
         	$_SERVER['HTTP_REFERER'] = $Referrer;
         }
         //returns true when a blocked referrer is detected
-        $found = \Nabble\SemaltBlocker\Blocker::blocked(); 
+        $found = Blocker::blocked(); 
         if (true === $found) 
         {
         	return true;
