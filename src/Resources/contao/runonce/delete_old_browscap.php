@@ -1,11 +1,11 @@
 <?php
 /**
- * Contao Open Source CMS, Copyright (C) 2005-2015 Leo Feyer
+ * Contao Open Source CMS, Copyright (C) 2005-2017 Leo Feyer
 *
 * Modul BotDetection - runonce
 *
 * PHP version 5
-* @copyright  Glen Langer 2007..2015
+* @copyright  Glen Langer 2007..2017
 * @author     Glen Langer
 * @package    BotDetection
 * @license    LGPL
@@ -15,7 +15,7 @@ namespace BugBuster\BotDetection;
 /**
  * Class BotDetectionRunonceJobDel6006
  *
- * @copyright  Glen Langer 2015
+ * @copyright  Glen Langer 2015..2917
  * @author     Glen Langer
  * @package    Banner
  * @license    LGPL

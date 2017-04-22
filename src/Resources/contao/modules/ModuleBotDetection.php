@@ -10,7 +10,7 @@
  * @package    BotDetection
  * @license    LGPL
  * @filesource
- * @see        https://github.com/BugBuster1701/botdetection
+ * @see        https://github.com/BugBuster1701/contao-botdetection-bundle
  */
 
 /**

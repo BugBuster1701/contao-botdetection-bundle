@@ -1,23 +1,23 @@
 <?php 
 
 /**
- * Contao Open Source CMS, Copyright (C) 2005-2013 Leo Feyer
+ * Contao Open Source CMS, Copyright (C) 2005-2017 Leo Feyer
  *
  * Modul BotDetection - Test
  *
- * @copyright  Glen Langer 2007..2013 <http://www.contao.glen-langer.de>
+ * @copyright  Glen Langer 2007..2017 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @package    BotDetectionTest 
  * @license    LGPL 
  * @filesource
- * @see        https://github.com/BugBuster1701/botdetection
+ * @see        https://github.com/BugBuster1701/contao-botdetection-bundle
  */
 
 /**
  * Aufruf direkt!
  * http://deine-domain.de/system/modules/botdetection/test/ModuleBotDetectionTest.php   
  * 
- * TODO PFAD  MUSS NACH web\ oder wie macht man das nun?
+ * TODO PFAD  MUSS NACH web\ oder per Route
  */
 
 /**
@@ -47,7 +47,7 @@ require($dir . '/system/initialize.php');
 /**
  * Class ModuleBotDetectionTest 
  *
- * @copyright  Glen Langer 2007..2013 <http://www.contao.glen-langer.de>
+ * @copyright  Glen Langer 2007..2017 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @package    BotDetectionTest
  */

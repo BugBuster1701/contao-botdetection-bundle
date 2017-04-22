@@ -1,16 +1,16 @@
 <?php
 
 /**
- * Contao Open Source CMS, Copyright (C) 2005-2015 Leo Feyer
+ * Contao Open Source CMS, Copyright (C) 2005-2017 Leo Feyer
  *
  * BotDetection
  *
- * @copyright  Glen Langer 2007..2015 <http://contao.ninja>
+ * @copyright  Glen Langer 2007..2017 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @package    BotDetection
  * @license    LGPL
  * @filesource
- * @see        https://github.com/BugBuster1701/botdetection
+ * @see        https://github.com/BugBuster1701/contao-botdetection-bundle
  */
 
 namespace BugBuster\BotDetection;
@@ -19,7 +19,7 @@ use Nabble\SemaltBlocker\Blocker;
 /**
  * Class CheckBotReferrer 
  *
- * @copyright  Glen Langer 2015 <http://contao.ninja>
+ * @copyright  Glen Langer 2015..2017 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @package    BotDetection
  */
