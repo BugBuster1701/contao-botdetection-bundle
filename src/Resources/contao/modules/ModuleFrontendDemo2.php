@@ -91,10 +91,7 @@ class ModuleFrontendDemo2 extends \Module
 			$strClass = $GLOBALS['TL_FFL'][$arrField['inputType']];
 
 			// Continue if the class is not defined
-			if (!$this->classFileExists($strClass)) // TODO
-			{
-				continue;
-			}
+			if (!$this->class_exists($strClass)) { continue; }
 
 			$arrField['eval']['required'] = $arrField['eval']['mandatory'];
 			$objWidget = new $strClass($strClass::getAttributesFromDca($arrField, $arrField['name'], $arrField['value']));
@@ -141,7 +138,7 @@ class ModuleFrontendDemo2 extends \Module
 			{
 				$strClass = $GLOBALS['TL_FFL'][$arrField['inputType']];
 				// Continue if the class is not defined
-				if (!$this->classFileExists($strClass)) { continue; } //TODO
+				if (!$this->class_exists($strClass)) { continue; } 
 				
 				$arrField['eval']['required'] = $arrField['eval']['mandatory'];
 				$objWidget = new $strClass($strClass::getAttributesFromDca($arrField, $arrField['name'], $arrField['value']));
