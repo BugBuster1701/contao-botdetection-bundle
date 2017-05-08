@@ -18,6 +18,11 @@
  */
 namespace BugBuster\BotDetection;
 
+use BugBuster\BotDetection\ModuleBotDetection;
+use BugBuster\BotDetection\CheckBotAgentExtended;
+use BugBuster\BotDetection\CheckBotAgentSimple;
+use BugBuster\BotDetection\CheckBotIp;
+
 /**
  * Class ModuleFrontendDemo1
  * Use ModuleBotDetection with import function
@@ -100,7 +105,7 @@ class ModuleFrontendDemo1 extends \Module
 	    );	    
 
 	    //Gesamt Test Aufruf
-	    $this->ModuleBotDetection = new \BotDetection\ModuleBotDetection();
+	    $this->ModuleBotDetection = new ModuleBotDetection();
 	    $test04 = $this->ModuleBotDetection->checkBotAllTests( \Environment::get('httpUserAgent') );
 	    
 	    $arrDemo[] = array(

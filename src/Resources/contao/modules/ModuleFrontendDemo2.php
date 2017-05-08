@@ -18,6 +18,10 @@
  */
 namespace BugBuster\BotDetection;
 
+use BugBuster\BotDetection\ModuleBotDetection;
+use BugBuster\BotDetection\CheckBotAgentExtended;
+use BugBuster\BotDetection\CheckBotAgentSimple;
+
 /**
  * Class ModuleFrontendDemo2
  * Use ModuleBotDetection with import function
@@ -87,7 +91,7 @@ class ModuleFrontendDemo2 extends \Module
 			$strClass = $GLOBALS['TL_FFL'][$arrField['inputType']];
 
 			// Continue if the class is not defined
-			if (!$this->classFileExists($strClass))
+			if (!$this->classFileExists($strClass)) // TODO
 			{
 				continue;
 			}
@@ -137,7 +141,7 @@ class ModuleFrontendDemo2 extends \Module
 			{
 				$strClass = $GLOBALS['TL_FFL'][$arrField['inputType']];
 				// Continue if the class is not defined
-				if (!$this->classFileExists($strClass)) { continue; }
+				if (!$this->classFileExists($strClass)) { continue; } //TODO
 				
 				$arrField['eval']['required'] = $arrField['eval']['mandatory'];
 				$objWidget = new $strClass($strClass::getAttributesFromDca($arrField, $arrField['name'], $arrField['value']));
@@ -148,7 +152,7 @@ class ModuleFrontendDemo2 extends \Module
 			
 		}
 	    // get module version
-		$this->ModuleBotDetection = new \BotDetection\ModuleBotDetection();
+		$this->ModuleBotDetection = new ModuleBotDetection();
 	    $this->Template->version = $this->ModuleBotDetection->getVersion();
 	}
 
