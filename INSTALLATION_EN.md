@@ -33,6 +33,6 @@ Add in `app/AppKernel.php` following line at the end of the `$bundles` array.
 
 Clears the cache and warms up an empty cache:
 
-* `app/console cache:clear --env=prod`
-* `app/console cache:warmup -e prod`
+* `vendor/bin/contao-console cache:clear --env=prod`
+* `vendor/bin/contao-console cache:warmup -e prod`
 

@@ -1,16 +1,16 @@
 <?php 
 
 /**
- * Contao Open Source CMS, Copyright (C) 2005-2013 Leo Feyer
+ * Contao Open Source CMS, Copyright (C) 2005-2017 Leo Feyer
  *
  * Modul BotDetection
  *
- * @copyright  Glen Langer 2007..2013 <http://www.contao.glen-langer.de>
+ * @copyright  Glen Langer 2007..2017 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @package    BotDetection 
  * @license    LGPL 
  * @filesource
- * @see        https://github.com/BugBuster1701/botdetection
+ * @see        https://github.com/BugBuster1701/contao-botdetection-bundle
  */
 
 /**
@@ -36,11 +36,11 @@ array_insert($GLOBALS['FE_MOD'], 4, array
 (
     'BotDetectionDemo' => array
     (
-      'botdetection1' => 'BotDetection\ModuleFrontendDemo1',
-      'botdetection2' => 'BotDetection\ModuleFrontendDemo2',
+      'botdetection1' => 'BugBuster\BotDetection\ModuleFrontendDemo1',
+      'botdetection2' => 'BugBuster\BotDetection\ModuleFrontendDemo2',
   	)/*,
     'BotDetectionGenerate' => array
     (
-      'browscapcachegenerate' => 'BotDetection\ModuleBrowscapCache',
+      'browscapcachegenerate' => 'BugBuster\BotDetection\ModuleBrowscapCache',
   	)*/
 ));

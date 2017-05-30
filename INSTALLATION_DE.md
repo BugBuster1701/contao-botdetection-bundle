@@ -33,6 +33,6 @@ Einfügen in `app/AppKernel.php` folgende Zeile am Ende des Array `$bundles`:
 
 Cache leeren und neu anlegen lassen:
 
-* `app/console cache:clear --env=prod`
-* `app/console cache:warmup -e prod`
+* `vendor/bin/contao-console cache:clear --env=prod`
+* `vendor/bin/contao-console cache:warmup -e prod`
 

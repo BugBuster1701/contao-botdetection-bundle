@@ -1,23 +1,23 @@
 <?php 
 
 /**
- * Contao Open Source CMS, Copyright (C) 2005-2013 Leo Feyer
+ * Contao Open Source CMS, Copyright (C) 2005-2017 Leo Feyer
  *
  * Modul BotDetection - Test
  *
- * @copyright  Glen Langer 2007..2013 <http://www.contao.glen-langer.de>
+ * @copyright  Glen Langer 2007..2017 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @package    BotDetectionTest 
  * @license    LGPL 
  * @filesource
- * @see        https://github.com/BugBuster1701/botdetection
+ * @see        https://github.com/BugBuster1701/contao-botdetection-bundle
  */
 
 /**
  * Aufruf direkt!
  * http://deine-domain.de/system/modules/botdetection/test/ModuleBotDetectionTest.php   
  * 
- * TODO PFAD  MUSS NACH web\ oder wie macht man das nun?
+ * TODO PFAD  MUSS NACH web\ oder per Route
  */
 
 /**
@@ -47,7 +47,7 @@ require($dir . '/system/initialize.php');
 /**
  * Class ModuleBotDetectionTest 
  *
- * @copyright  Glen Langer 2007..2013 <http://www.contao.glen-langer.de>
+ * @copyright  Glen Langer 2007..2017 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @package    BotDetectionTest
  */
@@ -239,7 +239,7 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
 	    $y=count($arrTest);
 	    for ($x=0; $x<$y; $x++)
 	    {
-	        $result[$x] = $this->BD_CheckBotAgent($arrTest[$x][1]);
+	        $result[$x] = \BugBuster\BotDetection\CheckBotAgentSimple::checkAgent($arrTest[$x][1]);
 	    }
 	    for ($x=0; $x<$y; $x++)
 	    {
@@ -273,10 +273,13 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
 	    $arrTest[] = array(false,'::ffff:c000:280'   ,'::ffff:c000:280    - double quad notation for ipv4 mapped addresses');
 	    $arrTest[] = array(false,'::ffff:192.0.2.128','::ffff:192.0.2.128 - double quad notation for ipv4 mapped addresses');
 	    
+	    \BugBuster\BotDetection\CheckBotIp::setBotIpv4List(TL_ROOT . self::BOT_IP4_LIST);
+	    \BugBuster\BotDetection\CheckBotIp::setBotIpv6List(TL_ROOT . self::BOT_IP6_LIST);
+	    
 	    $y=count($arrTest);
 	    for ($x=0; $x<$y; $x++)
 	    {
-	        $result[$x] = $this->BD_CheckBotIP($arrTest[$x][1]);
+	        $result[$x] = \BugBuster\BotDetection\CheckBotIp::checkIP($arrTest[$x][1]);
 	    }
 	    for ($x=0; $x<$y; $x++)
 	    {
@@ -300,7 +303,7 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
 	    $y=count($arrTest);
 	    for ($x=0; $x<$y; $x++)
 	    {
-	        $result[$x] = $this->BD_CheckBotAgentAdvanced($arrTest[$x][1]);
+	        $result[$x] = \BugBuster\BotDetection\CheckBotAgentExtended::checkAgentName($arrTest[$x][1]);
 	    }
 	    for ($x=0; $x<$y; $x++)
 	    {
@@ -342,9 +345,9 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
 	    $arrTest[1] = 'CheckBotAgent test';
 	    $arrTest[2] = 'CheckBotAgentAdvanced test';
 	    $arrTest[3] = 'CheckBotIP test';
-	    $result[0] = !$this->BD_CheckBotAllTests();
-	    $result[1] = $this->BD_CheckBotAllTests('Spider test'); //BD_CheckBotAgent = true 
-	    $result[2] = $this->BD_CheckBotAllTests('acadiauniversitywebcensusclient'); //BD_CheckBotAgentAdvanced = true
+	    $result[0] = !$this->checkBotAllTests();
+	    $result[1] = $this->checkBotAllTests('Spider test'); //BD_CheckBotAgent = true 
+	    $result[2] = $this->checkBotAllTests('acadiauniversitywebcensusclient'); //BD_CheckBotAgentAdvanced = true
 	    //set own IP as Bot IP
 	    if (\Environment::get('remoteAddr'))
 	    {
@@ -375,7 +378,7 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
 	                $GLOBALS['BOTDETECTION']['BOT_IPV6'][] = $ip;
 	            }
 	        }
-	        $result[3] = $this->BD_CheckBotAllTests(); //BD_CheckBotIP = true
+	        $result[3] = $this->checkBotAllTests(); //BD_CheckBotIP = true
 	    }
 	    //$arrTest[3] .= ' '.print_r($GLOBALS['BOTDETECTION']['BOT_IPV6'],true);
 	    //output
@@ -402,7 +405,7 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
 	    $y=count($arrReferrerTest);
 	    for ($x=0; $x<$y; $x++)
 	    {
-            $result[$x] = $this->BD_CheckBotReferrer('http://www.'.$arrReferrerTest[$x][1].'/wtf');
+            $result[$x] = \BugBuster\BotDetection\CheckBotReferrer::checkReferrer('http://www.'.$arrReferrerTest[$x][1].'/wtf');
 	    }
 	    for ($x=0; $x<$y; $x++)
 	    {

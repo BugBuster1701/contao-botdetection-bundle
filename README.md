@@ -3,8 +3,6 @@
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/8d8a8fd6-07e4-4522-b39c-c202121bdf05/small.png)](https://insight.sensiolabs.com/projects/8d8a8fd6-07e4-4522-b39c-c202121bdf05)
 
-Notice: Need the Contao Core-Bundle Bugfix [\#748](https://github.com/contao/core-bundle/issues/748)
-
 
 ## For Translators
 Translations are managed using Transifex. To create a new translation or to help to maintain an existing one, please register at transifex.com.

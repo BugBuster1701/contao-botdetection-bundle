@@ -1,16 +1,16 @@
 <?php 
 
 /**
- * Contao Open Source CMS, Copyright (C) 2005-2014 Leo Feyer
+ * Contao Open Source CMS, Copyright (C) 2005-2017 Leo Feyer
  *
  * Modul BotDetection - Frontend Demo
  * 
- * @copyright  Glen Langer 2007..2014 <http://contao.ninja>
+ * @copyright  Glen Langer 2007..2017 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @package    BotDetectionDemo 
  * @license    LGPL 
  * @filesource
- * @see        https://github.com/BugBuster1701/botdetection 
+ * @see        https://github.com/BugBuster1701/contao-botdetection-bundle 
  */
 
 /**
@@ -18,11 +18,15 @@
  */
 namespace BugBuster\BotDetection;
 
+use BugBuster\BotDetection\ModuleBotDetection;
+use BugBuster\BotDetection\CheckBotAgentExtended;
+use BugBuster\BotDetection\CheckBotAgentSimple;
+
 /**
  * Class ModuleFrontendDemo2
  * Use ModuleBotDetection with import function
  *
- * @copyright  Glen Langer 2007..2014 <http://contao.ninja>
+ * @copyright  Glen Langer 2007..2017 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @package    BotDetectionDemo
  */
@@ -87,10 +91,7 @@ class ModuleFrontendDemo2 extends \Module
 			$strClass = $GLOBALS['TL_FFL'][$arrField['inputType']];
 
 			// Continue if the class is not defined
-			if (!$this->classFileExists($strClass))
-			{
-				continue;
-			}
+			if (!$this->class_exists($strClass)) { continue; }
 
 			$arrField['eval']['required'] = $arrField['eval']['mandatory'];
 			$objWidget = new $strClass($strClass::getAttributesFromDca($arrField, $arrField['name'], $arrField['value']));
@@ -137,7 +138,7 @@ class ModuleFrontendDemo2 extends \Module
 			{
 				$strClass = $GLOBALS['TL_FFL'][$arrField['inputType']];
 				// Continue if the class is not defined
-				if (!$this->classFileExists($strClass)) { continue; }
+				if (!$this->class_exists($strClass)) { continue; } 
 				
 				$arrField['eval']['required'] = $arrField['eval']['mandatory'];
 				$objWidget = new $strClass($strClass::getAttributesFromDca($arrField, $arrField['name'], $arrField['value']));
@@ -148,7 +149,7 @@ class ModuleFrontendDemo2 extends \Module
 			
 		}
 	    // get module version
-		$this->ModuleBotDetection = new \BotDetection\ModuleBotDetection();
+		$this->ModuleBotDetection = new ModuleBotDetection();
 	    $this->Template->version = $this->ModuleBotDetection->getVersion();
 	}
 

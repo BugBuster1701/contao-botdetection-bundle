@@ -1,16 +1,16 @@
 <?php 
 
 /**
- * Contao Open Source CMS, Copyright (C) 2005-2013 Leo Feyer
+ * Contao Open Source CMS, Copyright (C) 2005-2017 Leo Feyer
  *
  * Modul BotDetection - Frontend Demo
  * 
- * @copyright  Glen Langer 2007..2013 <http://contao.ninja>
+ * @copyright  Glen Langer 2007..2017 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @package    BotDetectionDemo 
  * @license    LGPL
  * @filesource
- * @see        https://github.com/BugBuster1701/botdetection 
+ * @see        https://github.com/BugBuster1701/contao-botdetection-bundle 
  */
 
 /**
@@ -18,11 +18,16 @@
  */
 namespace BugBuster\BotDetection;
 
+use BugBuster\BotDetection\ModuleBotDetection;
+use BugBuster\BotDetection\CheckBotAgentExtended;
+use BugBuster\BotDetection\CheckBotAgentSimple;
+use BugBuster\BotDetection\CheckBotIp;
+
 /**
  * Class ModuleFrontendDemo1
  * Use ModuleBotDetection with import function
  *
- * @copyright  Glen Langer 2007..2013 <http://contao.ninja>
+ * @copyright  Glen Langer 2007..2017 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @package    BotDetectionDemo
  */
@@ -100,7 +105,7 @@ class ModuleFrontendDemo1 extends \Module
 	    );	    
 
 	    //Gesamt Test Aufruf
-	    $this->ModuleBotDetection = new \BotDetection\ModuleBotDetection();
+	    $this->ModuleBotDetection = new ModuleBotDetection();
 	    $test04 = $this->ModuleBotDetection->checkBotAllTests( \Environment::get('httpUserAgent') );
 	    
 	    $arrDemo[] = array(
