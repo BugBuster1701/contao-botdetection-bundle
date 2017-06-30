@@ -81,7 +81,7 @@ class ProviderCommunication
                 foreach ($arrChunks as $strFolder)
                 {
                     $strPath .= ($strPath ? '/' : '') . $strFolder;
-                    $ret = @mkdir($strPath, 0775);
+                    @mkdir($strPath, 0775);
                 }
             }
         }
