@@ -60,7 +60,10 @@ class CheckBotReferrer
         unset($blocker);
 
         //zweiter Versuch, aktuelle Liste generieren und darin suchen
-        $proCom = new ProviderCommunication($Bot_Provider_List, false);
+        $referrerProvider = array();
+        include_once($Bot_Provider_List);
+        
+        $proCom = new ProviderCommunication($referrerProvider, false);
         
         if (true === $proCom->loadProviderFiles()) 
         {
