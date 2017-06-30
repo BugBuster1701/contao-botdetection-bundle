@@ -14,7 +14,10 @@
  */
 
 namespace BugBuster\BotDetection;
-// conflict, use own blocker \\ use Nabble\SemaltBlocker\Blocker;
+use BugBuster\BotDetection\Referrer\ProviderCommunication;
+use BugBuster\BotDetection\Referrer\ProviderParser;
+use BugBuster\BotDetection\Referrer\Blocker;
+
 
 /**
  * Class CheckBotReferrer 
@@ -29,38 +32,66 @@ class CheckBotReferrer
     /**
      * checkReferrer
      * 
-     * @param string $Referrer          Referrer of Request
-     * @param string $BotReferrerList   Bot Referrer List, absolute Path+Filename including TL_ROOT
-     * @return boolean                  true: found, false: not found
+     * @param string $Referrer            Referrer of Request
+     * @param string $Bot_Referrer_List   Bot Referrer List, absolute Path+Filename including TL_ROOT
+     * @param array  $Bot_Provider_List   Referrer Provider List, Name + URL
+     * @return boolean                    true: found, false: not found
      */
-    public static function checkReferrer($Referrer = false, $Bot_Referrer_List = false)
+    public static function checkReferrer($Referrer = false, $Bot_Referrer_List = false, $Bot_Provider_List = false )
     {
         $checkOwn   = false;
         $checkLocal = false;
+        $cachePath  = false;
         
-        //First nabble/semalt-blocker
         if (false !== $Referrer) 
         {
         	$_SERVER['HTTP_REFERER'] = $Referrer;
         }
-        //returns true when a blocked referrer is detected
-        /*
-        $found = Blocker::blocked(); 
-        if (true === $found) 
-        {
-        	return true;
-        }*/
         
-        //Second own list
+        $referrer_DNS    = static::getReferrerDns($Referrer);
+        
+        //returns true when a blocked referrer is detected
+        //zuerst die mitgelieferte Provider Liste durchsuchen
+        $blocker = new Blocker($referrer_DNS, TL_ROOT . '/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config');
+        if ($blocker->isReferrerSpam())
+        {
+            return true;
+        }
+        unset($blocker);
+
+        //zweiter Versuch, aktuelle Liste generieren und darin suchen
+        $proCom = new ProviderCommunication($Bot_Provider_List, false);
+        
+        if (true === $proCom->loadProviderFiles()) 
+        {
+            $cachePath = $proCom->getCachePath();
+        }
+        if (false !== $cachePath) 
+        {
+            $proPar = new ProviderParser($Bot_Provider_List, $cachePath);
+            if (true === $proPar->generateProviderList())
+            {
+                $proPar->cleanProviderList();
+                $proPar->writeProviderList();
+                
+                $blocker = new Blocker($referrer_DNS, $cachePath);
+                if ($blocker->isReferrerSpam()) 
+                {
+                    return true;
+                }
+            }
+        }
+        
+        //dritter Versuch, eigene lokale Liste
         $botreferrerlist = false;
         $botreferrerlist = static::getReferrerOwnList($Bot_Referrer_List);
-        $referrer_DNS    = static::getReferrerDns($Referrer);
+        
         if ($botreferrerlist !== false) 
         {
         	$checkOwn = static::checkReferrerList($botreferrerlist, $referrer_DNS);
         }
 
-        //Third, user local list (localconfig)
+        //vierter Versuch (localconfig)
        	$botreferrerlist = static::getReferrerLocalList();
        	if ($botreferrerlist !== false)
        	{

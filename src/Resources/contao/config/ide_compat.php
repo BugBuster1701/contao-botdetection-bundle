@@ -8,7 +8,6 @@ namespace BotDetection {
     class ModuleFrontendDemo1 extends \BugBuster\BotDetection\ModuleFrontendDemo1 {}
     class ModuleFrontendDemo2 extends \BugBuster\BotDetection\ModuleFrontendDemo2 {}
     class ModuleBrowscapCache extends \BugBuster\BotDetection\ModuleBrowscapCache {}
-    class ModuleBotDetectionTest extends \BugBuster\BotDetection\ModuleBotDetectionTest {}
     class CheckBotAgentExtended extends \BugBuster\BotDetection\CheckBotAgentExtended {}
     class CheckBotAgentSimple extends \BugBuster\BotDetection\CheckBotAgentSimple {}
     class BrowscapCache extends \BugBuster\BotDetection\BrowscapCache {}
