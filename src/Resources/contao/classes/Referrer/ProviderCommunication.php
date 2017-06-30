@@ -97,6 +97,7 @@ class ProviderCommunication
         
         if (false === $this->allowUrlOpen) 
         {
+            $this->logMessage('ProviderCommunication::loadProviderFiles allowUrlOpen = false!','botdetection_debug');
             return false;
         }
         
@@ -112,6 +113,38 @@ class ProviderCommunication
             }
         }
         return true;
+    }
+    
+    /**
+     * Wrapper for old log_message
+     *
+     * @param string $strMessage
+     * @param string $strLogg
+     */
+    public function logMessage($strMessage, $strLog=null)
+    {
+        if ($strLog === null)
+        {
+            $strLog = 'prod-' . date('Y-m-d') . '.log';
+        }
+        else
+        {
+            $strLog = 'prod-' . date('Y-m-d') . '-' . $strLog . '.log';
+        }
+    
+        $strLogsDir = null;
+    
+        if (($container = \System::getContainer()) !== null)
+        {
+            $strLogsDir = $container->getParameter('kernel.logs_dir');
+        }
+    
+        if (!$strLogsDir)
+        {
+            $strLogsDir = TL_ROOT . '/var/logs';
+        }
+    
+        error_log(sprintf("[%s] %s\n", date('d-M-Y H:i:s'), $strMessage), 3, $strLogsDir . '/' . $strLog);
     }
     
 
