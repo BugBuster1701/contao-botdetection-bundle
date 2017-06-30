@@ -93,6 +93,7 @@ class ProviderCommunication
      */
     public function loadProviderFiles()
     {
+        $this->logMessage('ProviderCommunication::loadProviderFile: START','botdetection_debug');
         $lastWeek = time() - (7 * 24 * 60 * 60);
         
         if (false === $this->allowUrlOpen) 
@@ -107,11 +108,13 @@ class ProviderCommunication
                  $lastWeek > filemtime($this->cachePath .'/'. strtolower($source) . '.txt') 
                )
             {
+                $this->logMessage('ProviderCommunication::loadProviderFile: '.$source,'botdetection_debug');
                 $fileProvider = fopen($this->cachePath .'/'. strtolower($source) . '.txt', 'wb+');
                 fwrite($fileProvider, file_get_contents($url) );
                 fclose($fileProvider);
             }
         }
+        $this->logMessage('ProviderCommunication::loadProviderFile: END','botdetection_debug');
         return true;
     }
     
