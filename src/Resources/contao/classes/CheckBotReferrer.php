@@ -60,31 +60,33 @@ class CheckBotReferrer
         unset($blocker);
 
         //zweiter Versuch, aktuelle Liste generieren und darin suchen
-        $referrerProvider = array();
-        include_once($Bot_Provider_List);
-        
-        $proCom = new ProviderCommunication($referrerProvider, false);
-        
-        if (true === $proCom->loadProviderFiles()) 
+        if (false !== $Bot_Provider_List) 
         {
-            $cachePath = $proCom->getCachePath();
-        }
-        if (false !== $cachePath) 
-        {
-            $proPar = new ProviderParser($Bot_Provider_List, $cachePath);
-            if (true === $proPar->generateProviderList())
+            $referrerProvider = array();
+            include_once($Bot_Provider_List);
+            
+            $proCom = new ProviderCommunication($referrerProvider, false);
+            
+            if (true === $proCom->loadProviderFiles()) 
             {
-                $proPar->cleanProviderList();
-                $proPar->writeProviderList();
-                
-                $blocker = new Blocker($referrer_DNS, $cachePath);
-                if ($blocker->isReferrerSpam()) 
+                $cachePath = $proCom->getCachePath();
+            }
+            if (false !== $cachePath) 
+            {
+                $proPar = new ProviderParser($referrerProvider, $cachePath);
+                if (true === $proPar->generateProviderList())
                 {
-                    return true;
+                    $proPar->cleanProviderList();
+                    $proPar->writeProviderList();
+                    
+                    $blocker = new Blocker($referrer_DNS, $cachePath);
+                    if ($blocker->isReferrerSpam()) 
+                    {
+                        return true;
+                    }
                 }
             }
         }
-        
         //dritter Versuch, eigene lokale Liste
         $botreferrerlist = false;
         $botreferrerlist = static::getReferrerOwnList($Bot_Referrer_List);
