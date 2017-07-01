@@ -114,5 +114,31 @@ class ProviderParser
         return false;
         
     }
+    
+    /**
+     * Test ob Update/Generierung von referrerblocked.txt notwendig
+     * @return boolean  true: ja, false nein
+     */
+    public function isUpdateProviderListNecessary()
+    {
+        $lastWeek = time() - (7 * 24 * 60 * 60);
+        
+        if ( false === file_exists($this->cachePath .'/referrerblocked.txt') ||
+             $lastWeek > filemtime($this->cachePath .'/referrerblocked.txt')
+            )
+        {
+            return true; // update/anlegen notwendig
+        }
+        foreach($this->referrerProvider as $source => $url)
+        {
+            if ( true === file_exists($this->cachePath .'/'. strtolower($source) . '.txt') &&
+                $lastWeek > filemtime($this->cachePath .'/'. strtolower($source) . '.txt')
+               )
+            {
+                return true; // update/anlegen notwendig, da eine Provider Datei neuer ist
+            }
+        }
+        return false;
+    }
 }
 

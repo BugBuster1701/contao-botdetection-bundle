@@ -74,7 +74,10 @@ class CheckBotReferrer
             if (false !== $cachePath) 
             {
                 $proPar = new ProviderParser($referrerProvider, $cachePath);
-                if (true === $proPar->generateProviderList())
+                
+                if ( true === $proPar->isUpdateProviderListNecessary() &&
+                     true === $proPar->generateProviderList()
+                   )
                 {
                     $proPar->cleanProviderList();
                     $proPar->writeProviderList();
