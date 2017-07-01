@@ -14,7 +14,7 @@
  */
 
 /**
- * Run in a custom namespace, so the class can be replaced
+ * Run in a custom namespace
  */
 namespace BugBuster\BotDetection;
 
@@ -40,6 +40,7 @@ class ModuleBotDetection extends \System
     const BOTDETECTION_VERSION  = '1.0.0';
     
     const BOT_REFERRER_LIST     = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/bot-referrer-list.php";
+    const BOT_REFERRER_PROVIDER = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/referrer-provider.php";
     
     const BOT_IP4_LIST          = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/bot-ip-list-ipv4.txt";
     const BOT_IP6_LIST          = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/bot-ip-list-ipv6.txt";
@@ -83,7 +84,10 @@ class ModuleBotDetection extends \System
             return true;
         }
         
-        if ( true === (bool) CheckBotReferrer::checkReferrer(false, TL_ROOT . self::BOT_REFERRER_LIST) )
+        if ( true === (bool) CheckBotReferrer::checkReferrer(false, 
+                                                             TL_ROOT . self::BOT_REFERRER_LIST, 
+                                                             TL_ROOT . self::BOT_REFERRER_PROVIDER) 
+           )
         {
             return true;
         }

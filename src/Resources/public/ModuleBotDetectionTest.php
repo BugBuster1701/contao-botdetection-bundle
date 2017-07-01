@@ -15,15 +15,9 @@
 
 /**
  * Aufruf direkt!
- * http://deine-domain.de/system/modules/botdetection/test/ModuleBotDetectionTest.php   
+ * http://deine-domain.de/bundles/bugbusterbotdetection/ModuleBotDetectionTest.php   
  * 
- * TODO PFAD  MUSS NACH web\ oder per Route
  */
-
-/**
- * Run in a custom namespace, so the class can be replaced
- */
-//namespace BugBuster\BotDetection;
 
 /**
  * Initialize the system
@@ -142,20 +136,13 @@ class ModuleBotDetectionTest extends \BugBuster\BotDetection\ModuleBotDetection
 		$arrTest[] = array(true, 'Mozilla/5.0 (compatible; MegaIndex.ru/2.0; +https://www.megaindex.ru/?tab=linkAnalyze)','MegaIndex Bot');
 
 		
-		//$arrTest[] = array(true, '','');
-		
-		/*
-		$arrReferrerTest[] =array(true, 'http://www.semalt.com/', 'Semalt');
-		$arrReferrerTest[] =array(true, 'updown_tester', 'UpDown Tester');
-		$arrReferrerTest[] =array(true, 'www.xxlpromo.com', 'www.xxlpromo.com');
-		*/
 		$arrReferrerTest[] =array(false, 'contao.org');
 		$arrReferrerTest[] =array(true, 'abcd4.de');
 		$arrReferrerTest[] =array(true, 'backgroundpictures.net');
 		$arrReferrerTest[] =array(true, 'baixar-musicas-gratis.com');
 		$arrReferrerTest[] =array(true, 'buttons-for-website.com');
 		$arrReferrerTest[] =array(true, 'cylex.de');
-		$arrReferrerTest[] =array(true, 'descargar-musica-gratis.net');
+		$arrReferrerTest[] =array(true, 'bala.getenjoyment.net');
 		$arrReferrerTest[] =array(true, 'darodar.com');
 		$arrReferrerTest[] =array(true, 'extener.org');
 		$arrReferrerTest[] =array(true, 'extener.com');
@@ -196,7 +183,6 @@ class ModuleBotDetectionTest extends \BugBuster\BotDetection\ModuleBotDetection
 		$arrReferrerTest[] =array(true, 'darkhalfe.ru');
 		$arrReferrerTest[] =array(true, 'sovetogorod.ru');
 		$arrReferrerTest[] =array(true, 'weesexy.ru');
-		
 		/*
 wget --no-cache --referer="http://www.facebug.net/" --user-agent="Mozilla BugBuster" http://mars:81/vhosts/contao32_develop/
 wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --user-agent="Mozilla BugBuster" http://mars:81/vhosts/contao32_develop/
@@ -212,18 +198,18 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
 <body>';
 		echo '<div>';
     		echo '<div style="float:left;width:42%;font-family:Verdana,sans-serif;font-size: 12px;">';
-    			$this->CheckBotAgentTest($arrTest);
+    			$this->checkBotAgentTest($arrTest);
     		echo '</div>';
     		echo '<div style="float:left;width:58%;font-family:Verdana,sans-serif;font-size: 12px;">';
-    			$this->CheckBotAgentAdvancedTest($arrTest);
+    			$this->checkBotAgentAdvancedTest($arrTest);
     		echo '</div>';
 		echo '</div>';
 		echo '<div style="clear:both;font-family:Verdana,sans-serif;font-size: 12px;"><br>';
-			$this->CheckBotIPTest();
+			$this->checkBotIPTest();
 		echo '</div>';
-		$returnall = $this->CheckBotAllTestsTest(); // muss vor ref test, sonst geht erster Test schief
+		$returnall = $this->checkBotAllTestsTest(); // muss vor ref test, sonst geht erster Test schief
 		echo '<div style="clear:both;font-family:Verdana,sans-serif;font-size: 12px;"><br>';
-            $this->CheckBotReferrerTest($arrReferrerTest);
+            $this->checkBotReferrerTest($arrReferrerTest);
 		echo '</div>';
 		echo '<div style="clear:both;font-family:Verdana,sans-serif;font-size: 12px;"><br>';
 		    echo $returnall;
@@ -232,7 +218,7 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
 		echo "</body></html>";
 	} 
 	
-	private function CheckBotAgentTest($arrTest)
+	private function checkBotAgentTest($arrTest)
 	{
 	    echo "<h1>CheckBotAgentTest</h1>";
 
@@ -259,7 +245,7 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
 		return true;
 	}
 	
-	private function CheckBotIPTest()
+	private function checkBotIPTest()
 	{
 	    echo "<h1>CheckBotIPTest</h1>";
 	    $arrTest[] = array(false,false,'own IP');
@@ -297,7 +283,7 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
 	    return true;
 	}
 	
-	private function CheckBotAgentAdvancedTest($arrTest)
+	private function checkBotAgentAdvancedTest($arrTest)
 	{
 	    echo "<h1>CheckBotAdvancedTest</h1>";
 	    $y=count($arrTest);
@@ -308,7 +294,7 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
 	    for ($x=0; $x<$y; $x++)
 	    {
 	        $nr = ($x<10) ? "&nbsp;".$x : $x;
-	        if ($arrTest[$x][0] == false) // false Test 
+	        if ($arrTest[$x][0] === false) // false Test 
 	        {
 	            if ($arrTest[$x][0] == $result[$x]) 
     	        {
@@ -338,7 +324,7 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
 		return true;
 	}
 	
-	private function CheckBotAllTestsTest()
+	private function checkBotAllTestsTest()
 	{
 	    $return = "<h1>CheckBotAllTest</h1>";
 	    $arrTest[0] = 'your browser, false test';
@@ -380,12 +366,12 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
 	        }
 	        $result[3] = $this->checkBotAllTests(); //BD_CheckBotIP = true
 	    }
-	    //$arrTest[3] .= ' '.print_r($GLOBALS['BOTDETECTION']['BOT_IPV6'],true);
+
 	    //output
 	    for ($x=0; $x<4; $x++)
 	    {
     	    $nr = ($x<10) ? "&nbsp;".$x : $x;
-            if (true == $result[$x]) 
+            if (true === $result[$x]) 
             {
 	            $return .= '<span style="color:green;">';
 	        } 
@@ -399,18 +385,21 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
         return $return;	    	    
 	}
 	
-	private function CheckBotReferrerTest($arrReferrerTest)
+	private function checkBotReferrerTest($arrReferrerTest)
 	{
+	    
 	    echo "<h1>CheckBotReferrerTest</h1>";
 	    $y=count($arrReferrerTest);
 	    for ($x=0; $x<$y; $x++)
 	    {
-            $result[$x] = \BugBuster\BotDetection\CheckBotReferrer::checkReferrer('http://www.'.$arrReferrerTest[$x][1].'/wtf');
+            $result[$x] = \BugBuster\BotDetection\CheckBotReferrer::checkReferrer('http://'.$arrReferrerTest[$x][1].'/wtf',
+                                    TL_ROOT ."/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/bot-referrer-list.php",
+                                    TL_ROOT ."/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/referrer-provider.php");
 	    }
 	    for ($x=0; $x<$y; $x++)
 	    {
 	        $nr = ($x<10) ? "&nbsp;".$x : $x;
-	        if ($arrReferrerTest[$x][0] == false) // false Test
+	        if ($arrReferrerTest[$x][0] === false) // false Test
             {
 	            if ($arrReferrerTest[$x][0] == $result[$x])
 	            {
@@ -447,4 +436,3 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
 $objBotDetectionTest = new ModuleBotDetectionTest();
 $objBotDetectionTest->run();
 
-?>
