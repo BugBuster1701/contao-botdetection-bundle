@@ -48,8 +48,11 @@ class CheckBotReferrer
         	$_SERVER['HTTP_REFERER'] = $Referrer;
         }
         
-        $referrer_DNS    = static::getReferrerDns($Referrer);
-        
+        $referrer_DNS    = self::getReferrerDns($Referrer);
+        if ('unknown' == $referrer_DNS) 
+        {
+            return false;  // ein Referrer du haben musst
+        }
         //returns true when a blocked referrer is detected
         //zuerst die mitgelieferte Provider Liste durchsuchen
         $blocker = new Blocker($referrer_DNS, TL_ROOT . '/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config');
@@ -81,15 +84,16 @@ class CheckBotReferrer
                 {
                     $proPar->cleanProviderList();
                     $proPar->writeProviderList();
-                    
-                    $blocker = new Blocker($referrer_DNS, $cachePath);
-                    if ($blocker->isReferrerSpam()) 
-                    {
-                        return true;
-                    }
+                }   
+                $blocker = new Blocker($referrer_DNS, $cachePath);
+                if ($blocker->isReferrerSpam()) 
+                {
+                    return true;
                 }
+                
             }
         }
+        
         //dritter Versuch, eigene lokale Liste
         $botreferrerlist = false;
         $botreferrerlist = static::getReferrerOwnList($Bot_Referrer_List);
@@ -99,6 +103,7 @@ class CheckBotReferrer
         	$checkOwn = static::checkReferrerList($botreferrerlist, $referrer_DNS);
         }
 
+        
         //vierter Versuch (localconfig)
        	$botreferrerlist = static::getReferrerLocalList();
        	if ($botreferrerlist !== false)
@@ -221,5 +226,5 @@ class CheckBotReferrer
         }
         return false;
     }
-
+    
 }

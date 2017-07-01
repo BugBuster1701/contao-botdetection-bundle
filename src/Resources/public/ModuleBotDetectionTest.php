@@ -149,7 +149,7 @@ class ModuleBotDetectionTest extends \BugBuster\BotDetection\ModuleBotDetection
 		$arrReferrerTest[] =array(true, 'baixar-musicas-gratis.com');
 		$arrReferrerTest[] =array(true, 'buttons-for-website.com');
 		$arrReferrerTest[] =array(true, 'cylex.de');
-		$arrReferrerTest[] =array(true, 'descargar-musica-gratis.net');
+		$arrReferrerTest[] =array(true, 'bala.getenjoyment.net');
 		$arrReferrerTest[] =array(true, 'darodar.com');
 		$arrReferrerTest[] =array(true, 'extener.org');
 		$arrReferrerTest[] =array(true, 'extener.com');
@@ -190,7 +190,6 @@ class ModuleBotDetectionTest extends \BugBuster\BotDetection\ModuleBotDetection
 		$arrReferrerTest[] =array(true, 'darkhalfe.ru');
 		$arrReferrerTest[] =array(true, 'sovetogorod.ru');
 		$arrReferrerTest[] =array(true, 'weesexy.ru');
-		
 		/*
 wget --no-cache --referer="http://www.facebug.net/" --user-agent="Mozilla BugBuster" http://mars:81/vhosts/contao32_develop/
 wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --user-agent="Mozilla BugBuster" http://mars:81/vhosts/contao32_develop/
@@ -395,11 +394,14 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
 	
 	private function CheckBotReferrerTest($arrReferrerTest)
 	{
+	    
 	    echo "<h1>CheckBotReferrerTest</h1>";
 	    $y=count($arrReferrerTest);
 	    for ($x=0; $x<$y; $x++)
 	    {
-            $result[$x] = \BugBuster\BotDetection\CheckBotReferrer::checkReferrer('http://www.'.$arrReferrerTest[$x][1].'/wtf');
+            $result[$x] = \BugBuster\BotDetection\CheckBotReferrer::checkReferrer('http://'.$arrReferrerTest[$x][1].'/wtf',
+                                    TL_ROOT ."/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/bot-referrer-list.php",
+                                    TL_ROOT ."/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/referrer-provider.php");
 	    }
 	    for ($x=0; $x<$y; $x++)
 	    {

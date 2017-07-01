@@ -81,7 +81,11 @@ class BlockerTest extends PHPUnit_Framework_TestCase
     public function testIsReferrerSpam($result, $referrer)
     {
         $this->blocker->setReferrer($referrer);
-        $actual = $this->blocker->isReferrerSpam('|wdfdocando.com|we-globe|web-betting.ru|web-list.xyz|');
+        
+        $referrerlist = $this->blocker->getCachePath() .'/referrerblocked.txt';
+        $blocklist    = file_get_contents($referrerlist);
+        $actual = $this->blocker->isReferrerSpam($blocklist);
+        
         $this->assertTrue($actual == $result);
     }
     public function providerSpam()
@@ -89,6 +93,7 @@ class BlockerTest extends PHPUnit_Framework_TestCase
         return array(//result,host
             array(true , 'wdfdocando.com'),
             array(true , 'we-globe'),
+            array(true , 'backgroundpictures.net'),
             array(false, 'web-list'),
             array(false, 'web-list.de'),
             array(false, 'contao.org')
