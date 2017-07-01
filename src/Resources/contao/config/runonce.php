@@ -12,6 +12,9 @@
 */
 namespace BugBuster\BotDetection;
 
+use BugBuster\BotDetection\Referrer\ProviderCommunication;
+use BugBuster\BotDetection\Referrer\ProviderParser;
+
 /**
  * Class BotDetectionRunonceJobDel6006
  *
@@ -29,6 +32,28 @@ class BotDetectionRunonceJobDel6006 extends \Controller
     
     public function run()
     {
+        // Prefill the cache
+        $referrerProvider = array();
+        include_once(TL_ROOT . '/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/referrerblocked.txt');
+        $proCom = new ProviderCommunication($referrerProvider, false);
+        
+        if (true === $proCom->loadProviderFiles())
+        {
+            $cachePath = $proCom->getCachePath();
+        }
+        if (false !== $cachePath)
+        {
+            $proPar = new ProviderParser($referrerProvider, $cachePath);
+        
+            if ( true === $proPar->isUpdateProviderListNecessary() &&
+                 true === $proPar->generateProviderList()
+                )
+            {
+                $proPar->cleanProviderList();
+                $proPar->writeProviderList();
+            }
+        }
+        
         // delete old cache/largebrowscap_v6006_1.0.4/ directory
         if (is_dir(TL_ROOT . '/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/cache/largebrowscap_v6006_1.0.4'))
         {
