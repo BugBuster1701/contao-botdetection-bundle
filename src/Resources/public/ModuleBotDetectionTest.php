@@ -15,15 +15,9 @@
 
 /**
  * Aufruf direkt!
- * http://deine-domain.de/system/modules/botdetection/test/ModuleBotDetectionTest.php   
+ * http://deine-domain.de/bundles/bugbusterbotdetection/ModuleBotDetectionTest.php   
  * 
- * TODO PFAD  MUSS NACH web\ oder per Route
  */
-
-/**
- * Run in a custom namespace, so the class can be replaced
- */
-//namespace BugBuster\BotDetection;
 
 /**
  * Initialize the system
