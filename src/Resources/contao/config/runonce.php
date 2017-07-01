@@ -34,7 +34,7 @@ class BotDetectionRunonceJobDel6006 extends \Controller
     {
         // Prefill the cache
         $referrerProvider = array();
-        include_once(TL_ROOT . '/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/referrerblocked.txt');
+        include_once(TL_ROOT . '/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/referrer-provider.php');
         $proCom = new ProviderCommunication($referrerProvider, false);
         
         if (true === $proCom->loadProviderFiles())
