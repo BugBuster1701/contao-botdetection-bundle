@@ -67,7 +67,7 @@ class ProviderCommunication
             $strCachePath   = \StringUtil::stripRootDir(\System::getContainer()->getParameter('kernel.cache_dir'));
             $objFolder      = new \Folder($strCachePath . '/botdetection');
             unset($objFolder);
-            $this->cachePath = $strCachePath . '/botdetection';
+            $this->cachePath = TL_ROOT . '/' . $strCachePath . '/botdetection';
         }
         else
         {
