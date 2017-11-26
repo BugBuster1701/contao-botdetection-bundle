@@ -1,5 +1,5 @@
 <?php 
-$botagentsversion="6021";
+$botagentsversion="6026";
 $botagents=array("trueknowledgebot" => "TrueKnowledgeBot",
 "ptd-crawler" => "ptd-crawler bixolabs.com",
 "spock crawler" => "Spock Crawler",
@@ -79,7 +79,6 @@ $botagents=array("trueknowledgebot" => "TrueKnowledgeBot",
 "swebot/" => "SWEBot",
 "lb-spider" => "Linkbutler Spider",
 "hometags" => "HomeTags",
-"semrushbot" => "SemrushBot",
 "litlrbot" => "LitlrBot",
 "careerbot/" => "CareerBot",
 "discoverybot/" => "Discoverybot",
@@ -116,9 +115,9 @@ $botagents=array("trueknowledgebot" => "TrueKnowledgeBot",
 "cronjob.de" => "Cronjob.de",
 "publiclibraryarchive.org" => "publiclibraryarchive.org",
 "mindupbot" => "mindUpBot (datenbutler.de)",
-"ips-agent" => "http://de.wetena.com/bot/ips-agent",
 "seobility" => "Seobility SEO-Check",
 "seocheck" => "SeoCheck",
 "teoma" => "Teoma",
 "uptimebot" => "Uptimebot",
+"dnyzbot" => "DnyzBot",
 ); ?>
