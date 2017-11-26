@@ -85,15 +85,19 @@ class ModuleFrontendDemo2 extends \Module
 	    
 		$doNotSubmit = false;
 		$arrWidgets = array();
+		
 		// Initialize widgets
 		foreach ($arrFields as $arrField)
 		{
+		    /** @var \Widget $strClass */
 			$strClass = $GLOBALS['TL_FFL'][$arrField['inputType']];
 
 			// Continue if the class is not defined
-			if (!$this->class_exists($strClass)) { continue; }
+			if (!class_exists($strClass)) { continue; }
 
 			$arrField['eval']['required'] = $arrField['eval']['mandatory'];
+			
+			/** @var \Widget $objWidget */
 			$objWidget = new $strClass($strClass::getAttributesFromDca($arrField, $arrField['name'], $arrField['value']));
 
 			// Validate widget
@@ -136,11 +140,15 @@ class ModuleFrontendDemo2 extends \Module
 			$arrWidgets = array();
 			foreach ($arrFields as $arrField)
 			{
+			    /** @var \Widget $strClass */
 				$strClass = $GLOBALS['TL_FFL'][$arrField['inputType']];
+				
 				// Continue if the class is not defined
-				if (!$this->class_exists($strClass)) { continue; } 
+				if (!class_exists($strClass)) { continue; } 
 				
 				$arrField['eval']['required'] = $arrField['eval']['mandatory'];
+				
+				/** @var \Widget $objWidget */
 				$objWidget = new $strClass($strClass::getAttributesFromDca($arrField, $arrField['name'], $arrField['value']));
 				$arrWidgets[$arrField['name']] = $objWidget;
 			}
