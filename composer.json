@@ -4,7 +4,7 @@
 	"keywords":["detection","bots","contao","bundle"],
 	"type":"contao-bundle",
 	"homepage":"http://contao.ninja",
-	"license":"LGPL-3.0+",
+	"license":"LGPL-3.0-or-later",
 	"authors":[
 		{
 			"name":"Glen Langer",
@@ -20,31 +20,32 @@
 		"forum":"https://community.contao.org/de/forumdisplay.php?119-Sonstige-Erweiterungen"
 	},
 	"require":{
-		"php": ">=5.6.0",
-		"contao/core-bundle": ">=4.3.8,<5.0",
-		"crossjoin/browscap": "1.0.6"
+		"php": "^7.1",
+		"contao/core-bundle": ">=4.5,<4.9",
+		"crossjoin/browscap": "1.0.6",
+		"true/punycode": "^2.1"
 	},
 	"require-dev": {
-			"true/punycode": "^2.0"
+		"friendsofphp/php-cs-fixer": "^2.12",
+		"phpunit/phpunit": "^7.0"
 	},
 	"conflict": {
-			"contao/manager-plugin": "<2.0 || >=3.0",
-			"symfony/symfony": "3.2.7"
+		"contao/manager-plugin": "<2.0 || >=3.0"
 	},
 	"autoload":{
-			"psr-4": {
-					"BugBuster\\BotdetectionBundle\\": "src/"
+		"psr-4": {
+			"BugBuster\\BotdetectionBundle\\": "src/"
 		},
 		"classmap": [
-					"src/Resources/contao/"
+			"src/Resources/contao/"
 		],
 		"exclude-from-classmap": [
-					"src/Resources/contao/cache/",
-					"src/Resources/contao/config/",
-					"src/Resources/contao/dca/",
-					"src/Resources/contao/languages/",
-					"src/Resources/contao/templates/",
-					"src/Resources/contao/test/"
+			"src/Resources/contao/cache/",
+			"src/Resources/contao/config/",
+			"src/Resources/contao/dca/",
+			"src/Resources/contao/languages/",
+			"src/Resources/contao/templates/",
+			"src/Resources/contao/test/"
 		]
 	},
 	"extra":{
@@ -60,7 +61,7 @@
 			]
 		},
 		"branch-alias": {
-			"dev-develop": "1.1.x-dev"
+			"dev-develop": "1.5.x-dev"
 		},
 		"contao-manager-plugin": "BugBuster\\BotdetectionBundle\\ContaoManager\\Plugin"
 	}
