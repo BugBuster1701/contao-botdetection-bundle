@@ -43,6 +43,13 @@ class ProviderCommunication
      */
     private $allowUrlOpen;
     
+    /**
+     * TL_ROOT over Container
+     * 
+     * @var string
+     */
+    private $rootDir;
+    
 
     /**
      * 
@@ -54,6 +61,7 @@ class ProviderCommunication
         $this->referrerProvider = $referrerProvider;
         $this->cachePath        = $cachePath;
         $this->allowUrlOpen     = (bool) ini_get('allow_url_fopen');
+        $this->rootDir = \System::getContainer()->getParameter('kernel.project_dir');
         
         $this->checkCachePath();
         
@@ -67,7 +75,7 @@ class ProviderCommunication
             $strCachePath   = \StringUtil::stripRootDir(\System::getContainer()->getParameter('kernel.cache_dir'));
             $objFolder      = new \Folder($strCachePath . '/botdetection');
             unset($objFolder);
-            $this->cachePath = TL_ROOT . '/' . $strCachePath . '/botdetection';
+            $this->cachePath = $this->rootDir . '/' . $strCachePath . '/botdetection';
         }
         else
         {
@@ -144,7 +152,7 @@ class ProviderCommunication
     
         if (!$strLogsDir)
         {
-            $strLogsDir = TL_ROOT . '/var/logs';
+            $strLogsDir = $this->rootDir . '/var/logs';
         }
     
         error_log(sprintf("[%s] %s\n", date('d-M-Y H:i:s'), $strMessage), 3, $strLogsDir . '/' . $strLog);
