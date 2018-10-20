@@ -37,6 +37,8 @@ class ProviderParser
     
     private $arrReferrerSpammer;
     
+    private $referrerProvider;
+    
     /**
      * 
      * @param array     $referrerProvider
