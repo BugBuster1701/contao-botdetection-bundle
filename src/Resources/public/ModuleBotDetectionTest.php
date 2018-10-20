@@ -135,7 +135,13 @@ class ModuleBotDetectionTest extends \BugBuster\BotDetection\ModuleBotDetection
 		$arrTest[] = array(true, 'Cronjob.de','Cronjob.de');
 		$arrTest[] = array(true, 'Mozilla/5.0 (compatible; MegaIndex.ru/2.0; +https://www.megaindex.ru/?tab=linkAnalyze)','MegaIndex Bot');
 		//Fixed #12
-		$arrTest[] = array(true, 'Mozilla/5.0 (compatible; DnyzBot/1.0)','DnyzBot');		
+		$arrTest[] = array(true, 'Mozilla/5.0 (compatible; DnyzBot/1.0)','DnyzBot');
+		//Fixed #21
+		$arrTest[] = array(true, 'check_http/v2.2 (monitoring-plugins 2.2)','check_mk monitoring-plugin');
+		//Fixed #19
+		$arrTest[] = array(true, 'Mozilla/5.0 (compatible; phpservermon/3.2.2; +http://www.phpservermonitor.org)','phpservermonitor');
+		//Fixed #20
+		$arrTest[] = array(true, 'CFNetwork/','CFNetwork App');
 		
 		$arrReferrerTest[] =array(false, 'contao.org');
 		$arrReferrerTest[] =array(true, 'abcd4.de');

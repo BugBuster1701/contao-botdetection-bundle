@@ -1,5 +1,5 @@
 <?php 
-$botagentsversion="6026";
+$botagentsversion="6030";
 $botagents=array("trueknowledgebot" => "TrueKnowledgeBot",
 "ptd-crawler" => "ptd-crawler bixolabs.com",
 "spock crawler" => "Spock Crawler",
@@ -120,4 +120,7 @@ $botagents=array("trueknowledgebot" => "TrueKnowledgeBot",
 "teoma" => "Teoma",
 "uptimebot" => "Uptimebot",
 "dnyzbot" => "DnyzBot",
+"check_http" => "check_mk monitoring-plugin",
+"phpservermon" => "phpservermonitor",
+"CFNetwork/" => "CFNetwork App",
 ); ?>
