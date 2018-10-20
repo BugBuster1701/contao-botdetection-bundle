@@ -1,11 +1,12 @@
 <?php
 require_once 'src/Resources/contao/classes/Referrer/ProviderCommunication.php';
 use BugBuster\BotDetection\Referrer\ProviderCommunication;
+use PHPUnit\Framework\TestCase;
 
 /**
  * ProviderCommunication test case.
  */
-class ProviderCommunicationTest extends PHPUnit_Framework_TestCase
+class ProviderCommunicationTest extends TestCase
 {
 
     /**

@@ -1,11 +1,12 @@
 <?php
 require_once 'src/Resources/contao/classes/Referrer/Blocker.php';
 use BugBuster\BotDetection\Referrer\Blocker;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Blocker test case.
  */
-class BlockerTest extends PHPUnit_Framework_TestCase
+class BlockerTest extends TestCase
 {
 
     /**

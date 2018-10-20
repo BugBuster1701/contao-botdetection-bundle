@@ -1,11 +1,12 @@
 <?php
 require_once 'src/Resources/contao/classes/Referrer/ProviderParser.php';
 use BugBuster\BotDetection\Referrer\ProviderParser;
+use PHPUnit\Framework\TestCase;
 
 /**
  * ProviderParser test case.
  */
-class ProviderParserTest extends PHPUnit_Framework_TestCase
+class ProviderParserTest extends TestCase
 {
 
     /**
