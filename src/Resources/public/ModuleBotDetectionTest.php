@@ -394,8 +394,8 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
 	    for ($x=0; $x<$y; $x++)
 	    {
             $result[$x] = \BugBuster\BotDetection\CheckBotReferrer::checkReferrer('http://'.$arrReferrerTest[$x][1].'/wtf',
-                                    TL_ROOT ."/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/bot-referrer-list.php",
-                                    TL_ROOT ."/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/referrer-provider.php");
+                                    $this->rootDir ."/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/bot-referrer-list.php",
+                                    $this->rootDir ."/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/referrer-provider.php");
 	    }
 	    for ($x=0; $x<$y; $x++)
 	    {
