@@ -42,6 +42,7 @@ class CheckBotReferrer
         $checkOwn   = false;
         $checkLocal = false;
         $cachePath  = false;
+        $rootDir    = \System::getContainer()->getParameter('kernel.project_dir');
         
         if (false !== $Referrer) 
         {
@@ -55,7 +56,7 @@ class CheckBotReferrer
         }
         //returns true when a blocked referrer is detected
         //zuerst die mitgelieferte Provider Liste durchsuchen
-        $blocker = new Blocker($referrer_DNS, TL_ROOT . '/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config');
+        $blocker = new Blocker($referrer_DNS, $rootDir . '/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config');
         if ($blocker->isReferrerSpam())
         {
             return true;

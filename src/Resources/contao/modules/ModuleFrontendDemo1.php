@@ -40,6 +40,15 @@ class ModuleFrontendDemo1 extends \Module
 	 */
 	protected $strTemplate = 'mod_botdetection_demo1_fe';
 	
+	/**
+	 * TL_ROOT over Container
+	 *
+	 * @var string
+	 */
+	private $rootDir;
+	
+	private $ModuleBotDetection;
+	
 	const BOT_IP4_LIST          = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/bot-ip-list-ipv4.txt";
 	const BOT_IP6_LIST          = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/bot-ip-list-ipv6.txt";
 	
@@ -71,10 +80,11 @@ class ModuleFrontendDemo1 extends \Module
 	 */
 	protected function compile()
 	{
+	    $this->rootDir = \System::getContainer()->getParameter('kernel.project_dir');
 	    //einzel tests direkt aufgerufen
 	    $test01 = CheckBotAgentSimple::checkAgent( \Environment::get('httpUserAgent') ); // own Browser
-	    CheckBotIp::setBotIpv4List(TL_ROOT . self::BOT_IP4_LIST);
-	    CheckBotIp::setBotIpv6List(TL_ROOT . self::BOT_IP6_LIST);
+	    CheckBotIp::setBotIpv4List($this->rootDir . self::BOT_IP4_LIST);
+	    CheckBotIp::setBotIpv6List($this->rootDir . self::BOT_IP6_LIST);
 	    $test02 = CheckBotIp::checkIP( \Environment::get('ip') ); // own IP
 	    $test03 = CheckBotAgentExtended::checkAgent( \Environment::get('httpUserAgent') ); // own Browser
 	    

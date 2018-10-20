@@ -46,11 +46,19 @@ class ModuleBotDetection extends \System
     const BOT_IP6_LIST          = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/bot-ip-list-ipv6.txt";
     
     /**
+     * TL_ROOT over Container
+     *
+     * @var string
+     */
+    protected $rootDir;
+    
+    /**
      * Initialize object
      */
     public function __construct()
     {
         parent::__construct();
+        $this->rootDir = \System::getContainer()->getParameter('kernel.project_dir');
     }
     
     /**
@@ -85,8 +93,8 @@ class ModuleBotDetection extends \System
         }
         
         if ( true === (bool) CheckBotReferrer::checkReferrer(false, 
-                                                             TL_ROOT . self::BOT_REFERRER_LIST, 
-                                                             TL_ROOT . self::BOT_REFERRER_PROVIDER) 
+                                                             $this->rootDir . self::BOT_REFERRER_LIST, 
+                                                             $this->rootDir . self::BOT_REFERRER_PROVIDER) 
            )
         {
             return true;
@@ -97,8 +105,8 @@ class ModuleBotDetection extends \System
         	return true;
         }
         
-        CheckBotIp::setBotIpv4List(TL_ROOT . self::BOT_IP4_LIST);
-        CheckBotIp::setBotIpv6List(TL_ROOT . self::BOT_IP6_LIST);
+        CheckBotIp::setBotIpv4List($this->rootDir . self::BOT_IP4_LIST);
+        CheckBotIp::setBotIpv6List($this->rootDir . self::BOT_IP6_LIST);
         
         if ( true === CheckBotIp::checkIP() )
         {
