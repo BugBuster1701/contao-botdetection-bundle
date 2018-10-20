@@ -60,7 +60,7 @@
 			]
 		},
 		"branch-alias": {
-			"dev-develop": "1.1.x-dev"
+			"dev-release-1.0-C44LTS": "1.1.x-dev"
 		},
 		"contao-manager-plugin": "BugBuster\\BotdetectionBundle\\ContaoManager\\Plugin"
 	}
