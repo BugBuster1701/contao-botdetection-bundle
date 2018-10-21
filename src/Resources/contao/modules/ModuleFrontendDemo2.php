@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /**
  * Contao Open Source CMS, Copyright (C) 2005-2017 Leo Feyer
@@ -7,7 +7,6 @@
  * 
  * @copyright  Glen Langer 2007..2017 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
- * @package    BotDetectionDemo 
  * @license    LGPL 
  * @filesource
  * @see        https://github.com/BugBuster1701/contao-botdetection-bundle 
@@ -16,11 +15,8 @@
 /**
  * Run in a custom namespace, so the class can be replaced
  */
-namespace BugBuster\BotDetection;
 
-use BugBuster\BotDetection\ModuleBotDetection;
-use BugBuster\BotDetection\CheckBotAgentExtended;
-use BugBuster\BotDetection\CheckBotAgentSimple;
+namespace BugBuster\BotDetection;
 
 /**
  * Class ModuleFrontendDemo2
@@ -28,7 +24,6 @@ use BugBuster\BotDetection\CheckBotAgentSimple;
  *
  * @copyright  Glen Langer 2007..2017 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
- * @package    BotDetectionDemo
  */
 class ModuleFrontendDemo2 extends \Module
 {
@@ -38,7 +33,7 @@ class ModuleFrontendDemo2 extends \Module
 	 * @var string
 	 */
 	protected $strTemplate = 'mod_botdetection_demo2_fe';
-	
+
 	/**
 	 * Display a wildcard in the back end
 	 * @return string
@@ -49,19 +44,19 @@ class ModuleFrontendDemo2 extends \Module
 		{
 			$objTemplate = new \BackendTemplate('be_wildcard');
 			$objTemplate->wildcard = '### Bot Detection Frontend Demo 2 ###';
-			
+
 			$objTemplate->title = $this->headline;
             $objTemplate->id = $this->id;
             $objTemplate->link = $this->name;
-            
+
 			$objTemplate->href = 'contao/main.php?do=themes&amp;table=tl_module&amp;act=edit&amp;id=' . $this->id;
-			
+
 			return $objTemplate->parse();
 		}
+
 		return parent::generate();
 	}
-	
-	
+
 	/**
 	 * Generate module
 	 */
@@ -82,21 +77,21 @@ class ModuleFrontendDemo2 extends \Module
 			'inputType' => 'captcha',
 			'eval' => array('mandatory'=>true)
 		);
-	    
+
 		$doNotSubmit = false;
 		$arrWidgets = array();
-		
+
 		// Initialize widgets
 		foreach ($arrFields as $arrField)
 		{
-		    /** @var \Widget $strClass */
+			/** @var \Widget $strClass */
 			$strClass = $GLOBALS['TL_FFL'][$arrField['inputType']];
 
 			// Continue if the class is not defined
 			if (!class_exists($strClass)) { continue; }
 
 			$arrField['eval']['required'] = $arrField['eval']['mandatory'];
-			
+
 			/** @var \Widget $objWidget */
 			$objWidget = new $strClass($strClass::getAttributesFromDca($arrField, $arrField['name'], $arrField['value']));
 
@@ -114,15 +109,15 @@ class ModuleFrontendDemo2 extends \Module
 			$arrWidgets[$arrField['name']] = $objWidget;
 		}
 	    $this->Template->fields = $arrWidgets;
-	    
+
    		$this->Template->submit = $GLOBALS['TL_LANG']['MSC']['botdetectiondemo2_submit'];
 		$this->Template->action = ampersand(\Environment::get('request'));
 		$this->Template->hasError = $doNotSubmit;
 
 	    if (\Input::post('FORM_SUBMIT') == 'botdetectiondemo2' && !$doNotSubmit)
 		{
-			$arrSet = array( 'agent_name' => \Input::post('name',true) );
-			
+			$arrSet = array('agent_name' => \Input::post('name', true));
+
 			//einzel tests direkt aufgerufen
     	    $test01 = CheckBotAgentSimple::checkAgent($arrSet['agent_name']);
     	    $test02 = CheckBotAgentExtended::checkAgentName($arrSet['agent_name']); 
@@ -133,28 +128,28 @@ class ModuleFrontendDemo2 extends \Module
     	    $messages  = "<strong>".$GLOBALS['TL_LANG']['MSC']['botdetectiondemo2_message_1'].":</strong><br />".$arrSet['agent_name']."<br /><br />";
     	    $messages .= "<div style=\"font-weight:bold; width:190px;float:left;\">CheckBotAgentSimple:</div> ".$not1."<br />";
     	    $messages .= "<div style=\"font-weight:bold; width:190px;float:left;\">CheckBotAgentExtended:</div> ".$not2.$not3."<br />";
-    	    $messages .= "<div style=\"font-weight:bold; width:190px;float:left;\">BrowsCapInfo:</div><pre>".print_r($BrowsCapInfo,true)."</pre><br />";
-    	    
+    	    $messages .= "<div style=\"font-weight:bold; width:190px;float:left;\">BrowsCapInfo:</div><pre>".print_r($BrowsCapInfo, true)."</pre><br />";
+
 			$this->Template->message  = $messages;
-			
+
 			$arrWidgets = array();
 			foreach ($arrFields as $arrField)
 			{
-			    /** @var \Widget $strClass */
+				/** @var \Widget $strClass */
 				$strClass = $GLOBALS['TL_FFL'][$arrField['inputType']];
-				
+
 				// Continue if the class is not defined
 				if (!class_exists($strClass)) { continue; } 
-				
+
 				$arrField['eval']['required'] = $arrField['eval']['mandatory'];
-				
+
 				/** @var \Widget $objWidget */
 				$objWidget = new $strClass($strClass::getAttributesFromDca($arrField, $arrField['name'], $arrField['value']));
 				$arrWidgets[$arrField['name']] = $objWidget;
 			}
 
 			$this->Template->fields = $arrWidgets;
-			
+
 		}
 	    // get module version
 		$this->ModuleBotDetection = new ModuleBotDetection();

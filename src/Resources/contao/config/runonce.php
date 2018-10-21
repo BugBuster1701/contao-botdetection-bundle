@@ -1,15 +1,15 @@
 <?php
 /**
  * Contao Open Source CMS, Copyright (C) 2005-2017 Leo Feyer
-*
-* Modul BotDetection - runonce
-*
-* PHP version 5
-* @copyright  Glen Langer 2007..2017
-* @author     Glen Langer
-* @package    BotDetection
-* @license    LGPL
-*/
+ *
+ * Modul BotDetection - runonce
+ *
+ * PHP version 5
+ * @copyright  Glen Langer 2007..2017
+ * @author     Glen Langer
+ * @license    LGPL
+ */
+
 namespace BugBuster\BotDetection;
 
 use BugBuster\BotDetection\Referrer\ProviderCommunication;
@@ -20,7 +20,6 @@ use BugBuster\BotDetection\Referrer\ProviderParser;
  *
  * @copyright  Glen Langer 2015..2917
  * @author     Glen Langer
- * @package    Banner
  * @license    LGPL
  */
 class BotDetectionRunonceJobDel6006 extends \Controller
@@ -31,20 +30,20 @@ class BotDetectionRunonceJobDel6006 extends \Controller
      * @var string
      */
     private $rootDir;
-    
+
     public function __construct()
     {
         parent::__construct();
         $this->rootDir = \System::getContainer()->getParameter('kernel.project_dir');
     }
-    
+
     public function run()
     {
         // Prefill the cache
         $referrerProvider = array();
         include_once($this->rootDir . '/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/referrer-provider.php');
         $proCom = new ProviderCommunication($referrerProvider, false);
-        
+
         if (true === $proCom->loadProviderFiles())
         {
             $cachePath = $proCom->getCachePath();
@@ -52,8 +51,8 @@ class BotDetectionRunonceJobDel6006 extends \Controller
         if (false !== $cachePath)
         {
             $proPar = new ProviderParser($referrerProvider, $cachePath);
-        
-            if ( true === $proPar->isUpdateProviderListNecessary() &&
+
+            if (true === $proPar->isUpdateProviderListNecessary() &&
                  true === $proPar->generateProviderList()
                 )
             {
@@ -61,7 +60,7 @@ class BotDetectionRunonceJobDel6006 extends \Controller
                 $proPar->writeProviderList();
             }
         }
-        
+
         // delete old cache/largebrowscap_v6006_1.0.4/ directory
         if (is_dir($this->rootDir . '/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/cache/largebrowscap_v6006_1.0.4'))
         {
@@ -122,7 +121,7 @@ class BotDetectionRunonceJobDel6006 extends \Controller
             $folder=null;
             unset($folder);
         }
-        
+
     }
 }
 

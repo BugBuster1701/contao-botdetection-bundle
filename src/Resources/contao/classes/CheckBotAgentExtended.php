@@ -7,7 +7,6 @@
  *
  * @copyright  Glen Langer 2007..2017 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
- * @package    BotDetection
  * @license    LGPL
  * @filesource
  * @see        https://github.com/BugBuster1701/contao-botdetection-bundle
@@ -20,15 +19,14 @@ namespace BugBuster\BotDetection;
  *
  * @copyright  Glen Langer 2015..2017 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
- * @package    BotDetection
  */
 class CheckBotAgentExtended
 {
     /**
      * checkAgent
      * 
-     * @param string $UserAgent
-     * @param string $ouputBotName
+     * @param  string         $UserAgent
+     * @param  string         $ouputBotName
      * @return boolean|string
      */
     public static function checkAgent($UserAgent=false, $ouputBotName = false)
@@ -38,13 +36,13 @@ class CheckBotAgentExtended
         {
             return false; // No user agent, no search.
         }
-    
-        $UserAgent = trim( $UserAgent );
+
+        $UserAgent = trim($UserAgent);
         if (false === (bool) $UserAgent)
         {
             return false; // No user agent, no search.
         }
-    
+
         //Search in browsecap
         $objBrowscap = static::getBrowscapInfo($UserAgent);
         // DEBUG fwrite(STDOUT, 'BrowscapInfo: '.print_r($objBrowscap,true) . "\n");
@@ -60,9 +58,9 @@ class CheckBotAgentExtended
                 // DEBUG fwrite(STDOUT, 'Bot: '.print_r($objBrowscap->browser_type,true) . "\n");
                 return $objBrowscap->browser;
             }
-            
+
         }
-        
+
         // Search in bot-agent-list
         if (file_exists(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'config/bot-agent-list.php'))
         {
@@ -73,14 +71,14 @@ class CheckBotAgentExtended
             return false;	// no definition, no search
         }
         // search for user bot filter definitions in localconfig.php
-        if ( isset($GLOBALS['BOTDETECTION']['BOT_AGENT']) )
+        if (isset($GLOBALS['BOTDETECTION']['BOT_AGENT']))
         {
             foreach ($GLOBALS['BOTDETECTION']['BOT_AGENT'] as $search)
             {
                 $botagents[$search[0]] = $search[1];
             }
         }
-        $num = count($botagents);
+        $num = \count($botagents);
         $arrBots = array_keys($botagents);
         for ($c=0; $c < $num; $c++)
         {
@@ -98,28 +96,29 @@ class CheckBotAgentExtended
                 }
             }
         }
+
         return false;
     }
-    
+
     public static function checkAgentName($UserAgent=false)
     {
-        $BotName = static::checkAgent($UserAgent,true); 
+        $BotName = static::checkAgent($UserAgent, true);
+ 
         return ($BotName) ? $BotName : false;
     }
-    
+
     /**
      * getBrowscapResult for Debug
-     * 
      */
     public static function getBrowscapResult($UserAgent=false)
     {
         return static::getBrowscapInfo($UserAgent);
     }
-    
+
     /**
      * Get Browscap info for the user agent string
      * 
-     * @param string $UserAgent
+     * @param  string   $UserAgent
      * @return stdClass Object
      */
     protected static function getBrowscapInfo($UserAgent=false)
@@ -129,20 +128,20 @@ class CheckBotAgentExtended
         {
             return false; // No user agent, no search.
         }
-        
+
         // set an own cache directory (otherwise the system temp directory is used)
         \Crossjoin\Browscap\Cache\File::setCacheDirectory(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'cache');
-        
+
         //Large sonst fehlt Browser_Type / Crawler um Bots zu erkennen
         \Crossjoin\Browscap\Browscap::setDatasetType(\Crossjoin\Browscap\Browscap::DATASET_TYPE_LARGE);
 
         // disable automatic updates 
         $updater = new \Crossjoin\Browscap\Updater\None(); 
         \Crossjoin\Browscap\Browscap::setUpdater($updater);
-        
+
         $browscap = new \Crossjoin\Browscap\Browscap(false); //autoUpdate = false
         $settings = $browscap->getBrowser($UserAgent)->getData();
-        
+
         return $settings;
         /*
             stdClass Object
@@ -169,6 +168,5 @@ class CheckBotAgentExtended
                 .....
          */
     }
-    
 
 }

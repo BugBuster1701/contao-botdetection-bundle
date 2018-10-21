@@ -6,22 +6,20 @@
  *
  * @copyright  Glen Langer 2007..2017 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
- * @package    BotDetection
  * @license    LGPL
  * @filesource
  * @see        https://github.com/BugBuster1701/contao-botdetection-bundle
  */
 
 namespace BugBuster\BotDetection\Referrer;
-use Contao\System;
 use Contao\StringUtil;
+use Contao\System;
 
 /**
  * Class ProviderCommunication
  *
  * @copyright  Glen Langer 2017 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
- * @package    BotDetection  
  */
 class ProviderCommunication
 {
@@ -30,32 +28,29 @@ class ProviderCommunication
      * @var array
      */
     private $referrerProvider;
-    
+
     /**
      * Cache Path: absolute path / false -> use Contao cache dir
      * 
      * @var string
      */
     private $cachePath;
-    
+
     /**
-     * 
      * @var bool
      */
     private $allowUrlOpen;
-    
+
     /**
      * TL_ROOT over Container
      * 
      * @var string
      */
     private $rootDir;
-    
 
     /**
-     * 
-     * @param array     $referrerProvider
-     * @param string    $cachePath
+     * @param array  $referrerProvider
+     * @param string $cachePath
      */
     public function __construct($referrerProvider, $cachePath = false, $rootDir = '') 
     {
@@ -63,11 +58,11 @@ class ProviderCommunication
         $this->cachePath        = $cachePath;
         $this->allowUrlOpen     = (bool) ini_get('allow_url_fopen');
         $this->rootDir          = $rootDir;
-        
+
         $this->checkCachePath();
-        
+
     }
-    
+
     public function checkCachePath()
     {
         if (false === $this->cachePath)
@@ -85,7 +80,7 @@ class ProviderCommunication
             {
                 $strPath = '';
                 $arrChunks = explode('/', $this->cachePath);
-        
+
                 // Create the folder
                 foreach ($arrChunks as $strFolder)
                 {
@@ -95,7 +90,7 @@ class ProviderCommunication
             }
         }
     }
-    
+
     /**
      * Load Referrer Provider Files if
      * - provider files to old
@@ -104,29 +99,30 @@ class ProviderCommunication
     {
         //debug $this->logMessage('ProviderCommunication::loadProviderFile: START','botdetection_debug');
         $lastWeek = time() - (7 * 24 * 60 * 60);
-        
+
         if (false === $this->allowUrlOpen) 
         {
-            $this->logMessage('ProviderCommunication::loadProviderFiles allowUrlOpen = false!','botdetection_debug');
+            $this->logMessage('ProviderCommunication::loadProviderFiles allowUrlOpen = false!', 'botdetection_debug');
+
             return false;
         }
-        
+
         foreach($this->referrerProvider as $source => $url) 
         {
-            if ( false === file_exists($this->cachePath .'/'. strtolower($source) . '.txt') || 
+            if (false === file_exists($this->cachePath .'/'. strtolower($source) . '.txt') || 
                  $lastWeek > filemtime($this->cachePath .'/'. strtolower($source) . '.txt') 
                )
             {
                 //debug $this->logMessage('ProviderCommunication::loadProviderFile: '.$source,'botdetection_debug');
                 $fileProvider = fopen($this->cachePath .'/'. strtolower($source) . '.txt', 'wb+');
-                fwrite($fileProvider, file_get_contents($url) );
+                fwrite($fileProvider, file_get_contents($url));
                 fclose($fileProvider);
             }
         }
         //debug $this->logMessage('ProviderCommunication::loadProviderFile: END','botdetection_debug');
         return true;
     }
-    
+
     /**
      * Wrapper for old log_message
      *
@@ -143,39 +139,36 @@ class ProviderCommunication
         {
             $strLog = 'prod-' . date('Y-m-d') . '-' . $strLog . '.log';
         }
-    
+
         $strLogsDir = null;
-    
+
         if (($container = System::getContainer()) !== null)
         {
             $strLogsDir = $container->getParameter('kernel.logs_dir');
         }
-    
+
         if (!$strLogsDir)
         {
             $strLogsDir = $this->rootDir . '/var/logs';
         }
-    
+
         error_log(sprintf("[%s] %s\n", date('d-M-Y H:i:s'), $strMessage), 3, $strLogsDir . '/' . $strLog);
     }
-    
 
     public function getCachePath()
     {
         return $this->cachePath;
     }
-    
+
     public function getReferrerProvider()
     {
         return $this->referrerProvider;
     }
-    
+
     public function getAllowUrlOpen()
     {
         return $this->allowUrlOpen;
     }
-    
-    
-}
 
+}
 

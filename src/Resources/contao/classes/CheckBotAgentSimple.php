@@ -7,7 +7,6 @@
  *
  * @copyright  Glen Langer 2007..2017 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
- * @package    BotDetection
  * @license    LGPL
  * @filesource
  * @see        https://github.com/BugBuster1701/contao-botdetection-bundle
@@ -20,11 +19,10 @@ namespace BugBuster\BotDetection;
  *
  * @copyright  Glen Langer 2015..2017 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
- * @package    BotDetection
  */
 class CheckBotAgentSimple
 {
-    /**
+	/**
 	 * Rough test - Definition
 	 *
 	 * @var array
@@ -39,7 +37,7 @@ class CheckBotAgentSimple
 				            'robo',
 				            'yahoo',
 					    	);
-	
+
 	/**
 	 * Fine test - Definition
 	 *
@@ -183,13 +181,13 @@ class CheckBotAgentSimple
 				            'whitehat',    // 3.3.0
 				            'zyborg'
 				            ); 
-    
-	/**
-	 * checkAgent 
-	 * 
-	 * @param string $UserAgent
-	 * @return boolean
-	 */
+
+    /**
+     * checkAgent 
+     * 
+     * @param  string  $UserAgent
+     * @return boolean
+     */
     public static function checkAgent($UserAgent=false)
     {
         // Check if user agent present
@@ -197,14 +195,13 @@ class CheckBotAgentSimple
    	    {
             return false; // No user agent, no search.
    	    }
-   	    
-   	    $UserAgent = trim( $UserAgent );
+
+   	    $UserAgent = trim($UserAgent);
         if (false === (bool) $UserAgent) 
         { 
            return false; // No user agent, no search.
         }
-        
-        
+
         // Rough search
         $CheckUserAgent = str_ireplace(static::$_BotsRough, '#', $UserAgent);
         if ($UserAgent != $CheckUserAgent)
@@ -212,7 +209,7 @@ class CheckBotAgentSimple
             // found
             return true;
         }
-        
+
         // Fine search
         $CheckUserAgent = str_ireplace(static::$_BotsFine, '#', $UserAgent);
         if ($UserAgent != $CheckUserAgent)
@@ -220,16 +217,16 @@ class CheckBotAgentSimple
             // found
             return true;
         }
-        
+
         // Feature #76, search for user bot filter definitions in localconfig.php
-        if ( isset($GLOBALS['BOTDETECTION']['BOT_AGENT']) )
+        if (isset($GLOBALS['BOTDETECTION']['BOT_AGENT']))
         {
             $botagents = array();
             foreach ($GLOBALS['BOTDETECTION']['BOT_AGENT'] as $search)
             {
                 $botagents[$search[0]] = $search[1];
             }
-            $num = count($botagents);
+            $num = \count($botagents);
             $arrBots = array_keys($botagents);
             for ($c=0; $c < $num; $c++)
             {
@@ -241,6 +238,7 @@ class CheckBotAgentSimple
                 }
             }
         }
+
         return false;
     }//checkAgent
 }
