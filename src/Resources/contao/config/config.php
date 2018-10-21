@@ -37,9 +37,5 @@ array_insert($GLOBALS['FE_MOD'], 4, array
     (
       'botdetection1' => 'BugBuster\BotDetection\ModuleFrontendDemo1',
       'botdetection2' => 'BugBuster\BotDetection\ModuleFrontendDemo2',
-  	)/*,
-    'BotDetectionGenerate' => array
-    (
-      'browscapcachegenerate' => 'BugBuster\BotDetection\ModuleBrowscapCache',
-  	)*/
+  	)
 ));
