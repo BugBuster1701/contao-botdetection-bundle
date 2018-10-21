@@ -2,7 +2,7 @@
 
 error_reporting(E_ALL);
 
-require 'tests/vendor/autoload.php';
+require 'vendor/autoload.php';
 
 if (!file_exists('tests/cache/referrerblocked.txt')) 
 {

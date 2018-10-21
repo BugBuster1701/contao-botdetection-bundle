@@ -69,7 +69,7 @@ class CheckBotReferrer
             $referrerProvider = array();
             include_once($Bot_Provider_List);
             
-            $proCom = new ProviderCommunication($referrerProvider, false);
+            $proCom = new ProviderCommunication($referrerProvider, false, $rootDir);
             
             if (true === $proCom->loadProviderFiles()) 
             {

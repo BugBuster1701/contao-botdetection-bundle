@@ -1,5 +1,5 @@
 <?php
-require_once 'src/Resources/contao/classes/Referrer/ProviderCommunication.php';
+
 use BugBuster\BotDetection\Referrer\ProviderCommunication;
 use PHPUnit\Framework\TestCase;
 
@@ -23,6 +23,20 @@ class ProviderCommunicationTest extends TestCase
     protected function setUp()
     {
         parent::setUp();
+        
+        $this->referrerProvider = [
+            'Stevie_Ray'    => 'https://raw.githubusercontent.com/Stevie-Ray/referrer-spam-blocker/master/src/domains.txt',
+            'Flameeyes'     => 'https://raw.githubusercontent.com/Flameeyes/modsec-flameeyes/master/rules/flameeyes_bad_referrers.data',
+            'desbma'        => 'https://raw.githubusercontent.com/desbma/referer-spam-domains-blacklist/master/spammers.txt'
+        ];
+        //Cache Verzeichnis löschen
+        /*
+         unlink('tests/cache/desbma.txt');
+         unlink('tests/cache/flameeyes.txt');
+         unlink('tests/cache/stevie_ray.txt');
+         rmdir('tests/cache');
+         */
+        $this->providerCommunication = new ProviderCommunication($this->referrerProvider, 'tests/cache');
     }
 
     /**
@@ -35,27 +49,6 @@ class ProviderCommunicationTest extends TestCase
         
         parent::tearDown();
     }
-
-    /**
-     * Constructs the test case.
-     */
-    public function __construct()
-    {
-        $this->referrerProvider = [
-            'Stevie_Ray'    => 'https://raw.githubusercontent.com/Stevie-Ray/referrer-spam-blocker/master/src/domains.txt',
-            'Flameeyes'     => 'https://raw.githubusercontent.com/Flameeyes/modsec-flameeyes/master/rules/flameeyes_bad_referrers.data',
-            'desbma'        => 'https://raw.githubusercontent.com/desbma/referer-spam-domains-blacklist/master/spammers.txt'
-        ];
-        //Cache Verzeichnis löschen
-        /*
-        unlink('tests/cache/desbma.txt');
-        unlink('tests/cache/flameeyes.txt');
-        unlink('tests/cache/stevie_ray.txt');
-        rmdir('tests/cache');
-        */
-        $this->providerCommunication = new ProviderCommunication($this->referrerProvider, 'tests/cache');
-        
-    }
     
     /**
      * Tests ProviderCommunication->getReferrerProvider()
@@ -63,6 +56,7 @@ class ProviderCommunicationTest extends TestCase
     public function testGetReferrerProvider()
     {
         $ret = $this->providerCommunication->getReferrerProvider(/* parameters */);
+        
         $this->assertEquals($ret, $this->referrerProvider);
     }
     
@@ -104,7 +98,7 @@ class ProviderCommunicationTest extends TestCase
         // TODO Auto-generated ProviderCommunicationTest->testGetUpdateFromGithub()
         $this->markTestIncomplete("getUpdateFromGithub test not implemented");
         
-        $this->providerCommunication->getUpdateFromGithub(/* parameters */);
+        //$this->providerCommunication->getUpdateFromGithub(/* parameters */);
     }
 
 

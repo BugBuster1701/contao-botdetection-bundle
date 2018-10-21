@@ -1,5 +1,5 @@
 <?php
-require_once 'src/Resources/contao/classes/Referrer/ProviderParser.php';
+
 use BugBuster\BotDetection\Referrer\ProviderParser;
 use PHPUnit\Framework\TestCase;
 

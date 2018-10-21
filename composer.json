@@ -23,7 +23,8 @@
 		"php": "^7.1",
 		"contao/core-bundle": ">=4.5,<4.9",
 		"crossjoin/browscap": "1.0.6",
-		"true/punycode": "^2.1"
+		"true/punycode": "^2.1",
+		"php-http/guzzle6-adapter": "^1.1"
 	},
 	"require-dev": {
 		"friendsofphp/php-cs-fixer": "^2.12",

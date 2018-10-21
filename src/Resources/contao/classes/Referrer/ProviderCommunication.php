@@ -13,7 +13,8 @@
  */
 
 namespace BugBuster\BotDetection\Referrer;
-
+use Contao\System;
+use Contao\StringUtil;
 
 /**
  * Class ProviderCommunication
@@ -56,12 +57,12 @@ class ProviderCommunication
      * @param array     $referrerProvider
      * @param string    $cachePath
      */
-    public function __construct($referrerProvider, $cachePath = false) 
+    public function __construct($referrerProvider, $cachePath = false, $rootDir = '') 
     {
         $this->referrerProvider = $referrerProvider;
         $this->cachePath        = $cachePath;
         $this->allowUrlOpen     = (bool) ini_get('allow_url_fopen');
-        $this->rootDir = \System::getContainer()->getParameter('kernel.project_dir');
+        $this->rootDir          = $rootDir;
         
         $this->checkCachePath();
         
@@ -72,7 +73,7 @@ class ProviderCommunication
         if (false === $this->cachePath)
         {
             //Cache Pfad anlegen sofern nötig
-            $strCachePath   = \StringUtil::stripRootDir(\System::getContainer()->getParameter('kernel.cache_dir'));
+            $strCachePath   = StringUtil::stripRootDir(System::getContainer()->getParameter('kernel.cache_dir'));
             $objFolder      = new \Folder($strCachePath . '/botdetection');
             unset($objFolder);
             $this->cachePath = $this->rootDir . '/' . $strCachePath . '/botdetection';
@@ -145,7 +146,7 @@ class ProviderCommunication
     
         $strLogsDir = null;
     
-        if (($container = \System::getContainer()) !== null)
+        if (($container = System::getContainer()) !== null)
         {
             $strLogsDir = $container->getParameter('kernel.logs_dir');
         }

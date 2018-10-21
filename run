@@ -7,7 +7,7 @@ function phpunit() {
     exit 1
   fi
 
-  vendor/bin/phpunit
+  vendor/bin/phpunit --testdox --colors
 }
 
 function php-cs-fixer() {

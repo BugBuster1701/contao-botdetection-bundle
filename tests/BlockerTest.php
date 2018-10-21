@@ -1,5 +1,5 @@
 <?php
-require_once 'src/Resources/contao/classes/Referrer/Blocker.php';
+
 use BugBuster\BotDetection\Referrer\Blocker;
 use PHPUnit\Framework\TestCase;
 
