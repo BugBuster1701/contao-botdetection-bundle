@@ -33,7 +33,7 @@ class ModuleBotDetectionTest extends TestCase
         $container = new ContainerBuilder();
         $container->set('monolog.logger.contao', new NullLogger());
         $container->setParameter('kernel.cache_dir', 'tests/cache');
-        $container->setParameter('kernel.project_dir', '');
+        $container->setParameter('kernel.project_dir', '.');
         System::setContainer($container);
         
         $this->moduleBotDetection = new ModuleBotDetection(/* parameters */);
@@ -61,13 +61,37 @@ class ModuleBotDetectionTest extends TestCase
     /**
      * Tests ModuleBotDetection->checkBotAllTests()
      */
-    public function testCheckBotAllTests()
+    public function testCheckBotAllTestsBot()
     {
         // TODO weitere über dataProvider
        
         $actual = $this->moduleBotDetection->checkBotAllTests('Mozilla/4.0 (compatible; Blog Search;)');
         $this->assertSame(true, $actual);
     }
+    
+    /**
+     * Tests ModuleBotDetection->checkBotAllTests()
+     */
+    public function testCheckBotAllTestsBrowser()
+    {
+        // TODO weitere über dataProvider
+        \Environment::set('requestMethod','GET');
+        \Environment::set('ip','127.0.1.1');
+        $actual = $this->moduleBotDetection->checkBotAllTests('Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.2.3) Gecko/20100401 Firefox/3.6.3');
+        $this->assertSame(false, $actual);
+    }
+    
+    /**
+     * Tests ModuleBotDetection->checkBotAllTests()
+     */
+    public function testCheckBotAllTestsIp()
+    {
+        // TODO weitere über CheckBotIpTest.php
+        BugBuster\BotDetection\CheckBotIp::setBotIpv4List(__DIR__ . '/../src/Resources/contao/config/bot-ip-list-ipv4.txt');
+        $actual = BugBuster\BotDetection\CheckBotIp::checkIP('66.249.95.222');
+        $this->assertSame(true, $actual);
+    }
+    
 
     /**
      * Tests ModuleBotDetection->checkGetPostRequest()
