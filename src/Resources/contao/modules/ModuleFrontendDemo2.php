@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Contao Open Source CMS, Copyright (C) 2005-2017 Leo Feyer
  *
@@ -79,6 +81,7 @@ class ModuleFrontendDemo2 extends \Module
 		);
 
 		$doNotSubmit = false;
+		$strFormId = 'botdetectiondemo2_' . $this->id;
 		$arrWidgets = array();
 
 		// Initialize widgets
@@ -96,7 +99,7 @@ class ModuleFrontendDemo2 extends \Module
 			$objWidget = new $strClass($strClass::getAttributesFromDca($arrField, $arrField['name'], $arrField['value']));
 
 			// Validate widget
-			if (\Input::post('FORM_SUBMIT') == 'botdetectiondemo2')
+			if (\Input::post('FORM_SUBMIT') == $strFormId)
 			{
 				$objWidget->validate();
 
@@ -106,21 +109,22 @@ class ModuleFrontendDemo2 extends \Module
 				}
 			}
 
-			$arrWidgets[$arrField['name']] = $objWidget;
+			$strFields .= $objWidget->parse();
 		}
-	    $this->Template->fields = $arrWidgets;
+		$this->Template->formId = $strFormId;
+		$this->Template->fields = $strFields;
 
-   		$this->Template->submit = $GLOBALS['TL_LANG']['MSC']['botdetectiondemo2_submit'];
-		$this->Template->action = ampersand(\Environment::get('request'));
+   		$this->Template->slabel   = $GLOBALS['TL_LANG']['MSC']['botdetectiondemo2_submit'];
+		$this->Template->action   = ampersand(\Environment::get('request'));
 		$this->Template->hasError = $doNotSubmit;
 
-	    if (\Input::post('FORM_SUBMIT') == 'botdetectiondemo2' && !$doNotSubmit)
+	    if (\Input::post('FORM_SUBMIT') == $strFormId && !$doNotSubmit)
 		{
 			$arrSet = array('agent_name' => \Input::post('name', true));
 
 			//einzel tests direkt aufgerufen
     	    $test01 = CheckBotAgentSimple::checkAgent($arrSet['agent_name']);
-    	    $test02 = CheckBotAgentExtended::checkAgentName($arrSet['agent_name']); 
+    	    $test02 = CheckBotAgentExtended::checkAgentName($arrSet['agent_name']);
     	    $BrowsCapInfo = CheckBotAgentExtended::getBrowscapResult($arrSet['agent_name']);
     	    $not1 = ($test01) ? "<span style=\"color:green;\">".$GLOBALS['TL_LANG']['MSC']['botdetectiondemo2_found']."</span>" : "<span style=\"color:red;\">".$GLOBALS['TL_LANG']['MSC']['botdetectiondemo2_not']."</span>";
     	    $not2 = ($test02) ? "<span style=\"color:green;\">".$GLOBALS['TL_LANG']['MSC']['botdetectiondemo2_found']."</span>" : "<span style=\"color:red;\">".$GLOBALS['TL_LANG']['MSC']['botdetectiondemo2_not']."</span>";
@@ -132,28 +136,11 @@ class ModuleFrontendDemo2 extends \Module
 
 			$this->Template->message  = $messages;
 
-			$arrWidgets = array();
-			foreach ($arrFields as $arrField)
-			{
-				/** @var \Widget $strClass */
-				$strClass = $GLOBALS['TL_FFL'][$arrField['inputType']];
-
-				// Continue if the class is not defined
-				if (!class_exists($strClass)) { continue; } 
-
-				$arrField['eval']['required'] = $arrField['eval']['mandatory'];
-
-				/** @var \Widget $objWidget */
-				$objWidget = new $strClass($strClass::getAttributesFromDca($arrField, $arrField['name'], $arrField['value']));
-				$arrWidgets[$arrField['name']] = $objWidget;
-			}
-
-			$this->Template->fields = $arrWidgets;
-
 		}
 	    // get module version
-		$this->ModuleBotDetection = new ModuleBotDetection();
-	    $this->Template->version = $this->ModuleBotDetection->getVersion();
+		$ModuleBotDetection = new ModuleBotDetection('');
+	    $this->Template->version = $ModuleBotDetection->getVersion();
 	}
+	
 
 }
