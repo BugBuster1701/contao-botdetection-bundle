@@ -18,13 +18,15 @@
 
 namespace BugBuster\BotDetection;
 
+use Contao\System;
+
 /**
  * Class ModuleBotDetection
  *
  * @copyright  Glen Langer 2007..2017 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  */
-class ModuleBotDetection extends \System 
+class ModuleBotDetection extends System
 {
 
     /**
@@ -48,10 +50,17 @@ class ModuleBotDetection extends \System
     /**
      * Initialize object
      */
-    public function __construct()
+    public function __construct($rootDir = null)
     {
         parent::__construct();
-        $this->rootDir = \System::getContainer()->getParameter('kernel.project_dir');
+        
+        if (null === $rootDir) {
+            $this->rootDir = System::getContainer()->getParameter('kernel.project_dir');
+        }
+        else {
+            $this->rootDir = $rootDir;
+        }
+        
     }
 
     /**

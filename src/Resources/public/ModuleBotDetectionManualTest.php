@@ -15,14 +15,14 @@
 
 /**
  * Aufruf direkt!
- * http://deine-domain.de/bundles/bugbusterbotdetection/ModuleBotDetectionTest.php   
+ * http://deine-domain.de/bundles/bugbusterbotdetection/ModuleBotDetectionManualTest.php   
  * 
  */
 
 /**
  * Initialize the system
  */
-define('TL_SCRIPT', 'ModuleBotDetectionTest.php');
+define('TL_SCRIPT', 'ModuleBotDetectionManualTest.php');
 define('TL_MODE', 'FE');
 $dir = __DIR__;
  
@@ -45,7 +45,7 @@ require($dir . '/system/initialize.php');
  * @author     Glen Langer (BugBuster)
  * @package    BotDetectionTest
  */
-class ModuleBotDetectionTest extends \BugBuster\BotDetection\ModuleBotDetection  
+class ModuleBotDetectionManualTest extends \BugBuster\BotDetection\ModuleBotDetection  
 {
     /**
      * Initialize object
@@ -440,6 +440,6 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
 /**
  * Instantiate controller
  */
-$objBotDetectionTest = new ModuleBotDetectionTest();
+$objBotDetectionTest = new ModuleBotDetectionManualTest();
 $objBotDetectionTest->run();
 

@@ -28,7 +28,8 @@
 	},
 	"require-dev": {
 		"friendsofphp/php-cs-fixer": "^2.12",
-		"phpunit/phpunit": "^7.0"
+		"phpunit/phpunit": "^7.0",
+		"contao/test-case": "^1.4.1"
 	},
 	"conflict": {
 		"contao/manager-plugin": "<2.0 || >=3.0"
@@ -47,6 +48,14 @@
 			"src/Resources/contao/languages/",
 			"src/Resources/contao/templates/",
 			"src/Resources/contao/test/"
+		]
+	},
+    "autoload-dev": {
+		"psr-4": {
+			"Contao\\CoreBundle\\Tests\\": "vendor/contao/core-bundle/tests/"
+		},
+		"classmap": [
+			"vendor/contao/core-bundle/tests/TestCase.php"
 		]
 	},
 	"extra":{

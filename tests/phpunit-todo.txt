@@ -1,0 +1,31 @@
+Contao TestCase
+https://github.com/contao/test-case
+
+Anwendung u.a. 
+https://github.com/contao/core-bundle/tree/557d7351199813858bd5b5a88b5e09dd1509f69a/tests/Contao
+
+https://github.com/contao/core-bundle/tree/4.6/tests/Contao
+
+beachte die 
+
+https://github.com/contao/core-bundle/blob/4.6/tests/TestCase.php
+  abstract class TestCase extends ContaoTestCase
+  verwirrend, weil normalerweise testklassen nutzen PHPUnit\Framework\TestCase
+  
+und
+https://github.com/contao/core-bundle/blob/4.6/tests/bootstrap.php
+  
+ Vor Nutzung von System als extendes, muss container gesetzt werden.
+ 
+ https://github.com/contao/core-bundle/blob/4.6/tests/Contao/StringUtilTest.php
+ siehe hier die setUp()
+ aber achtung, hier ist TestCase die Contao\CoreBundle\Tests\TestCase !
+ 
+ 
+ 
+ 
+ 		"psr-4": {
+			"Contao\\CoreBundle\\Tests\\": "vendor/contao/core-bundle/tests/"
+		}
+ 
+ 
