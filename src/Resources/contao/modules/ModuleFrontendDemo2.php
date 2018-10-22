@@ -141,6 +141,5 @@ class ModuleFrontendDemo2 extends \Module
 		$ModuleBotDetection = new ModuleBotDetection('');
 	    $this->Template->version = $ModuleBotDetection->getVersion();
 	}
-	
 
 }

@@ -266,8 +266,8 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
 	    $arrTest[] = array(false,'::ffff:c000:280'   ,'::ffff:c000:280    - double quad notation for ipv4 mapped addresses');
 	    $arrTest[] = array(false,'::ffff:192.0.2.128','::ffff:192.0.2.128 - double quad notation for ipv4 mapped addresses');
 	    
-	    \BugBuster\BotDetection\CheckBotIp::setBotIpv4List(TL_ROOT . self::BOT_IP4_LIST);
-	    \BugBuster\BotDetection\CheckBotIp::setBotIpv6List(TL_ROOT . self::BOT_IP6_LIST);
+	    \BugBuster\BotDetection\CheckBotIp::setBotIpv4List($this->rootDir . self::BOT_IP4_LIST);
+	    \BugBuster\BotDetection\CheckBotIp::setBotIpv6List($this->rootDir . self::BOT_IP6_LIST);
 	    
 	    $y=count($arrTest);
 	    for ($x=0; $x<$y; $x++)

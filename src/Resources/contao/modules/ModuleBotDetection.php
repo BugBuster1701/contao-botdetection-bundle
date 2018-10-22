@@ -55,14 +55,14 @@ class ModuleBotDetection extends System
     public function __construct($rootDir = null)
     {
         parent::__construct();
-        
+
         if (null === $rootDir) {
             $this->rootDir = System::getContainer()->getParameter('kernel.project_dir');
         }
         else {
             $this->rootDir = $rootDir;
         }
-        
+
     }
 
     /**
