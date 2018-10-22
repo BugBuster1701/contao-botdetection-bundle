@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 /**
- * Contao Open Source CMS, Copyright (C) 2005-2017 Leo Feyer
+ * Contao Open Source CMS, Copyright (C) 2005-2018 Leo Feyer
  *
  * Modul BotDetection - Frontend
  *
- * @copyright  Glen Langer 2007..2017 <http://contao.ninja>
+ * @copyright  Glen Langer 2007..2018 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @license    LGPL
  * @filesource
@@ -23,7 +25,7 @@ use Contao\System;
 /**
  * Class ModuleBotDetection
  *
- * @copyright  Glen Langer 2007..2017 <http://contao.ninja>
+ * @copyright  Glen Langer 2007..2018 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  */
 class ModuleBotDetection extends System
@@ -68,7 +70,7 @@ class ModuleBotDetection extends System
      *
      * @return string
      */
-    public function getVersion()
+    public function getVersion(): string
     {
         return self::BOTDETECTION_VERSION;
     }
@@ -79,7 +81,7 @@ class ModuleBotDetection extends System
      * @param string   UserAgent, optional for tests
      * @return boolean true when bot found
      */
-    public function checkBotAllTests($UserAgent = false)
+    public function checkBotAllTests($UserAgent = false): bool
     {
         if (false === $UserAgent) 
         {
@@ -110,11 +112,8 @@ class ModuleBotDetection extends System
         {
             return true;
         }
-        else
-        {
-            //CheckBotAgentExtended (Browscap + eigene Liste)
-            return CheckBotAgentExtended::checkAgent($UserAgent);
-        }
+        //CheckBotAgentExtended (Browscap + eigene Liste)
+        return CheckBotAgentExtended::checkAgent($UserAgent);
     }
 
     /**
@@ -122,7 +121,7 @@ class ModuleBotDetection extends System
      * 
      * @return boolean true when GET/POST
      */
-    public function checkGetPostRequest()
+    public function checkGetPostRequest(): bool
     {
         $RequestMethod = \Environment::get('requestMethod');
         if ($RequestMethod == 'GET' || $RequestMethod == 'POST') 

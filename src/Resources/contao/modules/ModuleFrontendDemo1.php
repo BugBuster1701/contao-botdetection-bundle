@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Contao Open Source CMS, Copyright (C) 2005-2017 Leo Feyer
  *
