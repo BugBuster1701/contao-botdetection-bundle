@@ -12,7 +12,7 @@ declare(strict_types=1);
  * @see        https://github.com/BugBuster1701/contao-botdetection-bundle
  */
 
-namespace BugBuster\RoutingappBundle\Controller;
+namespace BugBuster\BotdetectionBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
