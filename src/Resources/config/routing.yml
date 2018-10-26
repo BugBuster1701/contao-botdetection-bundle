@@ -1,0 +1,9 @@
+bugbuster_botdetection_main:
+    path:     /botdetection/manualtests/{token}
+    defaults: 
+        _controller: BugBusterBotdetectionBundle:Frontend:manualtests
+        _scope: frontend
+        _token_check: false
+        token: 0
+    requirements:
+        token: '\d+'
