@@ -356,7 +356,7 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
                     $out .= '<span style="color:red;">';
                 }
             } else { // true Test
-                if ($arrReferrerTest[$x][1] === $result[$x]) {
+                if ($arrReferrerTest[$x][0] === $result[$x]) {
                     $out .= '<span style="color:green;">';
                 } else {
                     $out .= '<span style="color:red;">';

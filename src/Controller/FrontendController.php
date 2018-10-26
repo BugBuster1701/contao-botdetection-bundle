@@ -17,6 +17,7 @@ namespace BugBuster\BotdetectionBundle\Controller;
 use BugBuster\BotdetectionBundle\Functional\BotDetectionTests;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * Handles front end routes.
@@ -28,8 +29,8 @@ class FrontendController extends Controller
      */
     public function manualtestsAction(string $token): Response
     {
-        if ($token != 1701) {
-            throw new \InvalidArgumentException('Nice try.');
+        if (1701 !== $token) {
+            throw new AccessDeniedException("You don't have access to this page!");
         }
         $objBuffer = new BotDetectionTests();
         $strBuffer = $objBuffer->run();
