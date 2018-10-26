@@ -60,25 +60,50 @@ class ModuleBotDetectionTest extends TestCase
 
     /**
      * Tests ModuleBotDetection->checkBotAllTests()
+     * 
+     * @dataProvider useragentBotsProvider
      */
-    public function testCheckBotAllTestsBot()
+    public function testCheckBotAllTestsBot(bool $result, string $useragent)
     {
-        // TODO weitere über dataProvider
-       
-        $actual = $this->moduleBotDetection->checkBotAllTests('Mozilla/4.0 (compatible; Blog Search;)');
-        $this->assertSame(true, $actual);
+        \Environment::set('requestMethod','GET');
+        \Environment::set('ip','127.0.1.1');       
+        $actual = $this->moduleBotDetection->checkBotAllTests($useragent);
+        $this->assertSame($result, $actual);
+    }
+    public function useragentBotsProvider()
+    {
+        return [
+            [true, 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'],
+            [true, 'ia_archiver (+http://www.alexa.com/site/help/webmasters; crawler@alexa.com)'],
+            [true, 'Yandex/1.01.001 (compatible; Win16; P)'],
+            [true, 'ia_archiver-web.archive.org'],
+            [true, 'HubSpot Connect 1.0 (http://dev.hubspot.com/)'],
+            [true, 'python-requests/1.2.0 CPython/2.7.3 Linux/3.2.0-41-virtual'],
+            [true, 'check_http/v2.2 (monitoring-plugins 2.2)'],
+            [true, 'Mozilla/5.0 (compatible; phpservermon/3.2.2; +http://www.phpservermonitor.org)'],
+            [true, 'CFNetwork/']
+        ];
     }
     
     /**
      * Tests ModuleBotDetection->checkBotAllTests()
+     * 
+     * @dataProvider useragentBrowserProvider
      */
-    public function testCheckBotAllTestsBrowser()
+    public function testCheckBotAllTestsBrowser(bool $result, string $useragent)
     {
-        // TODO weitere über dataProvider
         \Environment::set('requestMethod','GET');
         \Environment::set('ip','127.0.1.1');
-        $actual = $this->moduleBotDetection->checkBotAllTests('Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.2.3) Gecko/20100401 Firefox/3.6.3');
-        $this->assertSame(false, $actual);
+        $actual = $this->moduleBotDetection->checkBotAllTests($useragent);
+        $this->assertSame($result, $actual);
+    }
+    public function useragentBrowserProvider()
+    {
+        return [
+            [false, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.2.3) Gecko/20100401 Firefox/3.6.3'],
+            [false, 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.2; Trident/4.0; Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1);'],
+            [false, 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_3; de-de) AppleWebKit/531.22.7 (KHTML, like Gecko) Version/4.0.5 Safari/531.22.7']
+        ];
     }
     
     /**
@@ -86,7 +111,7 @@ class ModuleBotDetectionTest extends TestCase
      */
     public function testCheckBotAllTestsIp()
     {
-        // TODO weitere über CheckBotIpTest.php
+        // weitere über CheckBotIpTest.php
         BugBuster\BotDetection\CheckBotIp::setBotIpv4List(__DIR__ . '/../src/Resources/contao/config/bot-ip-list-ipv4.txt');
         $actual = BugBuster\BotDetection\CheckBotIp::checkIP('66.249.95.222');
         $this->assertSame(true, $actual);
