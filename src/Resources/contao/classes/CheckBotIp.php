@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Contao Open Source CMS, Copyright (C) 2005-2017 Leo Feyer
+ * Contao Open Source CMS, Copyright (C) 2005-2018 Leo Feyer
  *
  * BotDetection
  *
- * @copyright  Glen Langer 2007..2017 <http://contao.ninja>
+ * @copyright  Glen Langer 2007..2018 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @license    LGPL
  * @filesource
@@ -17,7 +17,7 @@ namespace BugBuster\BotDetection;
 /**
  * Class CheckBotIp 
  *
- * @copyright  Glen Langer 2015..2017 <http://contao.ninja>
+ * @copyright  Glen Langer 2015..2018 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  */
 class CheckBotIp
