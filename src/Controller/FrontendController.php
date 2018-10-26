@@ -28,6 +28,9 @@ class FrontendController extends Controller
      */
     public function manualtestsAction(string $token): Response
     {
+        if ($token != 1701) {
+            throw new \InvalidArgumentException('Nice try.');
+        }
         $objBuffer = new BotDetectionTests();
         $strBuffer = $objBuffer->run();
 
