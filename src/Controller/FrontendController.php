@@ -27,7 +27,7 @@ class FrontendController extends Controller
     /**
      * Renders the content.
      */
-    public function manualtestsAction(string $token): Response
+    public function manualtestsAction(int $token): Response
     {
         if (1701 !== $token) {
             throw new AccessDeniedException("You don't have access to this page!");
