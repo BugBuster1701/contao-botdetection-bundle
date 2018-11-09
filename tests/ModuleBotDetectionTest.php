@@ -2,7 +2,8 @@
 
 
 use BugBuster\BotDetection\ModuleBotDetection;
-use Contao\CoreBundle\Tests\TestCase;
+//use Contao\CoreBundle\Tests\TestCase;
+use PHPUnit\Framework\TestCase;
 use Contao\System;
 
 use Psr\Log\NullLogger;
