@@ -1,7 +1,7 @@
 bugbuster_botdetection_main:
     path:     /botdetection/manualtests/{token}
     defaults: 
-        _controller: BugBusterBotdetectionBundle:Frontend:manualtests
+        _controller: BugBuster\BotdetectionBundle\Controller\FrontendController::manualtestsAction
         _scope: frontend
         _token_check: false
         token: 0
