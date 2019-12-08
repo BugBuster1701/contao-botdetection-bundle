@@ -12,9 +12,9 @@
  */
 
 namespace BugBuster\BotDetection\Referrer;
+use Contao\Folder;
 use Contao\StringUtil;
 use Contao\System;
-use Contao\Folder;
 
 /**
  * Class ProviderCommunication

@@ -49,7 +49,7 @@ class BotDetectionRunonceJobDel6006 extends \Controller
         {
             $cachePath = $proCom->getCachePath();
         }
-        
+
         if (false !== $cachePath)
         {
             $proPar = new ProviderParser($referrerProvider, $cachePath);
