@@ -14,6 +14,7 @@
 namespace BugBuster\BotDetection\Referrer;
 use Contao\StringUtil;
 use Contao\System;
+use Contao\Folder;
 
 /**
  * Class ProviderCommunication
@@ -69,24 +70,22 @@ class ProviderCommunication
         {
             //Cache Pfad anlegen sofern nötig
             $strCachePath   = StringUtil::stripRootDir(System::getContainer()->getParameter('kernel.cache_dir'));
-            $objFolder      = new \Folder($strCachePath . '/botdetection');
+            $objFolder      = new Folder($strCachePath . '/botdetection');
             unset($objFolder);
             $this->cachePath = $this->rootDir . '/' . $strCachePath . '/botdetection';
         }
-        else
-        {
-            // Create the folder if it does not exist
-            if (!is_dir($this->cachePath))
-            {
-                $strPath = '';
-                $arrChunks = explode('/', $this->cachePath);
 
-                // Create the folder
-                foreach ($arrChunks as $strFolder)
-                {
-                    $strPath .= ($strPath ? '/' : '') . $strFolder;
-                    @mkdir($strPath, 0775);
-                }
+        // Create the folder if it does not exist
+        if (!is_dir($this->cachePath))
+        {
+            $strPath = '';
+            $arrChunks = explode('/', $this->cachePath);
+
+            // Create the folder
+            foreach ($arrChunks as $strFolder)
+            {
+                $strPath .= ($strPath ? '/' : '') . $strFolder;
+                @mkdir($strPath, 0775);
             }
         }
     }
@@ -103,6 +102,13 @@ class ProviderCommunication
         if (false === $this->allowUrlOpen) 
         {
             $this->logMessage('ProviderCommunication::loadProviderFiles allowUrlOpen = false!', 'botdetection_debug');
+
+            return false;
+        }
+
+        if (!is_dir($this->cachePath))
+        {
+            $this->logMessage('ProviderCommunication::loadProviderFiles '.$this->cachePath.' does not exist!', 'botdetection_debug');
 
             return false;
         }

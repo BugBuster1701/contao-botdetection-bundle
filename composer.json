@@ -65,10 +65,7 @@
 				"prefix": "master-",
 				"languages_cto": "src/Resources/contao/languages",
 				"languages_tx": ".tx"
-			},
-			"runonce":[
-				"src/runonce/delete_old_browscap.php"
-			]
+			}
 		},
 		"branch-alias": {
 			"dev-master": "1.5.x-dev"
