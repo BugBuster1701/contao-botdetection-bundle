@@ -15,14 +15,14 @@ declare(strict_types=1);
 namespace BugBuster\BotdetectionBundle\Controller;
 
 use BugBuster\BotdetectionBundle\Functional\BotDetectionTests;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * Handles front end routes.
  */
-class FrontendController extends Controller
+class FrontendController extends AbstractController
 {
     /**
      * Renders the content.
