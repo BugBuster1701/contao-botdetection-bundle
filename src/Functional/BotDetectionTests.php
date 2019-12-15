@@ -78,7 +78,7 @@ class BotDetectionTests extends ModuleBotDetection
         $arrTest[] = [true, 'Mozilla/5.0 (compatible; CompSpyBot/1.0; +http://www.compspy.com/spider.html)', 'CompSpyBot'];
         $arrTest[] = [true, 'NCBot (http://netcomber.com : tool for finding true domain owners) Queries/complaints: bot@netcomber.com', 'NCBot'];
         $arrTest[] = [true, 'Mozilla/5.0 (compatible; Abonti/0.91 - http://www.abonti.com)', 'Abonti WebSearch'];
-        $arrTest[] = [true, 'HubSpot Connect 1.0 (http://dev.hubspot.com/)', 'HubSpot'];
+        $arrTest[] = [true, 'HubSpot Connect 1.0 (http://dev.hubspot.com/)', 'HubSpot Webcrawler'];
         $arrTest[] = [true, 'Mozilla/5.0 (compatible; meanpathbot/1.0; +http://www.meanpath.com/meanpathbot.html)', 'meanpathbot'];
         $arrTest[] = [true, 'Mozilla/5.0 (compatible; IstellaBot/1.10.2 +http://www.tiscali.it/)', 'IstellaBot'];
         $arrTest[] = [true, 'Mozilla/5.0 (compatible; Genieo/1.0 http://www.genieo.com/webfilter.html)', 'Genieo Web Filter'];
