@@ -3,11 +3,11 @@
 declare(strict_types=1);
 
 /**
- * Contao Open Source CMS, Copyright (C) 2005-2018 Leo Feyer
+ * Contao Open Source CMS, Copyright (C) 2005-2019 Leo Feyer
  *
  * Modul BotDetection - Frontend
  *
- * @copyright  Glen Langer 2007..2018 <http://contao.ninja>
+ * @copyright  Glen Langer 2007..2019 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @license    LGPL
  * @filesource
@@ -25,7 +25,7 @@ use Contao\System;
 /**
  * Class ModuleBotDetection
  *
- * @copyright  Glen Langer 2007..2018 <http://contao.ninja>
+ * @copyright  Glen Langer 2007..2019 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  */
 class ModuleBotDetection extends System
@@ -34,7 +34,7 @@ class ModuleBotDetection extends System
     /**
      * Current version of the class.
      */
-    const BOTDETECTION_VERSION  = '1.5.0';
+    const BOTDETECTION_VERSION  = '1.5.2';
 
     const BOT_REFERRER_LIST     = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/bot-referrer-list.php";
     const BOT_REFERRER_PROVIDER = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/referrer-provider.php";
