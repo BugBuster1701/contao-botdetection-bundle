@@ -302,9 +302,9 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
         $result[1] = $this->checkBotAllTests('Spider test'); //BD_CheckBotAgent = true
         $result[2] = $this->checkBotAllTests('acadiauniversitywebcensusclient'); //BD_CheckBotAgentAdvanced = true
         //set own IP as Bot IP
-        if (\Environment::get('remoteAddr')) {
-            if (false !== strpos(\Environment::get('remoteAddr'), ',')) { //first IP
-                $ip = trim(substr(\Environment::get('remoteAddr'), 0, strpos(\Environment::get('remoteAddr'), ',')));
+        if (\Contao\Environment::get('remoteAddr')) {
+            if (false !== strpos(\Contao\Environment::get('remoteAddr'), ',')) { //first IP
+                $ip = trim(substr(\Contao\Environment::get('remoteAddr'), 0, strpos(\Contao\Environment::get('remoteAddr'), ',')));
                 // Test for IPv4
                 if (false !== ip2long($ip)) {
                     $GLOBALS['BOTDETECTION']['BOT_IP'][] = $ip;
@@ -312,7 +312,7 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
                     $GLOBALS['BOTDETECTION']['BOT_IPV6'][] = $ip;
                 }
             } else {
-                $ip = trim(\Environment::get('remoteAddr'));
+                $ip = trim(\Contao\Environment::get('remoteAddr'));
                 // Test for IPv4
                 if (false !== ip2long($ip)) {
                     $GLOBALS['BOTDETECTION']['BOT_IP'][] = $ip;
