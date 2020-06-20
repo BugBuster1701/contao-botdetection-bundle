@@ -11,11 +11,12 @@
  * last-updated: 2018-11-09T23:21:03+01:00
  */
 
-
-$GLOBALS['TL_LANG']['FMD']['botdetection1']['0'] = 'Bot Detection Demo 1';
-$GLOBALS['TL_LANG']['FMD']['botdetection1']['1'] = 'Demo 1 pour l\'utilisation de Bot Detection avec import.';
-$GLOBALS['TL_LANG']['FMD']['botdetection2']['0'] = 'Bot Detection Demo 2';
-$GLOBALS['TL_LANG']['FMD']['botdetection2']['1'] = 'Demo 2 pour Bot Detection (Formulaire).';
-$GLOBALS['TL_LANG']['MOD']['botdetection']['0']  = 'Détection Bot';
-$GLOBALS['TL_LANG']['MOD']['botdetection']['1']  = 'Helper class qui détecte les moteurs de recherche, les robots, les robots d\'indexation de pages web, les robots collecteur';
+$GLOBALS['TL_LANG']['FMD']['botdetection1']['0']         = 'Bot Detection Demo 1';
+$GLOBALS['TL_LANG']['FMD']['botdetection1']['1']         = 'Demo 1 pour l\'utilisation de Bot Detection avec import.';
+$GLOBALS['TL_LANG']['FMD']['botdetection2']['0']         = 'Bot Detection Demo 2';
+$GLOBALS['TL_LANG']['FMD']['botdetection2']['1']         = 'Demo 2 pour Bot Detection (Formulaire).';
+$GLOBALS['TL_LANG']['FMD']['browscapcachegenerate']['0'] = 'Seulement pour les administrateurs. Browscap Cache Generator';
+$GLOBALS['TL_LANG']['FMD']['browscapcachegenerate']['1'] = 'Seulement pour les administrateurs. Browscap Cache Generator, Runtime ~ 90s.';
+$GLOBALS['TL_LANG']['MOD']['botdetection']['0']          = 'Détection Bot';
+$GLOBALS['TL_LANG']['MOD']['botdetection']['1']          = 'Helper class qui détecte les moteurs de recherche, les robots, les robots d\'indexation de pages web, les robots collecteur';
 

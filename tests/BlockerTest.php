@@ -103,7 +103,6 @@ class BlockerTest extends TestCase
     {
         return array(//result,host
             array(true , 'wdfdocando.com'),
-            array(true , 'we-globe'),
             array(true , 'backgroundpictures.net'),
             array(false, 'web-list'),
             array(false, 'web-list.de'),
