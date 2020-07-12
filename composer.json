@@ -14,7 +14,6 @@
 	],
 	"support":{
 		"issues":"https://github.com/BugBuster1701/contao-botdetection-bundle/issues",
-		"irc":"irc://irc.freenode.org/contao.dev",
 		"source":"https://github.com/BugBuster1701/contao-botdetection-bundle",
 		"wiki":"http://de.contaowiki.org/Bot_Detection",
 		"forum":"https://community.contao.org/de/forumdisplay.php?119-Sonstige-Erweiterungen"
@@ -23,13 +22,12 @@
 		"php": "^7.1",
 		"contao/core-bundle": "^4.6",
 		"crossjoin/browscap": "1.0.6",
-		"true/punycode": "^2.1",
-		"php-http/guzzle6-adapter": "^1.1"
+		"symfony/http-client": "^4.4",
+		"true/punycode": "^2.1"
 	},
 	"require-dev": {
 		"friendsofphp/php-cs-fixer": "^2.12",
-		"phpunit/phpunit": "^7.0",
-		"contao/test-case": "^1.4.1"
+		"phpunit/phpunit": "^7.0"
 	},
 	"conflict": {
 		"contao/manager-plugin": "<2.0 || >=3.0"
@@ -48,14 +46,6 @@
 			"src/Resources/contao/languages/",
 			"src/Resources/contao/templates/",
 			"src/Resources/contao/test/"
-		]
-	},
-    "autoload-dev": {
-		"psr-4": {
-			"Contao\\CoreBundle\\Tests\\": "vendor/contao/core-bundle/tests/"
-		},
-		"classmap": [
-			"vendor/contao/core-bundle/tests/TestCase.php"
 		]
 	},
 	"extra":{

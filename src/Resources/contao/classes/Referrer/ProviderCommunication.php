@@ -12,9 +12,11 @@
  */
 
 namespace BugBuster\BotDetection\Referrer;
+
 use Contao\Folder;
 use Contao\StringUtil;
 use Contao\System;
+use Symfony\Component\HttpClient\HttpClient;
 
 /**
  * Class ProviderCommunication
@@ -43,6 +45,11 @@ class ProviderCommunication
     private $allowUrlOpen;
 
     /**
+     * @var bool
+     */
+    private $isCurlEnabled;
+
+    /**
      * TL_ROOT over Container
      * 
      * @var string
@@ -58,6 +65,7 @@ class ProviderCommunication
         $this->referrerProvider = $referrerProvider;
         $this->cachePath        = $cachePath;
         $this->allowUrlOpen     = (bool) ini_get('allow_url_fopen');
+        $this->isCurlEnabled    = \function_exists('curl_init');
         $this->rootDir          = $rootDir;
 
         $this->checkCachePath();
@@ -99,9 +107,9 @@ class ProviderCommunication
         //debug $this->logMessage('ProviderCommunication::loadProviderFile: START','botdetection_debug');
         $lastWeek = time() - (7 * 24 * 60 * 60);
 
-        if (false === $this->allowUrlOpen) 
+        if (false === $this->allowUrlOpen && false === $this->isCurlEnabled)
         {
-            $this->logMessage('ProviderCommunication::loadProviderFiles allowUrlOpen = false!', 'botdetection_debug');
+            $this->logMessage('ProviderCommunication::loadProviderFiles allowUrlOpen && CurlEnabled = false!', 'botdetection_debug');
 
             return false;
         }
@@ -113,16 +121,26 @@ class ProviderCommunication
             return false;
         }
 
+        $httpClient   = HttpClient::create();
         foreach($this->referrerProvider as $source => $url) 
         {
             if (false === file_exists($this->cachePath .'/'. strtolower($source) . '.txt') || 
-                 $lastWeek > filemtime($this->cachePath .'/'. strtolower($source) . '.txt') 
+                $lastWeek > filemtime($this->cachePath .'/'. strtolower($source) . '.txt') 
                )
             {
+                try {
+                    $response = $httpClient->request('GET', $url, array('timeout' => 10));
+                } catch (\Throwable $t) {
+                    $responseBody = "Request Exception:\n".$t->getMessage()."\n";
+                    $this->logMessage('ProviderCommunication::loadProviderFile Error: '.$responseBody, 'botdetection_debug');
+
+                    return false;
+                }
                 //debug $this->logMessage('ProviderCommunication::loadProviderFile: '.$source,'botdetection_debug');
                 $fileProvider = fopen($this->cachePath .'/'. strtolower($source) . '.txt', 'wb+');
-                fwrite($fileProvider, file_get_contents($url));
+                fwrite($fileProvider, $response->getContent());
                 fclose($fileProvider);
+                unset($response);
             }
         }
         //debug $this->logMessage('ProviderCommunication::loadProviderFile: END','botdetection_debug');
