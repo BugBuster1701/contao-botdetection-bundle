@@ -19,7 +19,7 @@ use BugBuster\BotDetection\ModuleBotDetection;
 /**
  * Class Tests.
  *
- * @copyright  Glen Langer 2007..2017 <http://contao.ninja>
+ * @copyright  Glen Langer 2007..2020 <http://contao.ninja>
  */
 class BotDetectionTests extends ModuleBotDetection
 {

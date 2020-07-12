@@ -2,16 +2,14 @@
 
 declare(strict_types=1);
 
-/**
- * Contao Open Source CMS, Copyright (C) 2005-2017 Leo Feyer
+/*
+ * This file is part of a BugBuster Contao Bundle (Resources\contao)
  *
- * Modul BotDetection - Frontend Demo
- * 
- * @copyright  Glen Langer 2007..2017 <http://contao.ninja>
+ * @copyright  Glen Langer 2020 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
- * @license    LGPL
- * @filesource
- * @see        https://github.com/BugBuster1701/contao-botdetection-bundle 
+ * @package    Contao BotDetection Bundle
+ * @license    LGPL-3.0-or-later
+ * @see        https://github.com/BugBuster1701/contao-botdetection-bundle
  */
 
 /**
@@ -24,7 +22,7 @@ namespace BugBuster\BotDetection;
  * Class ModuleFrontendDemo1
  * Use ModuleBotDetection with import function
  *
- * @copyright  Glen Langer 2007..2017 <http://contao.ninja>
+ * @copyright  Glen Langer 2007..2020 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  */
 class ModuleFrontendDemo1 extends \Module

@@ -1,14 +1,12 @@
 <?php
 
-/**
- * Contao Open Source CMS, Copyright (C) 2005-2018 Leo Feyer
+/*
+ * This file is part of a BugBuster Contao Bundle (Resources\contao)
  *
- * BotDetection
- *
- * @copyright  Glen Langer 2007..2018 <http://contao.ninja>
+ * @copyright  Glen Langer 2020 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
- * @license    LGPL
- * @filesource
+ * @package    Contao BotDetection Bundle
+ * @license    LGPL-3.0-or-later
  * @see        https://github.com/BugBuster1701/contao-botdetection-bundle
  */
 
@@ -17,7 +15,7 @@ namespace BugBuster\BotDetection;
 /**
  * Class CheckBotIp 
  *
- * @copyright  Glen Langer 2015..2018 <http://contao.ninja>
+ * @copyright  Glen Langer 2015..2020 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  */
 class CheckBotIp
