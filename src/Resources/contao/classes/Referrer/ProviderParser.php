@@ -1,10 +1,8 @@
 <?php
 /**
- * Contao Open Source CMS, Copyright (C) 2005-2017 Leo Feyer
- *
  * BotDetection - ProviderParser
  *
- * @copyright  Glen Langer 2007..2017 <http://contao.ninja>
+ * @copyright  Glen Langer 2007..2020 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @license    LGPL
  * @filesource
@@ -19,7 +17,7 @@ use TrueBV\Punycode;
 /**
  * Class ProviderParser
  *
- * @copyright  Glen Langer 2017 <http://contao.ninja>
+ * @copyright  Glen Langer 2020 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  */
 class ProviderParser
