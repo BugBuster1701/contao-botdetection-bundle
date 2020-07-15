@@ -34,6 +34,7 @@ class CheckBotReferrer
      */
     public static function checkReferrer($Referrer = false, $Bot_Referrer_List = false, $Bot_Provider_List = false)
     {
+        $init = new ModuleBotDetection(); unset($init); //prefill cache workaround
         $checkOwn   = false;
         $checkLocal = false;
         $cachePath  = false;

@@ -142,7 +142,7 @@ class ModuleBotDetection extends System
         }
         $referrerProvider = array();
         include_once($this->rootDir . '/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/referrer-provider.php');
-        $proCom = new ProviderCommunication($referrerProvider, false);
+        $proCom = new ProviderCommunication($referrerProvider, false, $this->rootDir);
         $cachePath = false;
 
         if (true === $proCom->loadProviderFiles())
