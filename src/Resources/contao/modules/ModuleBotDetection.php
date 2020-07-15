@@ -19,6 +19,8 @@ declare(strict_types=1);
 namespace BugBuster\BotDetection;
 
 use Contao\System;
+use BugBuster\BotDetection\Referrer\ProviderCommunication;
+use BugBuster\BotDetection\Referrer\ProviderParser;
 
 /**
  * Class ModuleBotDetection
@@ -60,6 +62,8 @@ class ModuleBotDetection extends System
         else {
             $this->rootDir = $rootDir;
         }
+        $this->prefillCache();
+        $this->deleteOldCache();
 
     }
 
@@ -130,4 +134,68 @@ class ModuleBotDetection extends System
         return false;
     }
 
+    private function prefillCache()
+    {
+        if (!is_dir($this->rootDir . '/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config'))
+        {
+            return; // call from IDE for tests
+        }
+        $referrerProvider = array();
+        include_once($this->rootDir . '/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/referrer-provider.php');
+        $proCom = new ProviderCommunication($referrerProvider, false);
+        $cachePath = false;
+
+        if (true === $proCom->loadProviderFiles())
+        {
+            $cachePath = $proCom->getCachePath();
+        }
+
+        if (false !== $cachePath)
+        {
+            $proPar = new ProviderParser($referrerProvider, $cachePath);
+
+            if (true === $proPar->isUpdateProviderListNecessary() &&
+                true === $proPar->generateProviderList()
+                )
+            {
+                $proPar->cleanProviderList();
+                $proPar->writeProviderList();
+            }
+        }
+    }
+
+    private function deleteOldCache()
+    {
+        if (!is_dir($this->rootDir . '/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config'))
+        {
+            return; // call from IDE for tests
+        }
+        //Only once a month.
+        //runonce replacement, until I know it better. (The package has modified files...., abort...)
+        $day = (int) date('j');
+        if (1 == $day)
+        {
+            $olddirs = array('largebrowscap_v6006_1.0.4', 
+                             'largebrowscap_v6008_1.0.4', 
+                             'largebrowscap_v6015_1.0.4', 
+                             'largebrowscap_v6021_1.0.5', 
+                             'largebrowscap_v6026_1.0.5', 
+                             'largebrowscap_v6030_1.0.5'
+                        );
+            foreach ($olddirs as $olddir)
+            {
+                if (is_dir($this->rootDir . '/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/cache/'.$olddir))
+                {
+                    $folder = new \Folder('vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/cache/'.$olddir);
+                    if (!$folder->isEmpty())
+                    {
+                        $folder->purge();
+                    }
+                    $folder->delete();
+                    $folder=null;
+                    unset($folder);
+                }
+            }
+        }
+    }
 }
