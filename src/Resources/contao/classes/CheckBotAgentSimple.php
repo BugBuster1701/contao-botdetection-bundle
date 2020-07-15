@@ -64,7 +64,9 @@ class CheckBotAgentSimple
 	                        'bubing',      // 3.2.0
 				            'bumblebee',
 				            'bramptonmoose',
-				            'bbtest-net',	//Hobbit bbtest-net/4.2.0
+							'bbtest-net',	//Hobbit bbtest-net/4.2.0
+							'CFNetwork',
+							'check_http',	//check_mk monitoring-plugin
 				            'cherrypicker', 
 				            'crescent', 
 	                        'coccoc', // 3.1.0
@@ -133,7 +135,8 @@ class CheckBotAgentSimple
 				            'ning', // 3.3.4
 				            'nutch',    // 3.3.0
 				            'openxxx', 
-				            'pecl::http', // PECL::HTTP
+							'pecl::http', // PECL::HTTP
+							'phpservermon',
 				            'picmole',
 				            'pinterest', // 3.3.1
 				            'pioneer internet',
