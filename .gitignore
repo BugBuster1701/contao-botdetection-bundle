@@ -17,3 +17,5 @@ src/Resources/contao/cache/largebrowscap_*/largebrowscap.patterns.*
 tests/cache/
 tests/vendor/
 tests/phpunit-todo.txt
+#phpunit
+.phpunit.result.cache
