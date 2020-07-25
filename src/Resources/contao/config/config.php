@@ -25,15 +25,10 @@
  *           'module_2' => 'Contentlass'
  *       )
  *   );
- * 
- * Use function array_insert() to modify an existing CTE array.
  */
 
-array_insert($GLOBALS['FE_MOD'], 4, array
+$GLOBALS['FE_MOD']['BotDetectionDemo'] = array
 (
-    'BotDetectionDemo' => array
-    (
-      'botdetection1' => 'BugBuster\BotDetection\ModuleFrontendDemo1',
-      'botdetection2' => 'BugBuster\BotDetection\ModuleFrontendDemo2',
-  	)
-));
+  'botdetection1' => 'BugBuster\BotDetection\ModuleFrontendDemo1',
+  'botdetection2' => 'BugBuster\BotDetection\ModuleFrontendDemo2',
+);
