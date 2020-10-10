@@ -26,13 +26,21 @@ class CheckBotAgentSimple
 	 * @var array
 	 */
 	private	static $_BotsRough = array( 
+							'analyzer',
+							'archiver',
 				            'bot', 
-				            'b o t',
+							'b o t',
+							'cron',
+							'checker',
+							'fetcher',
+							'scraper',
 				            'spider', 
 				            'spyder', 
-				            'crawl', 
+							'crawl', 
+							'reader',
 				            'slurp',
-				            'robo',
+							'robo',
+							'validator',
 				            'yahoo',
 					    	);
 
@@ -49,7 +57,7 @@ class CheckBotAgentSimple
                             'addressendeutschland', // 3.3.1
 				            'agentname', 
 				            'altavista', 
-				            'al_viewer',
+							'al_viewer',
 				            'appie', 
 				            'appengine-google', //http://code.google.com/appengine
 				            'arachnoidea', 
@@ -78,7 +86,7 @@ class CheckBotAgentSimple
                             'drupact', // 3.0.1
 				            'emailsiphon', 
 				            'emailwolf', 
-				            'extractorpro', 
+				            'extractor', 
 				            'exalead ng', 
 				            'ezresult', 
 				            'facebook',
@@ -124,10 +132,13 @@ class CheckBotAgentSimple
 				            'medicalmatrix', 
 				            'mercator',
 				            'metauri', // 3.3.4 
-				            'microsoft url control', //Harvester mit Spamflotte
+							'microsoft url control', //Harvester mit Spamflotte
+							'microsoft office',
+							'microsoft outlook',
 				            'miixpc', 
 				            'miva',    // 3.3.0
-				            'moget', 
+							'moget', 
+							'monitoring',
 				            'msnptc', 
 				            'muscatferret', 
 				            'netcraftsurveyagent',
@@ -142,7 +153,8 @@ class CheckBotAgentSimple
 				            'pioneer internet',
 				            'piranha', 
 				            'pldi.net',
-				            'p357x',
+							'p357x',
+							'prtg network monitor',
 				            'publiclibraryarchive', // 3.3.4
 				            'python-requests', // 3.3.4
 				            'quosa', 
@@ -153,7 +165,7 @@ class CheckBotAgentSimple
 							'ruby', // 3.3.4
 				            'scan', 
 				            'scooter', 
-				            'ScoutJet', 
+							'ScoutJet', 
 				            'siclab', // 3.0.1
 				            'siteexplorer', // 3.1.0
 				            'sly', 
@@ -162,12 +174,16 @@ class CheckBotAgentSimple
 				            'snoopy',    // 1.6.2 
 				            'spy', 
 				            'swisssearch', 
-				            'sqworm', 
+							'sqworm', 
+							'symfony browserkit',
+							'symfony2 browserkit',
+							'transcoder',
 				            'trivial', 
 				            't-h-u-n-d-e-r-s-t-o-n-e', 
 				            'teoma', 
 				            'twiceler',
-				            'ultraseek', 
+							'ultraseek', 
+							'uptime',
 				            'validator',
 				            'webbandit',
 				            'webmastercoffee',
