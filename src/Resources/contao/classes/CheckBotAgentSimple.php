@@ -124,7 +124,8 @@ class CheckBotAgentSimple
 				            'internetseer', 
 				            'larbin', 
 				            'libweb', 
-				            'libwww',
+							'libwww',
+							'linkanalyze',
 				            'jakarta', // 3.0.1
 				            'java/1', // 1.6.2
 				            'mata hari',
