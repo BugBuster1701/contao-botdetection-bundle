@@ -21,6 +21,7 @@ namespace BugBuster\BotDetection;
 use Contao\System;
 use BugBuster\BotDetection\Referrer\ProviderCommunication;
 use BugBuster\BotDetection\Referrer\ProviderParser;
+use BugBuster\BotDetection\UserAgent;
 
 /**
  * Class ModuleBotDetection
@@ -34,7 +35,7 @@ class ModuleBotDetection extends System
     /**
      * Current version of the class.
      */
-    const BOTDETECTION_VERSION  = '1.5.6';
+    const BOTDETECTION_VERSION  = '1.6.0';
 
     const BOT_REFERRER_LIST     = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/bot-referrer-list.php";
     const BOT_REFERRER_PROVIDER = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/referrer-provider.php";
@@ -85,9 +86,14 @@ class ModuleBotDetection extends System
      */
     public function checkBotAllTests($UserAgent = false): bool
     {
+        $objUserAgent = new UserAgent();
         if (false === $UserAgent) 
+        {            
+        	$UserAgent = $objUserAgent->getUserAgent();
+        }
+        else
         {
-        	$UserAgent = \Environment::get('httpUserAgent');
+            $UserAgent = $objUserAgent->setUserAgent($UserAgent);
         }
         if (CheckBotAgentSimple::checkAgent($UserAgent) === true) //(BotsRough, BotsFine)
         {

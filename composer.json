@@ -22,6 +22,7 @@
 		"php": "^7.1",
 		"contao/core-bundle": "^4.7",
 		"crossjoin/browscap": "1.0.6",
+		"jaybizzle/crawler-detect": "^1.2",
 		"symfony/http-client": "^4.4",
 		"true/punycode": "^2.1"
 	},

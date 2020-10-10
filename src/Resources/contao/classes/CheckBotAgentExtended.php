@@ -12,6 +12,8 @@
 
 namespace BugBuster\BotDetection;
 
+use Jaybizzle\CrawlerDetect\CrawlerDetect;
+
 /**
  * Class CheckBotAgentExtended 
  *
@@ -95,6 +97,12 @@ class CheckBotAgentExtended
             }
         }
 
+        $resultCrawlerDetect = static::checkAgentViaCrawlerDetect($UserAgent, $ouputBotName);
+        if (false !== $resultCrawlerDetect)
+        {
+            return $resultCrawlerDetect;
+        }
+
         return false;
     }
 
@@ -165,6 +173,26 @@ class CheckBotAgentExtended
                 [crawler] => true
                 .....
          */
+    }
+
+    public static function checkAgentViaCrawlerDetect($UserAgent=null, $ouputBotName = false)
+    {
+        $CrawlerDetect = new CrawlerDetect;
+
+        if($CrawlerDetect->isCrawler($UserAgent)) 
+        {
+            if (false === $ouputBotName)
+            {
+                return true;
+            }
+            else 
+            {
+                return $CrawlerDetect->getMatches();
+            }
+        }
+
+        return false;
+
     }
 
 }

@@ -8,6 +8,7 @@ use Contao\System;
 
 use Psr\Log\NullLogger;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * ModuleBotDetection test case.
@@ -35,6 +36,8 @@ class ModuleBotDetectionTest extends TestCase
         $container->set('monolog.logger.contao', new NullLogger());
         $container->setParameter('kernel.cache_dir', 'tests/cache');
         $container->setParameter('kernel.project_dir', '.');
+        $container->setParameter('kernel.debug', false);
+        $container->set('request_stack', new RequestStack());
         System::setContainer($container);
         
         $this->moduleBotDetection = new ModuleBotDetection(/* parameters */);
@@ -56,7 +59,7 @@ class ModuleBotDetectionTest extends TestCase
     public function testGetVersion()
     {
         $actual = $this->moduleBotDetection->getVersion(/* parameters */);
-        $this->assertSame('1.5.5', $actual);
+        $this->assertSame('1.6.0', $actual);
     }
 
     /**
@@ -82,7 +85,9 @@ class ModuleBotDetectionTest extends TestCase
             [true, 'python-requests/1.2.0 CPython/2.7.3 Linux/3.2.0-41-virtual'],
             [true, 'check_http/v2.2 (monitoring-plugins 2.2)'],
             [true, 'Mozilla/5.0 (compatible; phpservermon/3.2.2; +http://www.phpservermonitor.org)'],
-            [true, 'CFNetwork/']
+            [true, 'CFNetwork/'],
+            [true, 'Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko PTST/276'],
+            [true, 'Mozilla/5.0 (compatible; WebCookies/1.0; +https://webcookies.org/faq/#agent)']
         ];
     }
     
@@ -103,7 +108,9 @@ class ModuleBotDetectionTest extends TestCase
         return [
             [false, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.2.3) Gecko/20100401 Firefox/3.6.3'],
             [false, 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.2; Trident/4.0; Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1);'],
-            [false, 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_3; de-de) AppleWebKit/531.22.7 (KHTML, like Gecko) Version/4.0.5 Safari/531.22.7']
+            [false, 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_3; de-de) AppleWebKit/531.22.7 (KHTML, like Gecko) Version/4.0.5 Safari/531.22.7'],
+            [false, 'Mozilla/5.0 (Linux; Android 6.0; IDbot553 Build/MRA58K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.125 Mobile Safari/537.36'],
+            [false, 'Mozilla/5.0 (Linux; Android 6.0; B BOT 550 Build/MRA58K; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/53.0.2785.124 Mobile Safari/537.36']
         ];
     }
     
