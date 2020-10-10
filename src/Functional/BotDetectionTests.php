@@ -389,7 +389,7 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
         foreach ($lines as $line) {
             $out = '';
             $result1 = \BugBuster\BotDetection\CheckBotAgentExtended::checkAgentViaCrawlerDetect($line, true);
-            if (true === $result1) {
+            if ($result1) {
                 $out .= '<span style="color:green;">.</span>';
                 ++$rows;
                 if ($rows > 320) {
@@ -416,7 +416,7 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
         foreach ($lines as $line) {
             $out = '';
             $result1 = \BugBuster\BotDetection\CheckBotAgentExtended::checkAgentViaCrawlerDetect($line, true);
-            if (true === $result1) {
+            if ($result1) {
                 $out .= '<br><span style="color:red;">';
                 $out .= (int) $result1.'|'.$result1.'|'.$line;
                 $out .= '</span><br>';
