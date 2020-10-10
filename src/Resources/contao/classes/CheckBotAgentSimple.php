@@ -63,7 +63,8 @@ class CheckBotAgentSimple
 				            'arachnoidea', 
 				            'archiver',
 				            'asterias', 
-				            'ask jeeves', 
+							'ask jeeves',
+							'barkrowler' ,	//1.6.0
 				            'beholder', 
                             'bildsauger',   // 1.7.0
 				            'bingsearch', 
@@ -73,7 +74,7 @@ class CheckBotAgentSimple
 				            'bumblebee',
 				            'bramptonmoose',
 							'bbtest-net',	//Hobbit bbtest-net/4.2.0
-							'CFNetwork',
+							'cfnetwork',
 							'check_http',	//check_mk monitoring-plugin
 				            'cherrypicker', 
 				            'crescent', 
@@ -147,6 +148,7 @@ class CheckBotAgentSimple
 				            'nutch',    // 3.3.0
 				            'openxxx', 
 							'pecl::http', // PECL::HTTP
+							'petalbot',
 							'phpservermon',
 				            'picmole',
 				            'pinterest', // 3.3.1
