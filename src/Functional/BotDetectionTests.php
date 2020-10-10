@@ -108,7 +108,7 @@ class BotDetectionTests extends ModuleBotDetection
         $arrTest[] = [true, 'Ruby', 'Generic Ruby Crawler'];
         $arrTest[] = [true, 'MetaURI API/2.0 +metauri.com', 'MetaURI Bot'];
         $arrTest[] = [true, 'Crowsnest/0.5 (+http://www.crowsnest.tv/)', 'Crowsnest'];
-        $arrTest[] = [true, ' NING/1.0', 'NING'];
+        $arrTest[] = [true, 'NING/1.0', 'NING'];
         $arrTest[] = [true, 'publiclibraryarchive.org 1.0; +crawl@publiclibraryarchive.org', 'publiclibraryarchive.org'];
         $arrTest[] = [true, 'Cronjob.de', 'Cronjob.de'];
         $arrTest[] = [true, 'Mozilla/5.0 (compatible; MegaIndex.ru/2.0; +https://www.megaindex.ru/?tab=linkAnalyze)', 'MegaIndex Bot'];

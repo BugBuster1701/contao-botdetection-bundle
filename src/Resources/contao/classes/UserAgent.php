@@ -31,7 +31,8 @@ class UserAgent
                                 'ForwardRuby',
                                 'Java;',
                                 '[Pinterest/Android]',
-                                '[Pinterest/iOS]'
+                                '[Pinterest/iOS]',
+                                'Lightning'
                             );
 
     /**

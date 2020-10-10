@@ -144,7 +144,7 @@ class CheckBotAgentSimple
 				            'muscatferret', 
 				            'netcraftsurveyagent',
 				            'netants',
-				            ' ning/', // 3.3.4
+				            'ning/', // 3.3.4
 				            'nutch',    // 3.3.0
 				            'openxxx', 
 							'pecl::http', // PECL::HTTP
