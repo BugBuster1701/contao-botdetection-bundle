@@ -64,7 +64,7 @@ class CheckBotAgentSimple
 				            'archiver',
 				            'asterias', 
 							'ask jeeves',
-							'barkrowler' ,	//1.6.0
+							'barkrowler',	//1.6.0
 				            'beholder', 
                             'bildsauger',   // 1.7.0
 				            'bingsearch', 

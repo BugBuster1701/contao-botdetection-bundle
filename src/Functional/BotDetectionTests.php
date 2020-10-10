@@ -124,7 +124,6 @@ class BotDetectionTests extends ModuleBotDetection
         $arrTest[] = [true, 'Mozilla/5.0 (compatible; Barkrowler/0.9; +https://babbar.tech/crawler)', 'Barkrowler'];
         //Fixed #33
         $arrTest[] = [true, 'Mozilla/5.0 (Linux; Android 7.0;) AppleWebKit/537.36 (KHTML, like Gecko) Mobile Safari/537.36 (compatible; PetalBot;+http://aspiegel.com/petalbot)', 'PetalBot'];
-        
 
         $arrReferrerTest[] = [false, 'contao.org'];
         $arrReferrerTest[] = [true, 'abcd4.de'];
@@ -212,6 +211,7 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
         $this->testCrawlerDetectDevices();
         $out = '<h2>ModuleBotDetection Version: '.$this->getVersion().'</h2>';
         $out .= '</body></html>';
+
         return '';
     }
 
@@ -379,36 +379,35 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
         return $out;
     }
 
-    private function testCrawlerDetectCrawlers()
+    private function testCrawlerDetectCrawlers(): void
     {
         $out = '<h1>testCrawlerDetectCrawlers</h1>';
         echo $out;
-        
+
         $lines = file($this->rootDir.'/vendor/bugbuster/contao-botdetection-bundle/src/Functional/crawlers.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
         $rows = 0;
         foreach ($lines as $line) {
             $out = '';
-            $result1 = \BugBuster\BotDetection\CheckBotAgentExtended::checkAgentViaCrawlerDetect($line,true);
-            if (true == $result1) {
+            $result1 = \BugBuster\BotDetection\CheckBotAgentExtended::checkAgentViaCrawlerDetect($line, true);
+            if (true === $result1) {
                 $out .= '<span style="color:green;">.</span>';
-                $rows++;
-                if ($rows >320) { 
-                    $out .= "<br>\n"; 
-                    $rows = 0; 
+                ++$rows;
+                if ($rows > 320) {
+                    $out .= "<br>\n";
+                    $rows = 0;
                     ob_flush();
                     flush();
                 }
             } else {
                 $out .= '<br><span style="color:red;">';
-                $out .= (int) $result1 .'|'. $result1 .'|'. $line;
+                $out .= (int) $result1.'|'.$result1.'|'.$line;
                 $out .= '</span><br>';
             }
             echo $out;
-
         }
     }
 
-    private function testCrawlerDetectDevices()
+    private function testCrawlerDetectDevices(): void
     {
         $out = '<h1>testCrawlerDetectDevices</h1>';
         echo $out;
@@ -416,20 +415,17 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
         $rows = 0;
         foreach ($lines as $line) {
             $out = '';
-            $result1 = \BugBuster\BotDetection\CheckBotAgentExtended::checkAgentViaCrawlerDetect($line,true);
-            if (true == $result1) 
-            {
+            $result1 = \BugBuster\BotDetection\CheckBotAgentExtended::checkAgentViaCrawlerDetect($line, true);
+            if (true === $result1) {
                 $out .= '<br><span style="color:red;">';
-                $out .= (int) $result1 .'|'. $result1 .'|'. $line;
+                $out .= (int) $result1.'|'.$result1.'|'.$line;
                 $out .= '</span><br>';
-            }
-            else
-            {
+            } else {
                 $out .= '<span style="color:green;">.</span>';
-                $rows++;
-                if ($rows >320) { 
-                    $out .= "<br>\n"; 
-                    $rows = 0; 
+                ++$rows;
+                if ($rows > 320) {
+                    $out .= "<br>\n";
+                    $rows = 0;
                     ob_flush();
                     flush();
                 }

@@ -2,7 +2,6 @@
 
 /*
  * This file is part of a BugBuster Contao Bundle (Resources\contao)
- * Parts of this class are based on the brilliant Crawler-Detect
  *
  * @copyright  Glen Langer 2020 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
@@ -15,9 +14,10 @@ namespace BugBuster\BotDetection;
 
 class UserAgent
 {
-    /**
+	/**
 	 * Exclusions - Definition
-	 *
+	 * Parts of this class are based on the brilliant Crawler-Detect
+	 * 
 	 * @var array
 	 */
 	protected   $Exclusions = array( 
@@ -69,7 +69,6 @@ class UserAgent
      */
     protected $httpHeaders = array();
 
-
     /**
      * Class constructor.
      */
@@ -107,7 +106,7 @@ class UserAgent
      */
     public function setUserAgent($userAgent = null)
     {
-        if (is_null($userAgent)) {
+        if (\is_null($userAgent)) {
             foreach ($this->Headers as $altHeader) {
                 if (isset($this->httpHeaders[$altHeader])) {
                     $userAgent .= $this->httpHeaders[$altHeader].' ';
@@ -121,7 +120,7 @@ class UserAgent
     /**
      * Get the user agent
      *
-     * @return string   $userAgent
+     * @return string $userAgent
      */
     public function getUserAgent()
     {

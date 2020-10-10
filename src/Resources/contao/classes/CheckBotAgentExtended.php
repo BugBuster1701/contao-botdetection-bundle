@@ -177,7 +177,7 @@ class CheckBotAgentExtended
 
     public static function checkAgentViaCrawlerDetect($UserAgent=null, $ouputBotName = false)
     {
-        $CrawlerDetect = new CrawlerDetect;
+        $CrawlerDetect = new CrawlerDetect();
 
         if($CrawlerDetect->isCrawler($UserAgent)) 
         {

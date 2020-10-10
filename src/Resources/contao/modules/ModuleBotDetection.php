@@ -18,10 +18,9 @@ declare(strict_types=1);
 
 namespace BugBuster\BotDetection;
 
-use Contao\System;
 use BugBuster\BotDetection\Referrer\ProviderCommunication;
 use BugBuster\BotDetection\Referrer\ProviderParser;
-use BugBuster\BotDetection\UserAgent;
+use Contao\System;
 
 /**
  * Class ModuleBotDetection
