@@ -205,12 +205,13 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
         $out .= '<div style="clear:both;font-family:Verdana,sans-serif;font-size: 12px;"><br>';
         $out .= $returnall;
         $out .= '</div>';
-        $out .= '<h2>ModuleBotDetection Version: '.$this->getVersion().'</h2>';
-        $out .= '</body></html>';
-
         echo $out;
+        ob_flush();
+        flush();
         $this->testCrawlerDetectCrawlers();
         $this->testCrawlerDetectDevices();
+        $out = '<h2>ModuleBotDetection Version: '.$this->getVersion().'</h2>';
+        $out .= '</body></html>';
         return '';
     }
 
@@ -380,16 +381,23 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
 
     private function testCrawlerDetectCrawlers()
     {
-        $out = '<h1>testCrawlerDetectSimple</h1>';
+        $out = '<h1>testCrawlerDetectCrawlers</h1>';
         echo $out;
         
         $lines = file($this->rootDir.'/vendor/bugbuster/contao-botdetection-bundle/src/Functional/crawlers.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-
+        $rows = 0;
         foreach ($lines as $line) {
             $out = '';
             $result1 = \BugBuster\BotDetection\CheckBotAgentExtended::checkAgentViaCrawlerDetect($line,true);
-            if (true === $result1) {
+            if (true == $result1) {
                 $out .= '<span style="color:green;">.</span>';
+                $rows++;
+                if ($rows >320) { 
+                    $out .= "<br>\n"; 
+                    $rows = 0; 
+                    ob_flush();
+                    flush();
+                }
             } else {
                 $out .= '<br><span style="color:red;">';
                 $out .= (int) $result1 .'|'. $result1 .'|'. $line;
@@ -405,21 +413,26 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
         $out = '<h1>testCrawlerDetectDevices</h1>';
         echo $out;
         $lines = file($this->rootDir.'/vendor/bugbuster/contao-botdetection-bundle/src/Functional/devices.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-
+        $rows = 0;
         foreach ($lines as $line) {
             $out = '';
             $result1 = \BugBuster\BotDetection\CheckBotAgentExtended::checkAgentViaCrawlerDetect($line,true);
-            if (true === $result1) 
+            if (true == $result1) 
             {
                 $out .= '<br><span style="color:red;">';
                 $out .= (int) $result1 .'|'. $result1 .'|'. $line;
                 $out .= '</span><br>';
-    
-                
             }
             else
             {
                 $out .= '<span style="color:green;">.</span>';
+                $rows++;
+                if ($rows >320) { 
+                    $out .= "<br>\n"; 
+                    $rows = 0; 
+                    ob_flush();
+                    flush();
+                }
             }
             echo $out;
         }

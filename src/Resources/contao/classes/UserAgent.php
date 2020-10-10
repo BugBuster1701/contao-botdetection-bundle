@@ -27,7 +27,11 @@ class UserAgent
                                 '; B bot',
                                 '; IDbot',
                                 '; ID bot',
-                                '; POWER BOT'
+                                '; POWER BOT',
+                                'ForwardRuby',
+                                'Java;',
+                                '[Pinterest/Android]',
+                                '[Pinterest/iOS]'
                             );
 
     /**

@@ -134,4 +134,6 @@ $botagents=array("trueknowledgebot" => "TrueKnowledgeBot",
 "check_http" => "check_mk monitoring-plugin",
 "phpservermon" => "phpservermonitor",
 "CFNetwork/" => "CFNetwork App",
+"barkrowler" => "Barkrowler",
+"petalbot" => "PetalBot",
 ); ?>

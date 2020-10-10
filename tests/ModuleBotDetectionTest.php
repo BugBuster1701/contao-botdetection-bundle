@@ -135,5 +135,55 @@ class ModuleBotDetectionTest extends TestCase
         $actual = $this->moduleBotDetection->checkGetPostRequest(/* parameters */);
         $this->assertSame(true, $actual);
     }
+
+    /**
+     * Tests CheckBotAgentExtended::checkAgentViaCrawlerDetect
+     * 
+     * @dataProvider useragentCrawlerDetectProvider
+     */
+    public function testCheckCrawlerDetectCrawlers(string $useragent)
+    {
+        $actual =  BugBuster\BotDetection\CheckBotAgentExtended::checkAgentViaCrawlerDetect($useragent);
+        $this->assertTrue($actual, $useragent);
+    }
+    public function useragentCrawlerDetectProvider()
+    {
+        $arrCrawlers =[];
+        $lines = file(__DIR__ . '/../src/Functional/crawlers.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        $i=0;
+        foreach ($lines as $line) 
+        {
+            $arrCrawlers[] = [$line];
+            //$i++;
+            //if ($i >100) { break; }
+        }
+        return $arrCrawlers;
+    }
+
+    /**
+     * Tests BotDetection->checkBotAllTests with CrawlerDetect Devices
+     * 
+     * @dataProvider useragentCrawlerDetectDeviceProvider
+     */
+    public function testCheckCrawlerDetectDevices(string $useragent)
+    {
+        $actual = $this->moduleBotDetection->checkBotAllTests($useragent);
+        $this->assertFalse($actual, $useragent);
+    }
+    public function useragentCrawlerDetectDeviceProvider()
+    {
+        $arrDevices =[];
+        $lines = file(__DIR__ . '/../src/Functional/devices.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        $i=0;
+        foreach ($lines as $line) 
+        {
+            if (strstr($line,'CFNetwork')) { continue; }
+            $arrDevices[] = [$line];
+            //$i++;
+            //if ($i >100) { break; }
+        }
+        return $arrDevices;
+    }
+
 }
 

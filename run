@@ -7,7 +7,9 @@ function phpunit() {
     exit 1
   fi
 
-  vendor/bin/phpunit --testdox --colors
+  vendor/bin/phpunit --testdox --colors >ergebnis.txt
+  cat ergebnis.txt | grep ' │'
+  echo "Komplettes Ergebnis in ergebnis.txt"
 }
 
 function php-cs-fixer() {

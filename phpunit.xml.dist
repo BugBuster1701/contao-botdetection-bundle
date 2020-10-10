@@ -3,8 +3,8 @@
          backupGlobals="false"
          processIsolation="false"
          bootstrap="tests/bootstrap.php"
+         stderr="false"
 >
-
     <testsuites>
         <testsuite name="BotdetectionTest">
             <directory>./tests</directory>
@@ -17,4 +17,5 @@
             <directory>./src/Resources/classes</directory>
         </whitelist>
 	</filter>
+
 </phpunit>

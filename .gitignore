@@ -19,3 +19,4 @@ tests/vendor/
 tests/phpunit-todo.txt
 #phpunit
 .phpunit.result.cache
+ergebnis.txt

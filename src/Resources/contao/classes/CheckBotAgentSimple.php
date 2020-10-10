@@ -41,7 +41,7 @@ class CheckBotAgentSimple
 				            'slurp',
 							'robo',
 							'validator',
-				            'yahoo',
+				            //'yahoo',
 					    	);
 
 	/**
@@ -79,7 +79,7 @@ class CheckBotAgentSimple
 				            'cherrypicker', 
 				            'crescent', 
 	                        'coccoc', // 3.1.0
-				            'cosmos', 
+				            'cosmos/', 
 				            'cronjob', // 3.3.4
 				            'crowsnest', // 3.3.4
 	                        'curl', // 1.6.2
@@ -92,7 +92,7 @@ class CheckBotAgentSimple
 				            'ezresult', 
 				            'facebook',
 				            'feedfetcher', //Feedfetcher-Google 
-				            'fido', 
+				            //'fido', 
 				            'fireball', 
 				            'flashget',
 				            'flipboardproxy', // 3.0.1
@@ -122,12 +122,11 @@ class CheckBotAgentSimple
 				            'informant', 
 				            'internetami', 
 				            'internetseer', 
-				            'link', 
 				            'larbin', 
 				            'libweb', 
 				            'libwww',
 				            'jakarta', // 3.0.1
-				            'java', // 1.6.2
+				            'java/1', // 1.6.2
 				            'mata hari',
 				            'mechanize', // 3.3.4 
 				            'medicalmatrix', 
@@ -144,7 +143,7 @@ class CheckBotAgentSimple
 				            'muscatferret', 
 				            'netcraftsurveyagent',
 				            'netants',
-				            'ning', // 3.3.4
+				            ' ning/', // 3.3.4
 				            'nutch',    // 3.3.0
 				            'openxxx', 
 							'pecl::http', // PECL::HTTP
