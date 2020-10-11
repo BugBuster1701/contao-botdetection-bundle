@@ -96,23 +96,47 @@ class ModuleBotDetectionTest extends TestCase
      * 
      * @dataProvider useragentBrowserProvider
      */
-    public function testCheckBotAllTestsBrowser(bool $result, string $useragent)
+    public function testCheckBotAllTestsBrowser(string $useragent)
     {
         \Environment::set('requestMethod','GET');
         \Environment::set('ip','127.0.1.1');
         $actual = $this->moduleBotDetection->checkBotAllTests($useragent);
-        $this->assertSame($result, $actual);
+        $this->assertFalse($actual, $useragent);
     }
     public function useragentBrowserProvider()
     {
         return [
-            [false, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.2.3) Gecko/20100401 Firefox/3.6.3'],
-            [false, 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.2; Trident/4.0; Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1);'],
-            [false, 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_3; de-de) AppleWebKit/531.22.7 (KHTML, like Gecko) Version/4.0.5 Safari/531.22.7'],
-            [false, 'Mozilla/5.0 (Linux; Android 6.0; IDbot553 Build/MRA58K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.125 Mobile Safari/537.36'],
-            [false, 'Mozilla/5.0 (Linux; Android 6.0; B BOT 550 Build/MRA58K; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/53.0.2785.124 Mobile Safari/537.36']
+            ['Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.2.3) Gecko/20100401 Firefox/3.6.3'],
+            ['Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.2; Trident/4.0; Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1);'],
+            ['Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_3; de-de) AppleWebKit/531.22.7 (KHTML, like Gecko) Version/4.0.5 Safari/531.22.7'],
+            ['Mozilla/5.0 (Linux; Android 6.0; IDbot553 Build/MRA58K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.125 Mobile Safari/537.36'],
+            ['Mozilla/5.0 (Linux; Android 6.0; B BOT 550 Build/MRA58K; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/53.0.2785.124 Mobile Safari/537.36'],
+            ['T-Online Browser']
         ];
     }
+
+    /**
+     * Tests Browsers via CheckBotAgentSimple::checkAgent()
+     * 
+     * @dataProvider useragentBrowserSimpleProvider
+     */
+    public function testCheckBrowserSimple(string $useragent)
+    {
+        \Environment::set('requestMethod','GET');
+        \Environment::set('ip','127.0.1.1');
+        $actual = BugBuster\BotDetection\CheckBotAgentSimple::checkAgent($useragent);
+        $this->assertFalse($actual, $useragent);
+    }
+    public function useragentBrowserSimpleProvider()
+    {
+        return [
+            ['Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.2.3) Gecko/20100401 Firefox/3.6.3'],
+            ['Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.2; Trident/4.0; Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1);'],
+            ['Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_3; de-de) AppleWebKit/531.22.7 (KHTML, like Gecko) Version/4.0.5 Safari/531.22.7'],
+            ['T-Online Browser']
+        ];
+    }
+
     
     /**
      * Tests ModuleBotDetection->checkBotAllTests()
