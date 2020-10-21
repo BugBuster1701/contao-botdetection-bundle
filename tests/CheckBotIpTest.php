@@ -69,5 +69,69 @@ class CheckBotIpTest extends TestCase
             [false,'::ffff:192.0.2.128']    //double quad notation for ipv4 mapped addresses
         ];
     }
+
+    /**
+     * Tests CheckBotIp::getUserIP()
+     */
+    public function testGetUserIp()
+    {
+        $actual = CheckBotIp::getUserIP();
+        $this->assertFalse($actual, 'no variable $_SERVER is set');
+    }
+
+    /**
+     * Tests CheckBotIp::getUserIP() via private IP
+     */
+    public function testGetUserIpPrivate()
+    {
+        $_SERVER['REMOTE_ADDR'] = '192.168.17.1';
+        global $_SERVER;
+        $actual = CheckBotIp::getUserIP();
+        $this->assertNotFalse($actual,$_SERVER['REMOTE_ADDR']);
+    }
+
+    /**
+     * Tests CheckBotIp::getUserIP() via reserved address
+     */
+    public function testGetUserIpReservedAddress()
+    {
+        $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
+        global $_SERVER;
+        $actual = CheckBotIp::getUserIP();
+        $this->assertFalse($actual,$_SERVER['REMOTE_ADDR']);
+    }
+
+    /**
+     * Tests CheckBotIp::getUserIP() via private addresses
+     */
+    public function testGetUserIpPrivateAddresses()
+    {
+        $_SERVER['REMOTE_ADDR'] = '127.0.0.1, 192.168.17.1';
+        global $_SERVER;
+        $actual = CheckBotIp::getUserIP();
+        $this->assertNotFalse($actual,$_SERVER['REMOTE_ADDR']);
+    }
+
+    /**
+     * Tests CheckBotIp::getUserIP() via invalid address
+     */
+    public function testGetUserIpInvalidAddress()
+    {
+        $_SERVER['REMOTE_ADDR'] = '256.1.2.3';
+        global $_SERVER;
+        $actual = CheckBotIp::getUserIP();
+        $this->assertFalse($actual,$_SERVER['REMOTE_ADDR']);
+    }
+
+    /**
+     * Tests CheckBotIp::getUserIP() via invalid addresses, last is ok
+     */
+    public function testGetUserIpInvalidAddresses()
+    {
+        $_SERVER['REMOTE_ADDR'] = '256.1.2.3, 192.168.17.1';
+        global $_SERVER;
+        $actual = CheckBotIp::getUserIP();
+        $this->assertNotFalse($actual,$_SERVER['REMOTE_ADDR']);
+    }
 }
 

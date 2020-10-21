@@ -44,6 +44,48 @@ class CheckBotIp
         return static::$bot_ipv6_list;
     }
 
+    public static function getUserIP()
+    {
+        // 1. HTTP_CF_CONNECTING_IP CloudFlare? 
+        // 2. HTTP_CLIENT_IP?
+        // 3. HTTP_X_FORWARDED_FOR?
+        // 4. HTTP_X_FORWARDED?
+        // 5. HTTP_X_CLUSTER_CLIENT_IP?
+        // 6. HTTP_FORWARDED_FOR?
+        // 7. HTTP_FORWARDED?
+        // 8. REMOTE_ADDR?
+        // 9. False!
+
+        $ipkeys = array(
+            'HTTP_CF_CONNECTING_IP',
+            'HTTP_CLIENT_IP',
+            'HTTP_X_FORWARDED_FOR',
+            'HTTP_X_FORWARDED',
+            'HTTP_X_CLUSTER_CLIENT_IP', 
+            'HTTP_FORWARDED_FOR',
+            'HTTP_FORWARDED',
+            'REMOTE_ADDR'
+            );
+
+        foreach ($ipkeys as $key)
+        {
+            if (\array_key_exists($key, $_SERVER) === true)
+            {
+                foreach (explode(',', $_SERVER[$key]) as $ip)
+                {
+                    $ip = trim($ip);
+
+                    if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_RES_RANGE) !== false)
+                    {
+                        return $ip;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
     /**
      * Spider Bot IP Check
      * Detect the IP version and calls the method checkBotIPv4 respectively checkBotIPv6.
@@ -56,38 +98,14 @@ class CheckBotIp
         // Check if IP present
         if ($UserIP === false)
         {
-            if (\Environment::get('ip'))
-            {
-                if (strpos(\Environment::get('ip'), ',') !== false) //first IP
-                {
-                    $UserIP =  trim(substr(\Environment::get('ip'), 0, strpos(\Environment::get('ip'), ',')));
-                }
-                else
-                {
-                    $UserIP = trim(\Environment::get('ip'));
-                }
-            }
-            else
+            $UserIP = static::getUserIP();
+
+            if ($UserIP === false)
             {
                 return false; // No IP, no search.
             }
-            //Test for private IPs
-            if (true === static::checkPrivateIP($UserIP) &&
-                false === empty($_SERVER['HTTP_X_FORWARDED_FOR'])
-            )
-            {
-                //second try
-                $HTTPXFF = $_SERVER['HTTP_X_FORWARDED_FOR'];
-                $_SERVER['HTTP_X_FORWARDED_FOR'] = '';
-
-                $UserIP = \Environment::get('ip');
-                if (strpos($UserIP, ',') !== false) //first IP
-                {
-                    $UserIP = trim(substr($UserIP, 0, strpos($UserIP, ',')));
-                }
-                $_SERVER['HTTP_X_FORWARDED_FOR'] = $HTTPXFF;
-            }
         }
+
         // IPv4 or IPv6 ?
         switch (static::getIpVersion($UserIP))
         {
@@ -121,22 +139,20 @@ class CheckBotIp
         // Check if IP present
         if ($UserIP === false)
         {
-            if (\Environment::get('remoteAddr'))
-            {
-                if (strpos(\Environment::get('remoteAddr'), ',') !== false) //first IP
-                {
-                    $UserIP =  trim(substr(\Environment::get('remoteAddr'), 0, strpos(\Environment::get('remoteAddr'), ',')));
-                }
-                else
-                {
-                    $UserIP = trim(\Environment::get('remoteAddr'));
-                }
-            }
-            else
+            $UserIP = static::getUserIP();
+
+            if ($UserIP === false)
             {
                 return false; // No IP, no search.
             }
         }
+
+        if ("IPv4" != static::getIpVersion($UserIP))
+        {
+            // no valid IPv4
+            return false;
+        }
+
         // search user IP in bot-ip-list
         if (file_exists($Bot_IPv4_List))
         {
@@ -195,22 +211,20 @@ class CheckBotIp
         // Check if IP present
         if ($UserIP === false)
         {
-            if (\Environment::get('remoteAddr'))
-            {
-                if (strpos(\Environment::get('remoteAddr'), ',') !== false) //first IP
-                {
-                    $UserIP =  trim(substr(\Environment::get('remoteAddr'), 0, strpos(\Environment::get('remoteAddr'), ',')));
-                }
-                else
-                {
-                    $UserIP = trim(\Environment::get('remoteAddr'));
-                }
-            }
-            else
+            $UserIP = static::getUserIP();
+
+            if ($UserIP === false)
             {
                 return false; // No IP, no search.
             }
         }
+
+        if ("IPv6" != static::getIpVersion($UserIP))
+        {
+            // no valid IPv6
+            return false;
+        }
+
         // search user IP in bot-ip-list-ipv6
         if (file_exists($Bot_IPv6_List))
         {
