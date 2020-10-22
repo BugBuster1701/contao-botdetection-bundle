@@ -5,6 +5,8 @@ Es gibt zwei Arten der Installation.
 * mit dem Contao-Manager, für die Contao Managed-Editon
 * über die Kommandozeile, für die Contao Managed-Editon
 
+Normalerweise wird diese jedoch als Abhängigkeit installiert, nicht direkt.
+
 
 ## Installation über Contao-Manager
 
@@ -14,6 +16,6 @@ Es gibt zwei Arten der Installation.
 
 ## Installation über die Kommandozeile
 
-Installation in einer Composer-basierenden Contao 4.6+ Managed-Edition:
+Installation in einer Composer-basierenden Contao 4.7+ Managed-Edition:
 
 * `composer require "bugbuster/contao-botdetection-bundle"`
