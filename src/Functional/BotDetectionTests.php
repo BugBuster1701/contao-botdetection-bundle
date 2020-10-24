@@ -330,6 +330,7 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
                     $GLOBALS['BOTDETECTION']['BOT_IPV6'][] = $ip;
                 }
             }
+            $arrTest[3] = 'CheckBotIP test ('.$ip.')';
             $result[3] = $this->checkBotAllTests(); //BD_CheckBotIP = true
         }
 
