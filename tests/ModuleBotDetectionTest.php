@@ -59,7 +59,7 @@ class ModuleBotDetectionTest extends TestCase
     public function testGetVersion()
     {
         $actual = $this->moduleBotDetection->getVersion(/* parameters */);
-        $this->assertSame('1.6.0', $actual);
+        $this->assertSame('1.6.1', $actual);
     }
 
     /**

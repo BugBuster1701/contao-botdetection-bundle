@@ -53,7 +53,7 @@ class CheckBotIpTest extends TestCase
     public function testCheckIp(bool $result, string $ip)
     {
         $actual = CheckBotIp::checkIP($ip);
-        $this->assertSame($result, $actual);
+        $this->assertSame($result, $actual, $ip);
     }
     public function ipProvider()
     {
@@ -65,8 +65,8 @@ class CheckBotIpTest extends TestCase
             [true ,'66.249.95.222'],    //in 66.249.64.0/19 - Google Net
             [true ,'2001:4860:4801:1109:0:6006:1300:b075'],     //Google Bot IPv6
             [false,'2001:0db8:85a3:08d3:1319:8a2e:0370:7334'],  //No Bot
-            [false,'::ffff:c000:280'],      //double quad notation for ipv4 mapped addresses
-            [false,'::ffff:192.0.2.128']    //double quad notation for ipv4 mapped addresses
+            [false,'::ffff:c000:280'],      //double quad notation for ipv4 mapped addresses 192.0.2.128
+            [false,'::ffff:192.0.2.128']    //double quad notation for ipv4 mapped addresses 192.0.2.128
         ];
     }
 
