@@ -284,6 +284,11 @@ class CheckBotIp
         {
             $Ip = '0'.$Ip;
         }
+        //PHP7.4 fix for mapped IPv4 Addresses, #40
+        if (strpos($Ip, '.') !== false)
+        {
+            $Ip = str_replace('.', '', $Ip);
+        }
 
         return $Ip;
     }
