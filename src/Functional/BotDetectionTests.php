@@ -211,7 +211,8 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
         $this->testCrawlerDetectDevices();
         $out = '<h2>ModuleBotDetection Version: '.$this->getVersion().'</h2>';
         $out .= '</body></html>';
-
+        echo $out;
+        
         return '';
     }
 
