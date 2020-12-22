@@ -136,17 +136,28 @@ class CheckBotAgentExtended
         }
 
         // set an own cache directory (otherwise the system temp directory is used)
-        \Crossjoin\Browscap\Cache\File::setCacheDirectory(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'cache');
+        //\Crossjoin\Browscap\Cache\File::setCacheDirectory(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'cache');
+        \BugBuster\Browscap\Cache\File::setCacheDirectory(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'cache');
+        //DEBUG fwrite(STDOUT, 'getCacheDirectory: '.print_r(\BugBuster\Browscap\Cache\File::getCacheDirectory(),true) . "\n");
 
         //Large sonst fehlt Browser_Type / Crawler um Bots zu erkennen
-        \Crossjoin\Browscap\Browscap::setDatasetType(\Crossjoin\Browscap\Browscap::DATASET_TYPE_LARGE);
+        //\Crossjoin\Browscap\Browscap::setDatasetType(\Crossjoin\Browscap\Browscap::DATASET_TYPE_LARGE);
+        \BugBuster\Browscap\Browscap::setDatasetType(\BugBuster\Browscap\Browscap::DATASET_TYPE_LARGE);
+        //DEBUG fwrite(STDOUT, 'getDataSetType 3: '.print_r(\BugBuster\Browscap\Browscap::getDataSetType(),true) . "\n");
 
         // disable automatic updates 
-        $updater = new \Crossjoin\Browscap\Updater\None(); 
-        \Crossjoin\Browscap\Browscap::setUpdater($updater);
+        //$updater = new \Crossjoin\Browscap\Updater\None(); 
+        $updater = new \BugBuster\Browscap\Updater\None(); 
+        //\Crossjoin\Browscap\Browscap::setUpdater($updater);
+        \BugBuster\Browscap\Browscap::setUpdater($updater);
+        //DEBUG fwrite(STDOUT, 'getUpdater: '.print_r(\BugBuster\Browscap\Browscap::getUpdater(),true) . "\n");
 
-        $browscap = new \Crossjoin\Browscap\Browscap(false); //autoUpdate = false
-        $settings = $browscap->getBrowser($UserAgent)->getData();
+        //$browscap = new \Crossjoin\Browscap\Browscap(false); //autoUpdate = false
+        $browscap = new \BugBuster\Browscap\Browscap(false); //autoUpdate = false
+        //DEBUG fwrite(STDOUT, 'browscap: '.print_r($browscap,true) . "\n");
+        $browser = $browscap->getBrowser($UserAgent);
+        //DEBUG fwrite(STDOUT, 'browser: '.print_r($browser,true) . "\n");
+        $settings = $browser->getData();
 
         return $settings;
         /*

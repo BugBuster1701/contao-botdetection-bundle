@@ -8,7 +8,7 @@ function phpunit() {
   fi
 
   vendor/bin/phpunit --testdox --colors >ergebnis.txt
-  cat ergebnis.txt | grep ' │'
+  #cat ergebnis.txt | grep ' │'
   echo "Komplettes Ergebnis in ergebnis.txt"
 }
 

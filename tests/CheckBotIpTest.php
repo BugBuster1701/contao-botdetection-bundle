@@ -98,7 +98,7 @@ class CheckBotIpTest extends TestCase
         $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
         global $_SERVER;
         $actual = CheckBotIp::getUserIP();
-        $this->assertFalse($actual,$_SERVER['REMOTE_ADDR']);
+        $this->assertNotFalse($actual,$_SERVER['REMOTE_ADDR']);
     }
 
     /**

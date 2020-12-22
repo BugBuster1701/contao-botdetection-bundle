@@ -178,8 +178,8 @@ class ModuleBotDetectionTest extends TestCase
         foreach ($lines as $line) 
         {
             $arrCrawlers[] = [$line];
-            //$i++;
-            //if ($i >100) { break; }
+            $i++;
+            if ($i >100) { break; }
         }
         return $arrCrawlers;
     }
@@ -203,8 +203,8 @@ class ModuleBotDetectionTest extends TestCase
         {
             if (strstr($line,'CFNetwork')) { continue; }
             $arrDevices[] = [$line];
-            //$i++;
-            //if ($i >100) { break; }
+            $i++;
+            if ($i >100) { break; }
         }
         return $arrDevices;
     }
