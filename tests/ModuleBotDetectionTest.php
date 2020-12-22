@@ -178,8 +178,13 @@ class ModuleBotDetectionTest extends TestCase
         foreach ($lines as $line) 
         {
             $arrCrawlers[] = [$line];
-            $i++;
-            if ($i >100) { break; }
+            if (defined('UNITTEST_SHORT')) {
+                $i++;
+                if ($i >100) { 
+                    fwrite(STDOUT, 'UNITTEST SHORT in CheckCrawlerDetectCrawlers!' . "\n");
+                    break; 
+                }
+            }
         }
         return $arrCrawlers;
     }
@@ -203,8 +208,13 @@ class ModuleBotDetectionTest extends TestCase
         {
             if (strstr($line,'CFNetwork')) { continue; }
             $arrDevices[] = [$line];
-            $i++;
-            if ($i >100) { break; }
+            if (defined('UNITTEST_SHORT')) {
+                $i++;
+                if ($i >100) { 
+                    fwrite(STDOUT, 'UNITTEST SHORT in CheckCrawlerDetectDevices!' . "\n");
+                    break; 
+                }
+            }
         }
         return $arrDevices;
     }

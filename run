@@ -7,9 +7,20 @@ function phpunit() {
     exit 1
   fi
 
-  vendor/bin/phpunit --testdox --colors >ergebnis.txt
+  vendor/bin/phpunit --testdox --colors >results.txt
   #cat ergebnis.txt | grep ' │'
-  echo "Komplettes Ergebnis in ergebnis.txt"
+  echo "Complete result in results.txt"
+}
+
+function phpunitshort() {
+  if [[ ! -e ./vendor/bin/phpunit ]]; then
+    echo "The vendor/bin/phpunit file is missing. Did you install the dependencies?"
+    exit 1
+  fi
+
+  vendor/bin/phpunit -c phpunit.short.xml --testdox --colors >results.short.txt
+  #cat ergebnis.txt | grep ' │'
+  echo "Complete result in results.short.txt"
 }
 
 function php-cs-fixer() {
@@ -27,6 +38,7 @@ function usage() {
   cat <<HEREDOC
 Usage: ./run [task]
   phpunit       Run PhpUnit in each bundle
+  phpunitshort  Run PhpUnit in each bundle with max 100 tests for user agents and devices
   php-cs-fixer  Run the PHP-CS-Fixer in each bundle
 HEREDOC
 }
@@ -36,6 +48,10 @@ case "$1" in
     phpunit
     exit 0
   ;;
+  phpunitshort)
+    phpunitshort
+    exit 0
+  ;;  
   php-cs-fixer)
     php-cs-fixer
     exit 0
