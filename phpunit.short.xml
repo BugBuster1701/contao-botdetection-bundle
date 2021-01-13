@@ -11,4 +11,7 @@
       <exclude>./tests/vendor</exclude>
     </testsuite>
   </testsuites>
+  <php>
+    <const name="UNITTEST_SHORT" value="true"/>
+  </php>
 </phpunit>
