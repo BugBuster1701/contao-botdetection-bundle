@@ -214,7 +214,7 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
         $out = '<h2>ModuleBotDetection Version: '.$this->getVersion().'</h2>';
         $out .= '</body></html>';
         echo $out;
-        
+
         return '';
     }
 
@@ -388,7 +388,7 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
         $out = '<h1>testCrawlerDetectCrawlers</h1>';
         echo $out;
 
-        $lines = file($this->rootDir.'/vendor/bugbuster/contao-botdetection-bundle/src/Functional/crawlers.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        $lines = file($this->rootDir.'/vendor/bugbuster/contao-botdetection-bundle/src/Functional/crawlers.txt', \FILE_IGNORE_NEW_LINES | \FILE_SKIP_EMPTY_LINES);
         $rows = 0;
         foreach ($lines as $line) {
             $out = '';
@@ -415,7 +415,7 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
     {
         $out = '<h1>testCrawlerDetectDevices</h1>';
         echo $out;
-        $lines = file($this->rootDir.'/vendor/bugbuster/contao-botdetection-bundle/src/Functional/devices.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        $lines = file($this->rootDir.'/vendor/bugbuster/contao-botdetection-bundle/src/Functional/devices.txt', \FILE_IGNORE_NEW_LINES | \FILE_SKIP_EMPTY_LINES);
         $rows = 0;
         foreach ($lines as $line) {
             $out = '';
