@@ -124,6 +124,8 @@ class BotDetectionTests extends ModuleBotDetection
         $arrTest[] = [true, 'Mozilla/5.0 (compatible; Barkrowler/0.9; +https://babbar.tech/crawler)', 'Barkrowler'];
         //Fixed #33
         $arrTest[] = [true, 'Mozilla/5.0 (Linux; Android 7.0;) AppleWebKit/537.36 (KHTML, like Gecko) Mobile Safari/537.36 (compatible; PetalBot;+http://aspiegel.com/petalbot)', 'PetalBot'];
+        //Fixed #42
+        $arrTest[] = [true, 'Nuclei - Open-source project (github.com/projectdiscovery/nuclei)', 'Nuclei Vulnerability Scanner'];
 
         $arrReferrerTest[] = [false, 'contao.org'];
         $arrReferrerTest[] = [true, 'abcd4.de'];
