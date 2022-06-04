@@ -58,6 +58,7 @@ class CheckBotAgentSimple
 				            'agentname', 
 				            'altavista', 
 							'al_viewer',
+							'ansible-httpget',
 				            'appie', 
 				            'appengine-google', //http://code.google.com/appengine
 				            'arachnoidea', 
@@ -198,6 +199,7 @@ class CheckBotAgentSimple
 				            'yandex',		// russisch
 				            'zend_http_client', // 1.6.2
 				            'whitehat',    // 3.3.0
+							'Zabbix',
 				            'zyborg'
 				            ); 
 
