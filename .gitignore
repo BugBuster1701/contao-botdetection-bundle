@@ -11,8 +11,7 @@ composer.lock
 .project
 .settings/
 #Cache
-src/Resources/contao/cache/largebrowscap_*/largebrowscap.iniparts.*
-src/Resources/contao/cache/largebrowscap_*/largebrowscap.patterns.*
+src/Resources/contao/cache/*.cache
 #test cache
 tests/cache/
 tests/vendor/
