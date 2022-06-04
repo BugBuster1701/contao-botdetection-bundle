@@ -187,7 +187,8 @@ class ModuleBotDetection extends System
                              'largebrowscap_v6026_1.0.5', 
                              'largebrowscap_v6030_1.0.5',
                              'largebrowscap_v6036_1.0.5',
-                             'largebrowscap_v6040_1.0.5'
+                             'largebrowscap_v6040_1.0.5',
+                             'largebrowscap_v6040_1.1.0'
                         );
             foreach ($olddirs as $olddir)
             {

@@ -21,7 +21,7 @@
 	"require":{
 		"php": "^7.4 || ^8.0",
 		"contao/core-bundle": "^4.13",
-		"bugbuster/browscap-lite": "^1.1",
+		"browscap/browscap-php": "^7.0",
 		"jaybizzle/crawler-detect": "^1.2",
 		"symfony/http-client": "^4.4 || ^5.0",
 		"symfony/polyfill-intl-idn": "^1.0"
