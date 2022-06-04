@@ -34,6 +34,7 @@ class ModuleBotDetectionTest extends TestCase
         
         $container = new ContainerBuilder();
         $container->set('monolog.logger.contao', new NullLogger());
+        $container->set('monolog.logger.contao.files', new NullLogger());
         $container->setParameter('kernel.cache_dir', 'tests/cache');
         $container->setParameter('kernel.project_dir', '.');
         $container->setParameter('kernel.debug', false);

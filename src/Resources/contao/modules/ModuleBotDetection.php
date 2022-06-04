@@ -85,7 +85,7 @@ class ModuleBotDetection extends System
      */
     public function checkBotAllTests($UserAgent = false): bool
     {
-        $objUserAgent = new UserAgent();
+        $objUserAgent = new UserAgent($UserAgent);
         if (false === $UserAgent) 
         {            
         	$UserAgent = $objUserAgent->getUserAgent();
