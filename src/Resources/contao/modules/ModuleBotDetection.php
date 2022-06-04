@@ -130,7 +130,7 @@ class ModuleBotDetection extends System
      */
     public function checkGetPostRequest(): bool
     {
-        $RequestMethod = \Environment::get('requestMethod');
+        $RequestMethod = \Contao\Environment::get('requestMethod');
         if ($RequestMethod == 'GET' || $RequestMethod == 'POST') 
         {
         	return true;
@@ -194,7 +194,7 @@ class ModuleBotDetection extends System
             {
                 if (is_dir($this->rootDir . '/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/cache/'.$olddir))
                 {
-                    $folder = new \Folder('vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/cache/'.$olddir);
+                    $folder = new \Contao\Folder('vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/cache/'.$olddir);
                     if (!$folder->isEmpty())
                     {
                         $folder->purge();
