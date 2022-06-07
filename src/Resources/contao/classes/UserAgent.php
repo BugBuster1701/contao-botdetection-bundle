@@ -107,7 +107,7 @@ class UserAgent
      */
     public function setUserAgent($userAgent = null)
     {
-        if (\is_null($userAgent)) {
+        if (\is_null($userAgent) or false === $userAgent) {
             foreach ($this->Headers as $altHeader) {
                 if (isset($this->httpHeaders[$altHeader])) {
                     $userAgent .= $this->httpHeaders[$altHeader].' ';
