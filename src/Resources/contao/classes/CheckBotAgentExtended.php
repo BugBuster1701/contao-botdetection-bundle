@@ -13,6 +13,7 @@
 namespace BugBuster\BotDetection;
 
 use Jaybizzle\CrawlerDetect\CrawlerDetect;
+use Psr\Log\NullLogger;
 
 /**
  * Class CheckBotAgentExtended 
@@ -135,26 +136,6 @@ class CheckBotAgentExtended
             return false; // No user agent, no search.
         }
 
-        // set an own cache directory (otherwise the system temp directory is used)
-        //\Crossjoin\Browscap\Cache\File::setCacheDirectory(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'cache');
-        #\BugBuster\Browscap\Cache\File::setCacheDirectory(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'cache');
-        //DEBUG fwrite(STDOUT, 'getCacheDirectory: '.print_r(\BugBuster\Browscap\Cache\File::getCacheDirectory(),true) . "\n");
-
-        //Large sonst fehlt Browser_Type / Crawler um Bots zu erkennen
-        //\Crossjoin\Browscap\Browscap::setDatasetType(\Crossjoin\Browscap\Browscap::DATASET_TYPE_LARGE);
-        #\BugBuster\Browscap\Browscap::setDatasetType(\BugBuster\Browscap\Browscap::DATASET_TYPE_LARGE);
-        //DEBUG fwrite(STDOUT, 'getDataSetType 3: '.print_r(\BugBuster\Browscap\Browscap::getDataSetType(),true) . "\n");
-
-        // disable automatic updates 
-        //$updater = new \Crossjoin\Browscap\Updater\None(); 
-        #$updater = new \BugBuster\Browscap\Updater\None(); 
-        //\Crossjoin\Browscap\Browscap::setUpdater($updater);
-        #\BugBuster\Browscap\Browscap::setUpdater($updater);
-        //DEBUG fwrite(STDOUT, 'getUpdater: '.print_r(\BugBuster\Browscap\Browscap::getUpdater(),true) . "\n");
-
-        //$browscap = new \Crossjoin\Browscap\Browscap(false); //autoUpdate = false
-        #$browscap = new \BugBuster\Browscap\Browscap(false); //autoUpdate = false
-
         $cacheDir = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'cache';
         $fileCache = new \League\Flysystem\Local\LocalFilesystemAdapter($cacheDir);
         $filesystem = new \League\Flysystem\Filesystem($fileCache);
@@ -163,7 +144,9 @@ class CheckBotAgentExtended
         );
         //$logger = new \Monolog\Logger('BDGEN');
         //$logger->pushHandler(new Monolog\Handler\StreamHandler(getcwd() . '/log/generate.log', \Monolog\Logger::INFO));
-        $logger = \Contao\System::getContainer()->get('monolog.logger.contao.files');
+        //$logger = \Contao\System::getContainer()->get('monolog.logger.contao.files'); // tl_log
+        //$logger = \Contao\System::getContainer()->get('monolog.logger.contao'); // var/logs/dev-datum.log im Debug Modus
+        $logger = new NullLogger();
         $browscap_cache = new \BrowscapPHP\Cache\BrowscapCache($cache, $logger);
         if (NULL == $browscap_cache->getVersion())
         {
