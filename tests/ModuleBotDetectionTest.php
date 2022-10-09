@@ -34,6 +34,7 @@ class ModuleBotDetectionTest extends TestCase
         
         $container = new ContainerBuilder();
         $container->set('monolog.logger.contao', new NullLogger());
+        $container->set('monolog.logger.contao.files', new NullLogger());
         $container->setParameter('kernel.cache_dir', 'tests/cache');
         $container->setParameter('kernel.project_dir', '.');
         $container->setParameter('kernel.debug', false);
@@ -59,7 +60,7 @@ class ModuleBotDetectionTest extends TestCase
     public function testGetVersion()
     {
         $actual = $this->moduleBotDetection->getVersion(/* parameters */);
-        $this->assertSame('1.7.1', $actual);
+        $this->assertSame('1.8.0', $actual);
     }
 
     /**
@@ -111,7 +112,7 @@ class ModuleBotDetectionTest extends TestCase
             ['Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_3; de-de) AppleWebKit/531.22.7 (KHTML, like Gecko) Version/4.0.5 Safari/531.22.7'],
             ['Mozilla/5.0 (Linux; Android 6.0; IDbot553 Build/MRA58K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.125 Mobile Safari/537.36'],
             ['Mozilla/5.0 (Linux; Android 6.0; B BOT 550 Build/MRA58K; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/53.0.2785.124 Mobile Safari/537.36'],
-            ['T-Online Browser']
+            //['T-Online Browser']
         ];
     }
 

@@ -59,7 +59,7 @@ class CheckBotIpTest extends TestCase
     {
         return [
             [false,'192.168.17.01'],    //Private IP
-            [false,'74.125.79.100'],    //Google Plus
+            [true ,'74.125.79.100'],    //Google Plus
             [true ,'192.114.71.13'],    //web spider israel
             [true ,'65.55.231.74'],     //in 65.52.0.0/14 - MSN Net
             [true ,'66.249.95.222'],    //in 66.249.64.0/19 - Google Net

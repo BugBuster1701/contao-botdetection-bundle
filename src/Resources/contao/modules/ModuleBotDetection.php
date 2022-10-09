@@ -34,7 +34,7 @@ class ModuleBotDetection extends System
     /**
      * Current version of the class.
      */
-    const BOTDETECTION_VERSION  = '1.7.1';
+    const BOTDETECTION_VERSION  = '1.8.0';
 
     const BOT_REFERRER_LIST     = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/bot-referrer-list.php";
     const BOT_REFERRER_PROVIDER = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/referrer-provider.php";
@@ -85,7 +85,7 @@ class ModuleBotDetection extends System
      */
     public function checkBotAllTests($UserAgent = false): bool
     {
-        $objUserAgent = new UserAgent();
+        $objUserAgent = new UserAgent($UserAgent);
         if (false === $UserAgent) 
         {            
         	$UserAgent = $objUserAgent->getUserAgent();
@@ -130,7 +130,7 @@ class ModuleBotDetection extends System
      */
     public function checkGetPostRequest(): bool
     {
-        $RequestMethod = \Environment::get('requestMethod');
+        $RequestMethod = \Contao\Environment::get('requestMethod');
         if ($RequestMethod == 'GET' || $RequestMethod == 'POST') 
         {
         	return true;
@@ -187,13 +187,14 @@ class ModuleBotDetection extends System
                              'largebrowscap_v6026_1.0.5', 
                              'largebrowscap_v6030_1.0.5',
                              'largebrowscap_v6036_1.0.5',
-                             'largebrowscap_v6040_1.0.5'
+                             'largebrowscap_v6040_1.0.5',
+                             'largebrowscap_v6040_1.1.0'
                         );
             foreach ($olddirs as $olddir)
             {
                 if (is_dir($this->rootDir . '/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/cache/'.$olddir))
                 {
-                    $folder = new \Folder('vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/cache/'.$olddir);
+                    $folder = new \Contao\Folder('vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/cache/'.$olddir);
                     if (!$folder->isEmpty())
                     {
                         $folder->purge();

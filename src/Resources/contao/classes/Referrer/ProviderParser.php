@@ -12,9 +12,6 @@
 
 namespace BugBuster\BotDetection\Referrer;
 
-use TrueBV\Exception\LabelOutOfBoundsException;
-use TrueBV\Punycode;
-
 /**
  * Class ProviderParser
  *
@@ -86,16 +83,10 @@ class ProviderParser
             }
             $url = strtolower($referrerHost);
             $url = trim($url);
-            $punicode = new Punycode();
-            try 
-            {
-                $url = $punicode->encode($url);
-            }
-            catch (LabelOutOfBoundsException $e)
+            if (($url = idn_to_ascii($url)) === false)
             {
                 unset($url);
             }
-
         }
         sort($this->arrReferrerSpammer);
         $this->arrReferrerSpammer = array_filter($this->arrReferrerSpammer); // leere Elemente löschen
