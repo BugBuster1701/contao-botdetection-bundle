@@ -137,4 +137,7 @@ $botagents=array("trueknowledgebot" => "TrueKnowledgeBot",
 "barkrowler" => "Barkrowler",
 "petalbot" => "PetalBot",
 "Nuclei" => "Nuclei Vulnerability Scanner",
+"facebookexternalhit" => "Facebool Crawler",
+"MJ12bot" => "Majestic MJ12bot",
+"cortex" =>                  
 ); ?>
