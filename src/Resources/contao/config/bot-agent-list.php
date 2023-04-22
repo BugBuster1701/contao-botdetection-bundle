@@ -137,4 +137,5 @@ $botagents=array("trueknowledgebot" => "TrueKnowledgeBot",
 "barkrowler" => "Barkrowler",
 "petalbot" => "PetalBot",
 "Nuclei" => "Nuclei Vulnerability Scanner",
+"AhrefsBot" => "Ahrefs Pte Ltd",                 
 ); ?>
