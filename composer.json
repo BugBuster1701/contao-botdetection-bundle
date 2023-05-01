@@ -19,11 +19,11 @@
 		"forum":"https://community.contao.org/de/forumdisplay.php?119-Sonstige-Erweiterungen"
 	},
 	"require":{
-		"php": "^7.4 || ^8.0",
-		"contao/core-bundle": "^4.13",
+		"php": "^8.1",
+		"contao/core-bundle": "^5.1",
 		"browscap/browscap-php": "^7.0",
 		"jaybizzle/crawler-detect": "^1.2",
-		"symfony/http-client": "^4.4 || ^5.0",
+		"symfony/http-client": "^5.4 || ^6.0",
 		"symfony/polyfill-intl-idn": "^1.0"
 	},
 	"require-dev": {
@@ -59,8 +59,14 @@
 			}
 		},
 		"branch-alias": {
-			"dev-master": "1.8.x-dev"
+			"dev-master": "1.9.x-dev"
 		},
 		"contao-manager-plugin": "BugBuster\\BotdetectionBundle\\ContaoManager\\Plugin"
+	},
+	"config": {
+		"allow-plugins": {
+			"contao-components/installer": true,
+			"php-http/discovery": true
+		}
 	}
 }
