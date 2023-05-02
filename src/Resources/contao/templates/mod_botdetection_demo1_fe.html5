@@ -33,7 +33,7 @@
 	<span style="color:<?= $demo['color']; ?>">Test <?= $demo['test']; ?> : Theoretical/Actual: <?= $demo['theoretical']; ?>/<?= $demo['actual']; ?></span><?= $demo['comment']; ?><br>
 <?php endif; ?>
 <?php endforeach; ?>
-	<br><h2>ModuleBotDetection Version: <?= $this->version; ?></h2>
+	<br><h3>ModuleBotDetection Version: <?= $this->version; ?></h3>
     </div>
 </section>
 <!-- indexer::continue -->

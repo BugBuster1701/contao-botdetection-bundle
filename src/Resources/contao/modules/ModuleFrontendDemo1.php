@@ -18,6 +18,9 @@ declare(strict_types=1);
 
 namespace BugBuster\BotDetection;
 
+use Contao\System;
+use Symfony\Component\HttpFoundation\Request;
+
 /**
  * Class ModuleFrontendDemo1
  * Use ModuleBotDetection with import function
@@ -25,7 +28,7 @@ namespace BugBuster\BotDetection;
  * @copyright  Glen Langer 2007..2020 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  */
-class ModuleFrontendDemo1 extends \Module
+class ModuleFrontendDemo1 extends \Contao\Module
 {
 
 	/**
@@ -52,9 +55,11 @@ class ModuleFrontendDemo1 extends \Module
 	 */
 	public function generate()
 	{
-		if (TL_MODE == 'BE')
+		if (System::getContainer()->get('contao.routing.scope_matcher')
+			->isBackendRequest(System::getContainer()->get('request_stack')
+			->getCurrentRequest() ?? Request::create('')))
 		{
-			$objTemplate = new \BackendTemplate('be_wildcard');
+			$objTemplate = new \Contao\BackendTemplate('be_wildcard');
 			$objTemplate->wildcard = '### Bot Detection Frontend Demo 1 ###';
 
 			$objTemplate->title = $this->headline;
@@ -74,13 +79,13 @@ class ModuleFrontendDemo1 extends \Module
 	 */
 	protected function compile()
 	{
-	    $this->rootDir = \System::getContainer()->getParameter('kernel.project_dir');
+	    $this->rootDir = \Contao\System::getContainer()->getParameter('kernel.project_dir');
 	    //einzel tests direkt aufgerufen
-	    $test01 = CheckBotAgentSimple::checkAgent(\Environment::get('httpUserAgent')); // own Browser
+	    $test01 = CheckBotAgentSimple::checkAgent(\Contao\Environment::get('httpUserAgent')); // own Browser
 	    CheckBotIp::setBotIpv4List($this->rootDir . self::BOT_IP4_LIST);
 	    CheckBotIp::setBotIpv6List($this->rootDir . self::BOT_IP6_LIST);
-	    $test02 = CheckBotIp::checkIP(\Environment::get('ip')); // own IP
-	    $test03 = CheckBotAgentExtended::checkAgent(\Environment::get('httpUserAgent')); // own Browser
+	    $test02 = CheckBotIp::checkIP(\Contao\Environment::get('ip')); // own IP
+	    $test03 = CheckBotAgentExtended::checkAgent(\Contao\Environment::get('httpUserAgent')); // own Browser
 
 	    //for fe template
 	    $arrDemo[] = array(
@@ -88,7 +93,7 @@ class ModuleFrontendDemo1 extends \Module
 	       'test'          => '01',
 	       'theoretical'   => 'false',
 	       'actual'        => var_export($test01, true),
-	       'comment'       => '<br />'.\Environment::get('httpUserAgent'),
+	       'comment'       => '<br />'.\Contao\Environment::get('httpUserAgent'),
 	       'color'         => ($test01 === false) ? 'green' : 'red'
 	    );
 	    $arrDemo[] = array(
@@ -96,7 +101,7 @@ class ModuleFrontendDemo1 extends \Module
 	       'test'          => '02',
 	       'theoretical'   => 'false',
 	       'actual'        => var_export($test02, true),
-	       'comment'       => '<br />'.\Environment::get('ip'),
+	       'comment'       => '<br />'.\Contao\Environment::get('ip'),
 	       'color'         => ($test02 === false) ? 'green' : 'red'
 	    );
 	    $arrDemo[] = array(
@@ -104,20 +109,20 @@ class ModuleFrontendDemo1 extends \Module
 	       'test'          => '03',
 	       'theoretical'   => 'false',
 	       'actual'        => var_export($test03, true),
-	       'comment'       => '<br />'.\Environment::get('httpUserAgent'),
+	       'comment'       => '<br />'.\Contao\Environment::get('httpUserAgent'),
 	       'color'         => ((bool) $test03 === false) ? 'green' : 'red'
 	    );	    
 
 	    //Gesamt Test Aufruf
 	    $this->ModuleBotDetection = new ModuleBotDetection();
-	    $test04 = $this->ModuleBotDetection->checkBotAllTests(\Environment::get('httpUserAgent'));
+	    $test04 = $this->ModuleBotDetection->checkBotAllTests(\Contao\Environment::get('httpUserAgent'));
 
 	    $arrDemo[] = array(
 	        'type'          => 'alltests',
 	        'test'          => '04',
 	        'theoretical'   => 'false',
 	        'actual'        => var_export($test04, true),
-	        'comment'       => '<br />'.\Environment::get('httpUserAgent'),
+	        'comment'       => '<br />'.\Contao\Environment::get('httpUserAgent'),
 	        'color'         => ($test04 === false) ? 'green' : 'red'
 	    );
 	    $this->Template->demos = $arrDemo;

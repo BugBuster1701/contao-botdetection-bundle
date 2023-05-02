@@ -33,7 +33,7 @@
 	<form<?php if ($this->action): ?> action="<?= $this->action ?>"<?php endif; ?> id="<?= $this->formId ?>" method="post">
     <div class="formbody">
       <input type="hidden" name="FORM_SUBMIT" value="<?= $this->formId ?>">
-      <input type="hidden" name="REQUEST_TOKEN" value="{{request_token}}">
+      <input type="hidden" name="REQUEST_TOKEN" value="<?= $this->requestToken ?>">
       <?php if ($this->error): ?>
         <p class="error"><?= $this->error ?></p>
       <?php endif; ?>
@@ -50,6 +50,6 @@
 <p class="message"><?= $this->message; ?></p>
 <?php endif; ?>
 <br>
-<h2>ModuleBotDetection Version: <?= $this->version; ?></h2>
+<h3>ModuleBotDetection Version: <?= $this->version; ?></h3>
 </section> <!-- class ende -->
 <!-- indexer::continue -->
