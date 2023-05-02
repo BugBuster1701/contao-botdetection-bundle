@@ -60,7 +60,7 @@ class ModuleBotDetectionTest extends TestCase
     public function testGetVersion()
     {
         $actual = $this->moduleBotDetection->getVersion(/* parameters */);
-        $this->assertSame('1.8.0', $actual);
+        $this->assertSame('1.9.0', $actual);
     }
 
     /**
@@ -70,8 +70,8 @@ class ModuleBotDetectionTest extends TestCase
      */
     public function testCheckBotAllTestsBot(bool $result, string $useragent)
     {
-        \Environment::set('requestMethod','GET');
-        \Environment::set('ip','127.0.1.1');       
+        \Contao\Environment::set('requestMethod','GET');
+        \Contao\Environment::set('ip','127.0.1.1');       
         $actual = $this->moduleBotDetection->checkBotAllTests($useragent);
         $this->assertSame($result, $actual);
     }
@@ -99,8 +99,8 @@ class ModuleBotDetectionTest extends TestCase
      */
     public function testCheckBotAllTestsBrowser(string $useragent)
     {
-        \Environment::set('requestMethod','GET');
-        \Environment::set('ip','127.0.1.1');
+        \Contao\Environment::set('requestMethod','GET');
+        \Contao\Environment::set('ip','127.0.1.1');
         $actual = $this->moduleBotDetection->checkBotAllTests($useragent);
         $this->assertFalse($actual, $useragent);
     }
@@ -123,8 +123,8 @@ class ModuleBotDetectionTest extends TestCase
      */
     public function testCheckBrowserSimple(string $useragent)
     {
-        \Environment::set('requestMethod','GET');
-        \Environment::set('ip','127.0.1.1');
+        \Contao\Environment::set('requestMethod','GET');
+        \Contao\Environment::set('ip','127.0.1.1');
         $actual = BugBuster\BotDetection\CheckBotAgentSimple::checkAgent($useragent);
         $this->assertFalse($actual, $useragent);
     }
@@ -156,7 +156,7 @@ class ModuleBotDetectionTest extends TestCase
      */
     public function testCheckGetPostRequest()
     {
-        \Environment::set('requestMethod','GET');
+        \Contao\Environment::set('requestMethod','GET');
         $actual = $this->moduleBotDetection->checkGetPostRequest(/* parameters */);
         $this->assertSame(true, $actual);
     }

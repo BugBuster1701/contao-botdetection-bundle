@@ -38,7 +38,7 @@ class CheckBotReferrer
         $checkOwn   = false;
         $checkLocal = false;
         $cachePath  = false;
-        $rootDir    = \System::getContainer()->getParameter('kernel.project_dir');
+        $rootDir    = \Contao\System::getContainer()->getParameter('kernel.project_dir');
 
         if (false !== $Referrer) 
         {
