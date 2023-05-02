@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of a BugBuster Contao Bundle
  *
- * @copyright  Glen Langer 2020 <http://contao.ninja>
+ * @copyright  Glen Langer 2023 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @package    Contao BotDetection Bundle
  * @license    LGPL-3.0-or-later
@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace BugBuster\BotdetectionBundle\ContaoManager;
 
+use BugBuster\BotdetectionBundle\BugBusterBotdetectionBundle;
 use Contao\ManagerPlugin\Bundle\BundlePluginInterface;
 use Contao\ManagerPlugin\Bundle\Config\BundleConfig;
 use Contao\ManagerPlugin\Bundle\Parser\ParserInterface;
@@ -32,7 +33,7 @@ class Plugin implements BundlePluginInterface, RoutingPluginInterface
     public function getBundles(ParserInterface $parser): array
     {
         return [
-            BundleConfig::create('BugBuster\BotdetectionBundle\BugBusterBotdetectionBundle')
+            BundleConfig::create(BugBusterBotdetectionBundle::class)
                 ->setLoadAfter(['Contao\CoreBundle\ContaoCoreBundle'])
                 ->setReplace(['botdetection']),
         ];
