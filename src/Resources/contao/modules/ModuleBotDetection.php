@@ -99,9 +99,11 @@ class ModuleBotDetection extends System
             return true;
         }
 
-        if (true === (bool) CheckBotReferrer::checkReferrer(false, 
-                                                             $this->rootDir . self::BOT_REFERRER_LIST,
-                                                             $this->rootDir . self::BOT_REFERRER_PROVIDER) 
+        if (true === (bool) CheckBotReferrer::checkReferrer(
+            false,
+            $this->rootDir . self::BOT_REFERRER_LIST,
+            $this->rootDir . self::BOT_REFERRER_PROVIDER
+        ) 
            )
         {
             return true;

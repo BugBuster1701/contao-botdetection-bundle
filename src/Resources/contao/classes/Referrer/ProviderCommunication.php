@@ -63,7 +63,7 @@ class ProviderCommunication
     {
         $this->referrerProvider = $referrerProvider;
         $this->cachePath        = $cachePath;
-        $this->allowUrlOpen     = (bool) ini_get('allow_url_fopen');
+        $this->allowUrlOpen     = (bool) \ini_get('allow_url_fopen');
         $this->isCurlEnabled    = \function_exists('curl_init');
         $this->rootDir          = $rootDir;
 

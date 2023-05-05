@@ -91,7 +91,7 @@ class ModuleFrontendDemo2 extends \Contao\Module
 		// Initialize widgets
 		foreach ($arrFields as $arrField)
 		{
-			/** @var \String $strClass */
+			/** @var \string $strClass */
 			$strClass = $GLOBALS['TL_FFL'][$arrField['inputType']];
 
 			// Continue if the class is not defined

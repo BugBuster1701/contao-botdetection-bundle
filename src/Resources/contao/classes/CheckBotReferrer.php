@@ -123,7 +123,7 @@ class CheckBotReferrer
     /**
      * Get Referrer List, delivered with this extension
      * 
-     * @param  string         $Bot_Referrer_List
+     * @param string $Bot_Referrer_List
      * @return boolean|array: false: no list, array: Referrer List
      */
     protected static function getReferrerOwnList($Bot_Referrer_List = false)
@@ -152,7 +152,7 @@ class CheckBotReferrer
     /**
      * Get Referrer List, self defined over localconfig
      *
-     * @param  string         $Bot_Referrer_List
+     * @param string $Bot_Referrer_List
      * @return boolean|array: false: no list, array: Referrer List
      */
     protected static function getReferrerLocalList()
