@@ -16,6 +16,6 @@ Normally this is installed as a dependency, not directly.
 
 ## Installation via command line
 
-Installation in a Composer-based Contao 4.7+ Managed-Edition:
+Installation in a Composer-based Contao 5.1+ Managed-Edition:
 
 * `composer require "bugbuster/contao-botdetection-bundle"`
