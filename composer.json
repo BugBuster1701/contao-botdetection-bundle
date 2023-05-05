@@ -1,6 +1,6 @@
 {
 	"name":"bugbuster/contao-botdetection-bundle",
-	"description":"Contao 4 bundle helper class to detect search engines, bots, spiders, crawlers ...",
+	"description":"Contao bundle helper class to detect search engines, bots, spiders, crawlers ...",
 	"keywords":["detection","bots","contao","bundle"],
 	"type":"contao-bundle",
 	"homepage":"http://contao.ninja",
