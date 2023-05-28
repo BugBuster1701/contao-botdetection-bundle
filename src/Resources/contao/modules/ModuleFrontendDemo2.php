@@ -131,15 +131,16 @@ class ModuleFrontendDemo2 extends \Contao\Module
     	    $test01 = CheckBotAgentSimple::checkAgent($arrSet['agent_name']);
     	    $test02 = CheckBotAgentExtended::checkAgentName($arrSet['agent_name']);
     	    $BrowsCapInfo = CheckBotAgentExtended::getBrowscapResult($arrSet['agent_name']);
-    	    $not1 = ($test01) ? "<span style=\"color:green;\">".$GLOBALS['TL_LANG']['MSC']['botdetectiondemo2_found']."</span>" : "<span style=\"color:red;\">".$GLOBALS['TL_LANG']['MSC']['botdetectiondemo2_not']."</span>";
-    	    $not2 = ($test02) ? "<span style=\"color:green;\">".$GLOBALS['TL_LANG']['MSC']['botdetectiondemo2_found']."</span>" : "<span style=\"color:red;\">".$GLOBALS['TL_LANG']['MSC']['botdetectiondemo2_not']."</span>";
+    	    $not1 = ($test01) ? "<span style=\"color:green;\">&nbsp;".$GLOBALS['TL_LANG']['MSC']['botdetectiondemo2_found']."</span>" : "<span style=\"color:red;\">".$GLOBALS['TL_LANG']['MSC']['botdetectiondemo2_not']."</span>";
+    	    $not2 = ($test02) ? "<span style=\"color:green;\">&nbsp;".$GLOBALS['TL_LANG']['MSC']['botdetectiondemo2_found']."</span>" : "<span style=\"color:red;\">".$GLOBALS['TL_LANG']['MSC']['botdetectiondemo2_not']."</span>";
     	    $not3 = ($test02) ? " (".$test02.")" : "";
     	    $messages  = "<strong>".$GLOBALS['TL_LANG']['MSC']['botdetectiondemo2_message_1'].":</strong><br />".$arrSet['agent_name']."<br /><br />";
-    	    $messages .= "<div style=\"font-weight:bold; width:200px;float:left;\">CheckBotAgentSimple:</div> ".$not1."<br />";
-    	    $messages .= "<div style=\"font-weight:bold; width:200px;float:left;\">CheckBotAgentExtended:</div> ".$not2.$not3."<br />";
-    	    $messages .= "<div style=\"font-weight:bold; width:200px;float:left;\">BrowsCapInfo:</div><pre>".print_r($BrowsCapInfo, true)."</pre><br />";
+    	    $messages .= "<div style=\"font-weight:bold; float:left;\">CheckBotAgentSimple:</div><div style=\"float: none;\">".$not1."</div>";
+    	    $messages .= "<div style=\"font-weight:bold; float:left;\">CheckBotAgentExtended:</div><div style=\"float: none;\">".$not2.$not3."</div>";
+    	    $messagesBCI = "<div style=\"font-weight:bold; float:left;\">BrowsCapInfo:</div><div style=\"float: none;\"><pre>".print_r($BrowsCapInfo, true)."</pre></div>";
 
 			$this->Template->message  = $messages;
+			$this->Template->messageBCI  = $messagesBCI;
 
 		}
 	    // get module version

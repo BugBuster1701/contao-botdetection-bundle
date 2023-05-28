@@ -48,6 +48,7 @@
 </div> <!-- from ende -->
 <?php if($this->message):?>
 <p class="message"><?= $this->message; ?></p>
+<p class="message"><?= $this->messageBCI; ?></p>
 <?php endif; ?>
 <br>
 <h3>ModuleBotDetection Version: <?= $this->version; ?></h3>
