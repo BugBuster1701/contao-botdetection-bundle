@@ -3,7 +3,7 @@
 /*
  * This file is part of a BugBuster Contao Bundle (Resources\contao)
  *
- * @copyright  Glen Langer 2020 <http://contao.ninja>
+ * @copyright  Glen Langer 2023 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @package    Contao BotDetection Bundle
  * @license    LGPL-3.0-or-later
@@ -38,7 +38,7 @@ class CheckBotReferrer
         $checkOwn   = false;
         $checkLocal = false;
         $cachePath  = false;
-        $rootDir    = \System::getContainer()->getParameter('kernel.project_dir');
+        $rootDir    = \Contao\System::getContainer()->getParameter('kernel.project_dir');
 
         if (false !== $Referrer) 
         {
@@ -123,7 +123,7 @@ class CheckBotReferrer
     /**
      * Get Referrer List, delivered with this extension
      * 
-     * @param  string         $Bot_Referrer_List
+     * @param string $Bot_Referrer_List
      * @return boolean|array: false: no list, array: Referrer List
      */
     protected static function getReferrerOwnList($Bot_Referrer_List = false)
@@ -152,7 +152,7 @@ class CheckBotReferrer
     /**
      * Get Referrer List, self defined over localconfig
      *
-     * @param  string         $Bot_Referrer_List
+     * @param string $Bot_Referrer_List
      * @return boolean|array: false: no list, array: Referrer List
      */
     protected static function getReferrerLocalList()

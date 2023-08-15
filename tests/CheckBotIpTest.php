@@ -59,11 +59,12 @@ class CheckBotIpTest extends TestCase
     {
         return [
             [false,'192.168.17.01'],    //Private IP
-            [true ,'74.125.79.100'],    //Google Plus
+            [true ,'34.100.182.99'],    //Google
             [true ,'192.114.71.13'],    //web spider israel
             [true ,'65.55.231.74'],     //in 65.52.0.0/14 - MSN Net
-            [true ,'66.249.95.222'],    //in 66.249.64.0/19 - Google Net
+            [true ,'66.249.78.22'],    //in 66.249.78.0/27 - Google
             [true ,'2001:4860:4801:1109:0:6006:1300:b075'],     //Google Bot IPv6
+            [true ,'2001:4860:4801:1c:1111:2222:3333:4444'],    //Google Bot IPv6
             [false,'2001:0db8:85a3:08d3:1319:8a2e:0370:7334'],  //No Bot
             [false,'::ffff:c000:280'],      //double quad notation for ipv4 mapped addresses 192.0.2.128
             [false,'::ffff:192.0.2.128']    //double quad notation for ipv4 mapped addresses 192.0.2.128

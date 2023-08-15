@@ -10,6 +10,7 @@ composer.lock
 .buildpath
 .project
 .settings/
+.vscode/
 #Cache
 src/Resources/contao/cache/*.cache
 #test cache

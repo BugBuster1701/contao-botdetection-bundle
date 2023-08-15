@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of a BugBuster Contao Bundle
  *
- * @copyright  Glen Langer 2020 <http://contao.ninja>
+ * @copyright  Glen Langer 2023 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @package    Contao BotDetection Bundle
  * @license    LGPL-3.0-or-later
@@ -38,12 +38,12 @@ class BotDetectionTests extends ModuleBotDetection
         // AGENT TEST DEFINITIONS
 
         $arrTest[] = [false, false, 'your browser']; // own Browser
-        //Browser
+        // Browser
         $arrTest[] = [false, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.2.3) Gecko/20100401 Firefox/3.6.3', 'Firefox'];
         $arrTest[] = [false, 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.2; Trident/4.0; Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1);', 'IE8.0'];
         $arrTest[] = [false, 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; de; rv:1.9.2.2) Gecko/20100316 Firefox/3.6.2', 'Macintosh FF'];
         $arrTest[] = [false, 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_3; de-de) AppleWebKit/531.22.7 (KHTML, like Gecko) Version/4.0.5 Safari/531.22.7', 'Macintosh Safari'];
-        //Bots
+        // Bots
         $arrTest[] = [true, 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 'Google Bot'];
         $arrTest[] = [true, 'ia_archiver (+http://www.alexa.com/site/help/webmasters; crawler@alexa.com)', 'Internet Archive'];
         $arrTest[] = [true, 'Yandex/1.01.001 (compatible; Win16; P)', 'Yandex'];
@@ -92,7 +92,7 @@ class BotDetectionTests extends ModuleBotDetection
         $arrTest[] = [true, 'Mozilla/5.0 (compatible; waybackarchive.org/1.0; +spider@waybackarchive.org)', 'Wayback Archive Bot'];
         $arrTest[] = [true, 'ImplisenseBot 1.0', 'ImplisenseBot'];
         $arrTest[] = [true, 'Riddler (http://riddler.io/about.html)', 'Riddler'];
-        //3.3.1
+        // 3.3.1
         $arrTest[] = [true, 'Mozilla/4.0 (compatible; Blog Search;)', 'Blog Search'];
         $arrTest[] = [true, 'Mozilla/5.0 (compatible; publiclibraryarchive.org/1.0; +crawl@publiclibraryarchive.org)', 'publiclibraryarchive Bot'];
         $arrTest[] = [true, 'Pinterest/0.1 +http://pinterest.com/', 'Pinterest Bot'];
@@ -102,7 +102,7 @@ class BotDetectionTests extends ModuleBotDetection
         $arrTest[] = [true, 'thumbshots-de-bot (+http://www.thumbshots.de/)', 'thumbshots-de-bot'];
         $arrTest[] = [true, 'Mozilla/5.0 (compatible; memorybot/1.20.71 +http://archivethe.net/en/index.php/about/internet_memory1 on behalf of DNB)', 'memoryBot'];
         $arrTest[] = [true, 'stq_bot (+http://www.searchteq.de)', 'Searchteq Bot'];
-        //3.3.4
+        // 3.3.4
         $arrTest[] = [true, 'python-requests/1.2.0 CPython/2.7.3 Linux/3.2.0-41-virtual', 'python-requests'];
         $arrTest[] = [true, 'Mechanize/2.0.1 Ruby/1.9.2p290 (http://github.com/tenderlove/mechanize/)', 'Mechanize'];
         $arrTest[] = [true, 'Ruby', 'Generic Ruby Crawler'];
@@ -112,19 +112,19 @@ class BotDetectionTests extends ModuleBotDetection
         $arrTest[] = [true, 'publiclibraryarchive.org 1.0; +crawl@publiclibraryarchive.org', 'publiclibraryarchive.org'];
         $arrTest[] = [true, 'Cronjob.de', 'Cronjob.de'];
         $arrTest[] = [true, 'Mozilla/5.0 (compatible; MegaIndex.ru/2.0; +https://www.megaindex.ru/?tab=linkAnalyze)', 'MegaIndex Bot'];
-        //Fixed #12
+        // Fixed #12
         $arrTest[] = [true, 'Mozilla/5.0 (compatible; DnyzBot/1.0)', 'DnyzBot'];
-        //Fixed #21
+        // Fixed #21
         $arrTest[] = [true, 'check_http/v2.2 (monitoring-plugins 2.2)', 'check_mk monitoring-plugin'];
-        //Fixed #19
+        // Fixed #19
         $arrTest[] = [true, 'Mozilla/5.0 (compatible; phpservermon/3.2.2; +http://www.phpservermonitor.org)', 'phpservermonitor'];
-        //Fixed #20
+        // Fixed #20
         $arrTest[] = [true, 'CFNetwork/', 'CFNetwork App'];
-        //Fixed #34
+        // Fixed #34
         $arrTest[] = [true, 'Mozilla/5.0 (compatible; Barkrowler/0.9; +https://babbar.tech/crawler)', 'Barkrowler'];
-        //Fixed #33
+        // Fixed #33
         $arrTest[] = [true, 'Mozilla/5.0 (Linux; Android 7.0;) AppleWebKit/537.36 (KHTML, like Gecko) Mobile Safari/537.36 (compatible; PetalBot;+http://aspiegel.com/petalbot)', 'PetalBot'];
-        //Fixed #42
+        // Fixed #42
         $arrTest[] = [true, 'Nuclei - Open-source project (github.com/projectdiscovery/nuclei)', 'Nuclei Vulnerability Scanner'];
 
         $arrReferrerTest[] = [false, 'contao.org'];
@@ -183,7 +183,7 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
         $GLOBALS['BOTDETECTION']['BOT_AGENT'][] = ['Mozilla/5.0 (X11; U; Linux; en-US) AppleWebKit/531.2 (KHTML, like Gecko) Safari/531.2 localconfig', 'localconfig Bot'];
         $arrTest[] = [true, 'Mozilla/5.0 (X11; U; Linux; en-US) AppleWebKit/531.2 (KHTML, like Gecko) Safari/531.2 localconfig', 'localconfig Bot'];
 
-        //Output
+        // Output
 
         $out .= '<!DOCTYPE html>
 <html lang="de">
@@ -291,7 +291,7 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
                     $out .= '<span style="color:red;">';
                 }
             } else { // true Test
-                if ($arrTest[$x][2] === $result[$x]) { //$arrTest[$x][0]
+                if ($arrTest[$x][2] === $result[$x]) { // $arrTest[$x][0]
                     $out .= '<span style="color:green;">';
                 } else {
                     $out .= '<span style="color:red;">';
@@ -312,11 +312,11 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
         $arrTest[2] = 'CheckBotAgentAdvanced test';
         $arrTest[3] = 'CheckBotIP test';
         $result[0] = !$this->checkBotAllTests();
-        $result[1] = $this->checkBotAllTests('Spider test'); //BD_CheckBotAgent = true
-        $result[2] = $this->checkBotAllTests('acadiauniversitywebcensusclient'); //BD_CheckBotAgentAdvanced = true
-        //set own IP as Bot IP
+        $result[1] = $this->checkBotAllTests('Spider test'); // BD_CheckBotAgent = true
+        $result[2] = $this->checkBotAllTests('acadiauniversitywebcensusclient'); // BD_CheckBotAgentAdvanced = true
+        // set own IP as Bot IP
         if (\Contao\Environment::get('remoteAddr')) {
-            if (false !== strpos(\Contao\Environment::get('remoteAddr'), ',')) { //first IP
+            if (false !== strpos(\Contao\Environment::get('remoteAddr'), ',')) { // first IP
                 $ip = trim(substr(\Contao\Environment::get('remoteAddr'), 0, strpos(\Contao\Environment::get('remoteAddr'), ',')));
                 // Test for IPv4
                 if (false !== ip2long($ip)) {
@@ -334,10 +334,10 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
                 }
             }
             $arrTest[3] = 'CheckBotIP test ('.$ip.')';
-            $result[3] = $this->checkBotAllTests(); //BD_CheckBotIP = true
+            $result[3] = $this->checkBotAllTests(); // BD_CheckBotIP = true
         }
 
-        //output
+        // output
         for ($x = 0; $x < 4; ++$x) {
             $nr = ($x < 10) ? '&nbsp;'.$x : $x;
             if (true === $result[$x]) {
@@ -358,8 +358,8 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
         $y = \count($arrReferrerTest);
         for ($x = 0; $x < $y; ++$x) {
             $result[$x] = \BugBuster\BotDetection\CheckBotReferrer::checkReferrer('http://'.$arrReferrerTest[$x][1].'/wtf',
-                                    $this->rootDir.'/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/bot-referrer-list.php',
-                                    $this->rootDir.'/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/referrer-provider.php');
+                $this->rootDir.'/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/bot-referrer-list.php',
+                $this->rootDir.'/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/referrer-provider.php');
         }
         for ($x = 0; $x < $y; ++$x) {
             $nr = ($x < 10) ? '&nbsp;'.$x : $x;

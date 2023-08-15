@@ -1,4 +1,4 @@
-# Contao 4 BotDetection Bundle
+# Contao 4/5 BotDetection Bundle
 [![Latest Stable Version](https://poser.pugx.org/bugbuster/contao-botdetection-bundle/v/stable.svg)](https://packagist.org/packages/bugbuster/contao-botdetection-bundle) [![Total Downloads](https://poser.pugx.org/bugbuster/contao-botdetection-bundle/downloads.svg)](https://packagist.org/packages/bugbuster/contao-botdetection-bundle) [![Latest Unstable Version](https://poser.pugx.org/bugbuster/contao-botdetection-bundle/v/unstable.svg)](https://packagist.org/packages/bugbuster/contao-botdetection-bundle) [![License](https://poser.pugx.org/bugbuster/contao-botdetection-bundle/license.svg)](https://packagist.org/packages/bugbuster/contao-botdetection-bundle)
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/90b6ab9017ee44dd818a36164419c3ce)](https://www.codacy.com/manual/BugBuster1701/contao-botdetection-bundle/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=BugBuster1701/contao-botdetection-bundle&amp;utm_campaign=Badge_Grade)
