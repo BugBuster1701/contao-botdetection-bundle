@@ -94,7 +94,7 @@ class ModuleFrontendDemo2 extends \Module
 			$arrField['eval']['required'] = $arrField['eval']['mandatory'];
 
 			/** @var \Widget $objWidget */
-			$objWidget = new $strClass($strClass::getAttributesFromDca($arrField, $arrField['name'], $arrField['value']));
+			$objWidget = new $strClass($strClass::getAttributesFromDca($arrField, $arrField['name'], $arrField['value'] ?? null));
 
 			// Validate widget
 			if (\Input::post('FORM_SUBMIT') == $strFormId)
