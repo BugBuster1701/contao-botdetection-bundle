@@ -81,6 +81,7 @@ class ModuleFrontendDemo2 extends \Module
 		$doNotSubmit = false;
 		$strFormId = 'botdetectiondemo2_' . $this->id;
 		$arrWidgets = array();
+		$strFields = '';
 
 		// Initialize widgets
 		foreach ($arrFields as $arrField)
