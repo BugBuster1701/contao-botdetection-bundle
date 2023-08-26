@@ -3,7 +3,7 @@
 /*
  * This file is part of a BugBuster Contao Bundle (Resources\contao)
  *
- * @copyright  Glen Langer 2020 <http://contao.ninja>
+ * @copyright  Glen Langer 2023 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @package    Contao BotDetection Bundle
  * @license    LGPL-3.0-or-later
@@ -356,6 +356,7 @@ class CheckBotIp
         {
             $Ip[1] .= str_pad(base_convert($Parts[$i], 16, 2), 16, 0, STR_PAD_LEFT);
         }
+
         // compare the IPs
         return substr_compare($Ip[0], $Ip[1], 0, $net_mask) === 0;
     }
@@ -390,8 +391,8 @@ class CheckBotIp
      *
      * @param  string $ip IP Address (IPv4 or IPv6)
      * @return mixed  false: no valid IPv4 and no valid IPv6
-     *                   "IPv4" : IPv4 Address
-     *                   "IPv6" : IPv6 Address
+     *                "IPv4" : IPv4 Address
+     *                "IPv6" : IPv6 Address
      */
     protected static function getIpVersion($ip)
     {

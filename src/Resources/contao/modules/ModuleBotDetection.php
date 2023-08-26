@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of a BugBuster Contao Bundle (Resources\contao)
  *
- * @copyright  Glen Langer 2020 <http://contao.ninja>
+ * @copyright  Glen Langer 2023 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @package    Contao BotDetection Bundle
  * @license    LGPL-3.0-or-later
@@ -99,9 +99,11 @@ class ModuleBotDetection extends System
             return true;
         }
 
-        if (true === (bool) CheckBotReferrer::checkReferrer(false, 
-                                                             $this->rootDir . self::BOT_REFERRER_LIST,
-                                                             $this->rootDir . self::BOT_REFERRER_PROVIDER) 
+        if (true === (bool) CheckBotReferrer::checkReferrer(
+            false,
+            $this->rootDir . self::BOT_REFERRER_LIST,
+            $this->rootDir . self::BOT_REFERRER_PROVIDER
+        ) 
            )
         {
             return true;
@@ -119,6 +121,7 @@ class ModuleBotDetection extends System
         {
             return true;
         }
+
         //CheckBotAgentExtended (Browscap + eigene Liste)
         return CheckBotAgentExtended::checkAgent($UserAgent);
     }

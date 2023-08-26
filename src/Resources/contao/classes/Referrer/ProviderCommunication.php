@@ -3,7 +3,7 @@
 /*
  * This file is part of a BugBuster Contao Bundle (Resources\contao)
  *
- * @copyright  Glen Langer 2020 <http://contao.ninja>
+ * @copyright  Glen Langer 2023 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @package    Contao BotDetection Bundle
  * @license    LGPL-3.0-or-later
@@ -63,7 +63,7 @@ class ProviderCommunication
     {
         $this->referrerProvider = $referrerProvider;
         $this->cachePath        = $cachePath;
-        $this->allowUrlOpen     = (bool) ini_get('allow_url_fopen');
+        $this->allowUrlOpen     = (bool) \ini_get('allow_url_fopen');
         $this->isCurlEnabled    = \function_exists('curl_init');
         $this->rootDir          = $rootDir;
 
@@ -142,6 +142,7 @@ class ProviderCommunication
                 unset($response);
             }
         }
+
         //debug $this->logMessage('ProviderCommunication::loadProviderFile: END','botdetection_debug');
         return true;
     }
