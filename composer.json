@@ -27,7 +27,7 @@
 		"symfony/polyfill-intl-idn": "^1.0"
 	},
 	"require-dev": {
-		"friendsofphp/php-cs-fixer": "^2.17",
+		"friendsofphp/php-cs-fixer": "^3.10",
 		"phpunit/phpunit": "^8.5 || ^9.3"
 	},
 	"conflict": {
@@ -62,5 +62,11 @@
 			"dev-master": "1.8.x-dev"
 		},
 		"contao-manager-plugin": "BugBuster\\BotdetectionBundle\\ContaoManager\\Plugin"
+	},
+	"config": {
+		"allow-plugins": {
+			"contao-components/installer": true,
+			"php-http/discovery": true
+		}
 	}
 }

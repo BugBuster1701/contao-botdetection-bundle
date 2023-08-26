@@ -3,7 +3,7 @@
 $header = <<<EOF
 This file is part of a BugBuster Contao Bundle (Resources\contao)
 
-@copyright  Glen Langer 2020 <http://contao.ninja>
+@copyright  Glen Langer 2023 <http://contao.ninja>
 @author     Glen Langer (BugBuster)
 @package    Contao BotDetection Bundle
 @license    LGPL-3.0-or-later
@@ -19,7 +19,8 @@ $finder = PhpCsFixer\Finder::create()
     ])
 ;
 
-return PhpCsFixer\Config::create()
+$config = new PhpCsFixer\Config();
+return $config
     ->setRules([
         'align_multiline_comment' => true,
         'array_syntax' => ['syntax' => 'long'],
@@ -59,8 +60,7 @@ return PhpCsFixer\Config::create()
         'no_singleline_whitespace_before_semicolons' => true,
         'no_spaces_around_offset' => true,
         'no_spaces_inside_parenthesis' => true,
-        'no_trailing_comma_in_list_call' => true,
-        'no_trailing_comma_in_singleline_array' => true,
+        'no_trailing_comma_in_singleline' => true,
         'no_unneeded_control_parentheses' => true,
         'no_unneeded_curly_braces' => true,
         'no_unreachable_default_argument_value' => true,
@@ -73,7 +73,7 @@ return PhpCsFixer\Config::create()
         'phpdoc_align' => true,
         'phpdoc_annotation_without_dot' => true,
         'phpdoc_indent' => true,
-        'phpdoc_inline_tag' => true,
+        'phpdoc_inline_tag_normalizer' => true,
         'phpdoc_no_access' => true,
         'phpdoc_no_alias_tag' => true,
         'phpdoc_no_package' => true,
