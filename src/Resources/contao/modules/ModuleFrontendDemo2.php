@@ -85,7 +85,6 @@ class ModuleFrontendDemo2 extends \Contao\Module
 
 		$doNotSubmit = false;
 		$strFormId = 'botdetectiondemo2_' . $this->id;
-		$arrWidgets = array();
 		$strFields = '';
 
 		// Initialize widgets
@@ -100,7 +99,7 @@ class ModuleFrontendDemo2 extends \Contao\Module
 			$arrField['eval']['required'] = $arrField['eval']['mandatory'];
 
 			/** @var \Widget $objWidget */
-			$objWidget = new $strClass($strClass::getAttributesFromDca($arrField, $arrField['name'], $arrField['value']));
+			$objWidget = new $strClass($strClass::getAttributesFromDca($arrField, $arrField['name'], $arrField['value'] ?? null));
 
 			// Validate widget
 			if (\Contao\Input::post('FORM_SUBMIT') == $strFormId)
