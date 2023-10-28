@@ -78,9 +78,11 @@ class CheckBotAgentSimple
 							'cfnetwork',
 							'check_http',	//check_mk monitoring-plugin
 				            'cherrypicker', 
+							'chrome privacy preserving prefetch proxy', // 1.9.2
 				            'crescent', 
 	                        'coccoc', // 3.1.0
 				            'cosmos/', 
+							'cpp-httplib', // 1.9.2
 				            'cronjob', // 3.3.4
 				            'crowsnest', // 3.3.4
 	                        'curl', // 1.6.2
