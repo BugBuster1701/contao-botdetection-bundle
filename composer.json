@@ -15,7 +15,7 @@
 	"support":{
 		"issues":"https://github.com/BugBuster1701/contao-botdetection-bundle/issues",
 		"source":"https://github.com/BugBuster1701/contao-botdetection-bundle",
-		"wiki":"http://de.contaowiki.org/Bot_Detection",
+		"docs":"https://contao.ninja/contao5-bundles/bot-detection-bundle.html",
 		"forum":"https://community.contao.org/de/forumdisplay.php?119-Sonstige-Erweiterungen"
 	},
 	"require":{
@@ -58,9 +58,6 @@
 				"languages_cto": "src/Resources/contao/languages",
 				"languages_tx": ".tx"
 			}
-		},
-		"branch-alias": {
-			"dev-master": "1.9.x-dev"
 		},
 		"contao-manager-plugin": "BugBuster\\BotdetectionBundle\\ContaoManager\\Plugin"
 	},
