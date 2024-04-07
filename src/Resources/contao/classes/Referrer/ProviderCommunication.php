@@ -142,6 +142,7 @@ class ProviderCommunication
                 unset($response);
             }
         }
+
         //debug $this->logMessage('ProviderCommunication::loadProviderFile: END','botdetection_debug');
         return true;
     }

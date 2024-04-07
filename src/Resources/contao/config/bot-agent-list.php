@@ -10,7 +10,7 @@
  * @see        https://github.com/BugBuster1701/contao-botdetection-bundle
  */
 
-$botagentsversion="6031";
+$botagentsversion="6032";
 $botagents=array("trueknowledgebot" => "TrueKnowledgeBot",
 "ptd-crawler" => "ptd-crawler bixolabs.com",
 "spock crawler" => "Spock Crawler",
@@ -137,4 +137,5 @@ $botagents=array("trueknowledgebot" => "TrueKnowledgeBot",
 "barkrowler" => "Barkrowler",
 "petalbot" => "PetalBot",
 "Nuclei" => "Nuclei Vulnerability Scanner",
+"ChatGPT-User" => "ChatGPT-User"
 ); ?>
