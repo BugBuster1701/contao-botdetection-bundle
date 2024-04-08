@@ -60,7 +60,7 @@ class ModuleBotDetectionTest extends TestCase
     public function testGetVersion()
     {
         $actual = $this->moduleBotDetection->getVersion(/* parameters */);
-        $this->assertSame('1.9.2', $actual);
+        $this->assertSame('1.11.0', $actual);
     }
 
     /**
@@ -90,10 +90,12 @@ class ModuleBotDetectionTest extends TestCase
             [true, 'Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko PTST/276'],
             [true, 'Mozilla/5.0 (compatible; WebCookies/1.0; +https://webcookies.org/faq/#agent)'],
             [true, 'Chrome Privacy Preserving Prefetch Proxy'],
-            [true, 'cpp-httplib/0.10.9']
+            [true, 'cpp-httplib/0.10.9'],
+            [true, 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.0; +https://openai.com/gptbot)'],
+            [true, 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; ChatGPT-User/1.0; +https://openai.com/bot']
         ];
     }
-    
+
     /**
      * Tests ModuleBotDetection->checkBotAllTests()
      * 

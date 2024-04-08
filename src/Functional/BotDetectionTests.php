@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of a BugBuster Contao Bundle
  *
- * @copyright  Glen Langer 2023 <http://contao.ninja>
+ * @copyright  Glen Langer 2024 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @package    Contao BotDetection Bundle
  * @license    LGPL-3.0-or-later
@@ -316,7 +316,7 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
         $result[2] = $this->checkBotAllTests('acadiauniversitywebcensusclient'); // BD_CheckBotAgentAdvanced = true
         // set own IP as Bot IP
         if (\Contao\Environment::get('remoteAddr')) {
-            if (false !== strpos(\Contao\Environment::get('remoteAddr'), ',')) { // first IP
+            if (str_contains(\Contao\Environment::get('remoteAddr'), ',')) { // first IP
                 $ip = trim(substr(\Contao\Environment::get('remoteAddr'), 0, strpos(\Contao\Environment::get('remoteAddr'), ',')));
                 // Test for IPv4
                 if (false !== ip2long($ip)) {
