@@ -34,13 +34,17 @@ class ModuleBotDetection extends System
     /**
      * Current version of the class.
      */
-    const BOTDETECTION_VERSION  = '1.11.0';
+    const BOTDETECTION_VERSION  = '1.12.0';
 
     const BOT_REFERRER_LIST     = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/bot-referrer-list.php";
     const BOT_REFERRER_PROVIDER = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/referrer-provider.php";
 
     const BOT_IP4_LIST          = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/bot-ip-list-ipv4.txt";
     const BOT_IP6_LIST          = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/bot-ip-list-ipv6.txt";
+
+    const BOT_BING_JSON         = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/bingbot.json";
+    const BOT_GOOGLE_JSON       = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/googlebot.json";
+    const BOT_GPT_JSON          = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/gptbot.json";
 
     /**
      * TL_ROOT over Container
@@ -116,6 +120,9 @@ class ModuleBotDetection extends System
 
         CheckBotIp::setBotIpv4List($this->rootDir . self::BOT_IP4_LIST);
         CheckBotIp::setBotIpv6List($this->rootDir . self::BOT_IP6_LIST);
+        CheckBotIp::setBot_bing_json($this->rootDir . self::BOT_BING_JSON);
+        CheckBotIp::setBot_google_json($this->rootDir . self::BOT_GOOGLE_JSON);
+        CheckBotIp::setBot_gpt_json($this->rootDir . self::BOT_GPT_JSON);
 
         if (true === CheckBotIp::checkIP())
         {

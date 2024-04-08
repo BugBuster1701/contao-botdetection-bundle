@@ -48,6 +48,9 @@ class ModuleFrontendDemo1 extends \Contao\Module
 
 	const BOT_IP4_LIST          = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/bot-ip-list-ipv4.txt";
 	const BOT_IP6_LIST          = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/bot-ip-list-ipv6.txt";
+	const BOT_BING_JSON         = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/bingbot.json";
+    const BOT_GOOGLE_JSON       = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/googlebot.json";
+    const BOT_GPT_JSON          = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/gptbot.json";
 
 	/**
 	 * Display a wildcard in the back end
@@ -84,6 +87,9 @@ class ModuleFrontendDemo1 extends \Contao\Module
 	    $test01 = CheckBotAgentSimple::checkAgent(\Contao\Environment::get('httpUserAgent')); // own Browser
 	    CheckBotIp::setBotIpv4List($this->rootDir . self::BOT_IP4_LIST);
 	    CheckBotIp::setBotIpv6List($this->rootDir . self::BOT_IP6_LIST);
+		CheckBotIp::setBot_bing_json($this->rootDir . self::BOT_BING_JSON);
+        CheckBotIp::setBot_google_json($this->rootDir . self::BOT_GOOGLE_JSON);
+        CheckBotIp::setBot_gpt_json($this->rootDir . self::BOT_GPT_JSON);
 	    $test02 = CheckBotIp::checkIP(\Contao\Environment::get('ip')); // own IP
 	    $test03 = CheckBotAgentExtended::checkAgent(\Contao\Environment::get('httpUserAgent')); // own Browser
 
