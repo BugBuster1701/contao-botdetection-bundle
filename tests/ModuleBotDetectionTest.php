@@ -2,6 +2,8 @@
 
 
 use BugBuster\BotDetection\ModuleBotDetection;
+use BugBuster\BotDetection\CheckBotIp;
+use BugBuster\BotDetection\CheckCloudIp;
 //use Contao\CoreBundle\Tests\TestCase;
 use PHPUnit\Framework\TestCase;
 use Contao\System;
@@ -42,6 +44,17 @@ class ModuleBotDetectionTest extends TestCase
         System::setContainer($container);
         
         $this->moduleBotDetection = new ModuleBotDetection(/* parameters */);
+
+        CheckBotIp::setBotIpv4List(__DIR__ . '/../src/Resources/contao/config/bot-ip-list-ipv4.txt');
+        CheckBotIp::setBotIpv6List(__DIR__ . '/../src/Resources/contao/config/bot-ip-list-ipv6.txt');
+        CheckBotIp::setBot_bing_json(__DIR__ . '/../src/Resources/contao/config/bingbot.json');
+        CheckBotIp::setBot_google_json(__DIR__ . '/../src/Resources/contao/config/googlebot.json');
+        CheckBotIp::setBot_gpt_json(__DIR__ . '/../src/Resources/contao/config/gptbot.json');
+
+        CheckCloudIp::setCloud_aws_json(__DIR__ . '/../src/Resources/contao/config/cloud_aws.json');
+        CheckCloudIp::setCloud_azure_json(__DIR__ . '/../src/Resources/contao/config/cloud_azure.json');
+        CheckCloudIp::setCloud_google_json(__DIR__ . '/../src/Resources/contao/config/cloud_google.json');
+        CheckCloudIp::setCloud_oracle_json(__DIR__ . '/../src/Resources/contao/config/cloud_oracle.json');
     }
 
     /**
@@ -60,7 +73,7 @@ class ModuleBotDetectionTest extends TestCase
     public function testGetVersion()
     {
         $actual = $this->moduleBotDetection->getVersion(/* parameters */);
-        $this->assertSame('1.11.0', $actual);
+        $this->assertSame('1.12.0', $actual);
     }
 
     /**
