@@ -54,18 +54,27 @@ class CheckBotIpTest extends TestCase
         $this->assertSame(__DIR__ . '/../src/Resources/contao/config/bot-ip-list-ipv6.txt', $actual);
     }
 
+    /**
+     * Tests CheckBotIp::getBot_bing_json
+     */
     public function testGetBotBingJson()
     {
         $actual = CheckBotIp::getBot_bing_json(/* parameters */);
         $this->assertSame(__DIR__ . '/../src/Resources/contao/config/bingbot.json', $actual);
     }
 
+    /**
+     * Tests CheckBotIp::getBot_google_json
+     */
     public function testGetBotGoogleJson()
     {
         $actual = CheckBotIp::getBot_google_json(/* parameters */);
         $this->assertSame(__DIR__ . '/../src/Resources/contao/config/googlebot.json', $actual);
     }
 
+    /**
+     * Test CheckBotIp::getBot_gpt_json
+     */
     public function testGetBotGptJson()
     {
         $actual = CheckBotIp::getBot_gpt_json(/* parameters */);
