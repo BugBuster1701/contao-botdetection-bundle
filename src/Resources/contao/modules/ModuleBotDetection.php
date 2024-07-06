@@ -34,13 +34,22 @@ class ModuleBotDetection extends System
     /**
      * Current version of the class.
      */
-    const BOTDETECTION_VERSION  = '1.11.0';
+    const BOTDETECTION_VERSION  = '1.12.0';
 
     const BOT_REFERRER_LIST     = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/bot-referrer-list.php";
     const BOT_REFERRER_PROVIDER = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/referrer-provider.php";
 
     const BOT_IP4_LIST          = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/bot-ip-list-ipv4.txt";
     const BOT_IP6_LIST          = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/bot-ip-list-ipv6.txt";
+
+    const BOT_BING_JSON         = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/bingbot.json";
+    const BOT_GOOGLE_JSON       = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/googlebot.json";
+    const BOT_GPT_JSON          = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/gptbot.json";
+
+    const CLOUD_AWS_JSON        = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/cloud_aws.json";
+    const CLOUD_AZURE_JSON      = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/cloud_azure.json";
+    const CLOUD_GOOGLE_JSON     = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/cloud_google.json";
+    const CLOUD_ORACLE_JSON     = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/cloud_oracle.json";
 
     /**
      * TL_ROOT over Container
@@ -114,10 +123,42 @@ class ModuleBotDetection extends System
         	return true;
         }
 
-        CheckBotIp::setBotIpv4List($this->rootDir . self::BOT_IP4_LIST);
-        CheckBotIp::setBotIpv6List($this->rootDir . self::BOT_IP6_LIST);
+        // ugly hack for my unit test
+        if (CheckBotIp::getBotIpv4List() === NULL) {
+            CheckBotIp::setBotIpv4List($this->rootDir . self::BOT_IP4_LIST);
+        }
+        if (CheckBotIp::getBotIpv6List() === NULL) {
+            CheckBotIp::setBotIpv6List($this->rootDir . self::BOT_IP6_LIST);
+        }
+        if (CheckBotIp::getBot_bing_json() === NULL) {
+            CheckBotIp::setBot_bing_json($this->rootDir . self::BOT_BING_JSON);
+        }
+        if (CheckBotIp::getBot_google_json() === NULL) {
+            CheckBotIp::setBot_google_json($this->rootDir . self::BOT_GOOGLE_JSON);
+        }
+        if (CheckBotIp::getBot_gpt_json() === NULL) {
+            CheckBotIp::setBot_gpt_json($this->rootDir . self::BOT_GPT_JSON);
+        }
 
         if (true === CheckBotIp::checkIP())
+        {
+            return true;
+        }
+
+        if (CheckCloudIp::getCloud_aws_json() === NULL) {
+            CheckCloudIp::setCloud_aws_json($this->rootDir . self::CLOUD_AWS_JSON);
+        }
+        if (CheckCloudIp::getCloud_azure_json() === NULL) {
+            CheckCloudIp::setCloud_azure_json($this->rootDir . self::CLOUD_AZURE_JSON);
+        }
+        if (CheckCloudIp::getCloud_google_json() === NULL) {
+            CheckCloudIp::setCloud_google_json($this->rootDir . self::CLOUD_GOOGLE_JSON);
+        }
+        if (CheckCloudIp::getCloud_oracle_json() === NULL) {
+            CheckCloudIp::setCloud_oracle_json($this->rootDir . self::CLOUD_ORACLE_JSON);
+        }
+
+        if (true === CheckCloudIp::checkIP())
         {
             return true;
         }

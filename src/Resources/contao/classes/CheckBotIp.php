@@ -14,15 +14,15 @@ namespace BugBuster\BotDetection;
 
 /**
  * Class CheckBotIp 
- *
- * @copyright  Glen Langer 2015..2020 <http://contao.ninja>
- * @author     Glen Langer (BugBuster)
  */
 class CheckBotIp
 {
 
     protected static $bot_ipv4_list;
     protected static $bot_ipv6_list;
+    protected static $bot_bing_json;
+    protected static $bot_google_json;
+    protected static $bot_gpt_json;
 
     public static function setBotIpv4List($bot_ipv4_list)
     {
@@ -34,6 +34,36 @@ class CheckBotIp
         static::$bot_ipv6_list = $bot_ipv6_list;
     }
 
+    /**
+     * Set the value of bot_bing_json
+     *
+     * @return self
+     */ 
+    public static function setBot_bing_json($bot_bing_json)
+    {
+        static::$bot_bing_json = $bot_bing_json;
+    }
+
+    /**
+     * Set the value of bot_google_json
+     *
+     * @return self
+     */ 
+    public static function setBot_google_json($bot_google_json)
+    {
+        static::$bot_google_json = $bot_google_json;
+    }
+
+    /**
+     * Set the value of bot_gpt_json
+     *
+     * @return self
+     */ 
+    public static function setBot_gpt_json($bot_gpt_json)
+    {
+        static::$bot_gpt_json = $bot_gpt_json;
+    }
+
     public static function getBotIpv4List()
     {
         return static::$bot_ipv4_list;
@@ -42,6 +72,30 @@ class CheckBotIp
     public static function getBotIpv6List()
     {
         return static::$bot_ipv6_list;
+    }
+
+    /**
+     * Get the value of bot_bing_json
+     */ 
+    public static function getBot_bing_json()
+    {
+        return static::$bot_bing_json;
+    }
+
+    /**
+     * Get the value of bot_google_json
+     */ 
+    public static function getBot_google_json()
+    {
+        return static::$bot_google_json;
+    }
+
+    /**
+     * Get the value of bot_gpt_json
+     */ 
+    public static function getBot_gpt_json()
+    {
+        return static::$bot_gpt_json;
     }
 
     public static function getUserIP()
@@ -175,6 +229,11 @@ class CheckBotIp
                 }
             }
         }
+
+        static::loadBingJson();
+        static::loadGoogleJson();
+        static::loadGptJson();
+
         // search for user bot IP-filter definitions in localconfig.php
         if (isset($GLOBALS['BOTDETECTION']['BOT_IP']))
         {
@@ -248,6 +307,9 @@ class CheckBotIp
                 }
             }
         }
+
+        static::loadGoogleJson(); // nur der von denen hat IPv6 Adressen
+
         // search for user bot IP-filter definitions in localconfig.php
         if (isset($GLOBALS['BOTDETECTION']['BOT_IPV6']))
         {
@@ -442,5 +504,63 @@ class CheckBotIp
 	    return !filter_var($UserIP, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE);
 	}
 
-}
+    protected static function loadBingJson()
+    {
+        $botjson = file_get_contents(static::getBot_bing_json());
+        $bot = json_decode($botjson);
+        // Liste der IPs
+        $i=0;
+        while($bot->{'prefixes'}[$i] ?? false)
+        {
+            if (!empty($bot->{'prefixes'}[$i]->{'ipv4Prefix'}))
+            {
+                $GLOBALS['BOTDETECTION']['BOT_IP'][] = $bot->{'prefixes'}[$i]->{'ipv4Prefix'};
+            }
+            if (!empty($bot->{'prefixes'}[$i]->{'ipv6Prefix'}))
+            {
+                $GLOBALS['BOTDETECTION']['BOT_IPV6'][] = $bot->{'prefixes'}[$i]->{'ipv6Prefix'};
+            }
+            $i++;
+        }
+    }
 
+    protected static function loadGoogleJson()
+    {
+        $botjson = file_get_contents(static::getBot_google_json());
+        $bot = json_decode($botjson);
+        // Liste der IPs
+        $i=0;
+        while($bot->{'prefixes'}[$i] ?? false)
+        {
+            if (!empty($bot->{'prefixes'}[$i]->{'ipv4Prefix'}))
+            {
+                $GLOBALS['BOTDETECTION']['BOT_IP'][] = $bot->{'prefixes'}[$i]->{'ipv4Prefix'};
+            }
+            if (!empty($bot->{'prefixes'}[$i]->{'ipv6Prefix'}))
+            {
+                $GLOBALS['BOTDETECTION']['BOT_IPV6'][] = $bot->{'prefixes'}[$i]->{'ipv6Prefix'};
+            }
+            $i++;
+        }
+    }
+
+    protected static function loadGptJson()
+    {
+        $botjson = file_get_contents(static::getBot_gpt_json());
+        $bot = json_decode($botjson);
+        // Liste der IPs
+        $i=0;
+        while($bot->{'prefixes'}[$i] ?? false)
+        {
+            if (!empty($bot->{'prefixes'}[$i]->{'ipv4Prefix'}))
+            {
+                $GLOBALS['BOTDETECTION']['BOT_IP'][] = $bot->{'prefixes'}[$i]->{'ipv4Prefix'};
+            }
+            if (!empty($bot->{'prefixes'}[$i]->{'ipv6Prefix'}))
+            {
+                $GLOBALS['BOTDETECTION']['BOT_IPV6'][] = $bot->{'prefixes'}[$i]->{'ipv6Prefix'};
+            }
+            $i++;
+        }
+    }
+}

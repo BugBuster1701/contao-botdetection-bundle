@@ -1,6 +1,7 @@
 <?php
 
 use BugBuster\BotDetection\CheckBotIp;
+use BugBuster\BotDetection\CheckCloudIp;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -17,6 +18,14 @@ class CheckBotIpTest extends TestCase
         
         CheckBotIp::setBotIpv4List(__DIR__ . '/../src/Resources/contao/config/bot-ip-list-ipv4.txt');
         CheckBotIp::setBotIpv6List(__DIR__ . '/../src/Resources/contao/config/bot-ip-list-ipv6.txt');
+        CheckBotIp::setBot_bing_json(__DIR__ . '/../src/Resources/contao/config/bingbot.json');
+        CheckBotIp::setBot_google_json(__DIR__ . '/../src/Resources/contao/config/googlebot.json');
+        CheckBotIp::setBot_gpt_json(__DIR__ . '/../src/Resources/contao/config/gptbot.json');
+
+        CheckCloudIp::setCloud_aws_json(__DIR__ . '/../src/Resources/contao/config/cloud_aws.json');
+        CheckCloudIp::setCloud_azure_json(__DIR__ . '/../src/Resources/contao/config/cloud_azure.json');
+        CheckCloudIp::setCloud_google_json(__DIR__ . '/../src/Resources/contao/config/cloud_google.json');
+        CheckCloudIp::setCloud_oracle_json(__DIR__ . '/../src/Resources/contao/config/cloud_oracle.json');
     }
 
     /**
@@ -46,6 +55,33 @@ class CheckBotIpTest extends TestCase
     }
 
     /**
+     * Tests CheckBotIp::getBot_bing_json
+     */
+    public function testGetBotBingJson()
+    {
+        $actual = CheckBotIp::getBot_bing_json(/* parameters */);
+        $this->assertSame(__DIR__ . '/../src/Resources/contao/config/bingbot.json', $actual);
+    }
+
+    /**
+     * Tests CheckBotIp::getBot_google_json
+     */
+    public function testGetBotGoogleJson()
+    {
+        $actual = CheckBotIp::getBot_google_json(/* parameters */);
+        $this->assertSame(__DIR__ . '/../src/Resources/contao/config/googlebot.json', $actual);
+    }
+
+    /**
+     * Test CheckBotIp::getBot_gpt_json
+     */
+    public function testGetBotGptJson()
+    {
+        $actual = CheckBotIp::getBot_gpt_json(/* parameters */);
+        $this->assertSame(__DIR__ . '/../src/Resources/contao/config/gptbot.json', $actual);
+    }
+
+    /**
      * Tests CheckBotIp::checkIP()
      * 
      * @dataProvider ipProvider
@@ -67,7 +103,37 @@ class CheckBotIpTest extends TestCase
             [true ,'2001:4860:4801:1c:1111:2222:3333:4444'],    //Google Bot IPv6
             [false,'2001:0db8:85a3:08d3:1319:8a2e:0370:7334'],  //No Bot
             [false,'::ffff:c000:280'],      //double quad notation for ipv4 mapped addresses 192.0.2.128
-            [false,'::ffff:192.0.2.128']    //double quad notation for ipv4 mapped addresses 192.0.2.128
+            [false,'::ffff:192.0.2.128'],   //double quad notation for ipv4 mapped addresses 192.0.2.128
+            [true ,'40.77.167.11'],                             // Bing Bot, offizielle Liste
+            [true ,'66.249.70.11'],                             // Google Bot, offizielle Liste
+            [true ,'2001:4860:4801:000f:0000:0000:0000:8888'],  // Google Bot, offizielle Liste
+            [true ,'52.230.152.11']                             // GPT Bot, offizielle Liste
+        ];
+    }
+
+    /**
+     * Tests CheckCloudIp::checkIP()
+     * 
+     * @dataProvider ipCloudProvider
+     */
+    public function testCheckCloudIp(bool $result, string $ip)
+    {
+        $actual = CheckCloudIp::checkIP($ip);
+        $this->assertSame($result, $actual, $ip);
+    }
+    public function ipCloudProvider()
+    {
+        return [
+            [true ,'52.230.152.11'],                            // GPT Bot, offizielle Liste
+            [true ,'3.5.140.11'],                               // Cloud AWS, offizielle Liste
+            [true ,'2a05:d034:8000:0000:0000:0000:0000:0001'],  // Cloud AWS, offizielle Liste
+            [true ,'13.70.74.112'],                             // Cloud AzureBotService, offizielle Liste
+            [true ,'2603:1030:0010:0001:0000:0000:0000:0020'],  // Cloud AzureBotService, offizielle Liste
+            [true ,'4.149.0.0'],                                // Cloud Azure, offizielle Liste
+            [true ,'2a01:0111:f403:e01a:0000:0000:0000:8888'],  // Cloud Azure, offizielle Liste
+            [true ,'104.199.244.11'],                           // Cloud Google, offizielle Liste
+            [true ,'2600:1900:4180:0000:0000:0000:0000:8888'],  // Cloud Google, offizielle Liste
+            [true, '129.151.48.11']                             // Cloud Oracle, offizielle Liste
         ];
     }
 
