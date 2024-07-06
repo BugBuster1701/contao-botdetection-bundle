@@ -14,7 +14,6 @@ namespace BugBuster\BotDetection;
 
 /**
  * Class CheckBotIp 
- *
  */
 class CheckBotIp
 {
@@ -38,7 +37,7 @@ class CheckBotIp
     /**
      * Set the value of bot_bing_json
      *
-     * @return  self
+     * @return self
      */ 
     public static function setBot_bing_json($bot_bing_json)
     {
@@ -48,7 +47,7 @@ class CheckBotIp
     /**
      * Set the value of bot_google_json
      *
-     * @return  self
+     * @return self
      */ 
     public static function setBot_google_json($bot_google_json)
     {
@@ -58,13 +57,13 @@ class CheckBotIp
     /**
      * Set the value of bot_gpt_json
      *
-     * @return  self
+     * @return self
      */ 
     public static function setBot_gpt_json($bot_gpt_json)
     {
         static::$bot_gpt_json = $bot_gpt_json;
     }
-    
+
     public static function getBotIpv4List()
     {
         return static::$bot_ipv4_list;
@@ -509,7 +508,7 @@ class CheckBotIp
     {
         $botjson = file_get_contents(static::getBot_bing_json());
         $bot = json_decode($botjson);
-        # Liste der IPs
+        // Liste der IPs
         $i=0;
         while($bot->{'prefixes'}[$i] ?? false)
         {
@@ -529,7 +528,7 @@ class CheckBotIp
     {
         $botjson = file_get_contents(static::getBot_google_json());
         $bot = json_decode($botjson);
-        # Liste der IPs
+        // Liste der IPs
         $i=0;
         while($bot->{'prefixes'}[$i] ?? false)
         {
@@ -549,7 +548,7 @@ class CheckBotIp
     {
         $botjson = file_get_contents(static::getBot_gpt_json());
         $bot = json_decode($botjson);
-        # Liste der IPs
+        // Liste der IPs
         $i=0;
         while($bot->{'prefixes'}[$i] ?? false)
         {

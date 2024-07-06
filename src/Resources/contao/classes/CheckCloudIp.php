@@ -14,7 +14,6 @@ namespace BugBuster\BotDetection;
 
 /**
  * Class CheckBotIp 
- *
  */
 class CheckCloudIp
 {
@@ -22,8 +21,6 @@ class CheckCloudIp
     protected static $cloud_azure_json;
     protected static $cloud_google_json;
     protected static $cloud_oracle_json;
-
-    
 
     /**
      * Get the value of cloud_aws_json
@@ -236,33 +233,39 @@ class CheckCloudIp
         if (static::checkIp4InCloud($UserIP))
         {
             unset($GLOBALS['CLOUDDETECTION']);
+
             return true;
         }
         static::loadAzureBotJson();
         if (static::checkIp4InCloud($UserIP))
         {
             unset($GLOBALS['CLOUDDETECTION']);
+
             return true;
         }
         static::loadAzureJson();
         if (static::checkIp4InCloud($UserIP))
         {
             unset($GLOBALS['CLOUDDETECTION']);
+
             return true;
         }
         static::loadGoogleJson();
         if (static::checkIp4InCloud($UserIP))
         {
             unset($GLOBALS['CLOUDDETECTION']);
+
             return true;
         }
         static::loadOracleJson();
         if (static::checkIp4InCloud($UserIP))
         {
             unset($GLOBALS['CLOUDDETECTION']);
+
             return true;
         }
         unset($GLOBALS['CLOUDDETECTION']);
+
         return false;
     }
 
@@ -295,33 +298,39 @@ class CheckCloudIp
         if (static::checkIp6InCloud($UserIP))
         {
             unset($GLOBALS['CLOUDDETECTION']);
+
             return true;
         }
         static::loadAzureBotJson();
         if (static::checkIp6InCloud($UserIP))
         {
             unset($GLOBALS['CLOUDDETECTION']);
+
             return true;
         }
         static::loadAzureJson();
         if (static::checkIp6InCloud($UserIP))
         {
             unset($GLOBALS['CLOUDDETECTION']);
+
             return true;
         }
         static::loadGoogleJson();
         if (static::checkIp6InCloud($UserIP))
         {
             unset($GLOBALS['CLOUDDETECTION']);
+
             return true;
         }
         static::loadOracleJson();
         if (static::checkIp6InCloud($UserIP))
         {
             unset($GLOBALS['CLOUDDETECTION']);
+
             return true;
         }
         unset($GLOBALS['CLOUDDETECTION']);
+
         return false;
     }
 
@@ -447,7 +456,7 @@ class CheckCloudIp
     {
         $cloudjson = file_get_contents(static::getCloud_aws_json());
         $cloud = json_decode($cloudjson);
-        # Liste der IPs
+        // Liste der IPs
         $i=0;
         while($cloud->{'prefixes'}[$i] ?? false)
         {
@@ -473,15 +482,15 @@ class CheckCloudIp
     {
         $cloudjson = file_get_contents(static::getCloud_azure_json());
         $cloud = json_decode($cloudjson);
-        # Liste der IPs AzureBotService
+        // Liste der IPs AzureBotService
         $i=0;
         while($cloud[0]->{'addressPrefixes'}[$i] ?? false)
         {
-            if ( strpos($cloud[0]->{'addressPrefixes'}[$i], '.') !== false)
+            if (strpos($cloud[0]->{'addressPrefixes'}[$i], '.') !== false)
             {
                 $GLOBALS['CLOUDDETECTION']['CLOUD_IP'][] = $cloud[0]->{'addressPrefixes'}[$i];
             }
-            elseif ( strpos($cloud[0]->{'addressPrefixes'}[$i], ':') !== false)
+            elseif (strpos($cloud[0]->{'addressPrefixes'}[$i], ':') !== false)
             {
                 $GLOBALS['CLOUDDETECTION']['CLOUD_IPV6'][] = $cloud[0]->{'addressPrefixes'}[$i];
             }
@@ -493,15 +502,15 @@ class CheckCloudIp
     {
         $cloudjson = file_get_contents(static::getCloud_azure_json());
         $cloud = json_decode($cloudjson);
-        # Liste der IPs AzureBotService
+        // Liste der IPs AzureBotService
         $i=0;
         while($cloud[1]->{'addressPrefixes'}[$i] ?? false)
         {
-            if ( strpos($cloud[1]->{'addressPrefixes'}[$i], '.') !== false)
+            if (strpos($cloud[1]->{'addressPrefixes'}[$i], '.') !== false)
             {
                 $GLOBALS['CLOUDDETECTION']['CLOUD_IP'][] = $cloud[1]->{'addressPrefixes'}[$i];
             }
-            elseif ( strpos($cloud[1]->{'addressPrefixes'}[$i], ':') !== false)
+            elseif (strpos($cloud[1]->{'addressPrefixes'}[$i], ':') !== false)
             {
                 $GLOBALS['CLOUDDETECTION']['CLOUD_IPV6'][] = $cloud[1]->{'addressPrefixes'}[$i];
             }
@@ -513,7 +522,7 @@ class CheckCloudIp
     {
         $cloudjson = file_get_contents(static::getCloud_google_json());
         $cloud = json_decode($cloudjson);
-        # Liste der IPs
+        // Liste der IPs
         $i=0;
         while($cloud->{'prefixes'}[$i] ?? false)
         {
@@ -542,11 +551,11 @@ class CheckCloudIp
             {
                 if (!empty($region->{'cidrs'}[$j]->{'cidr'}))
                 {
-                    if ( strpos($region->{'cidrs'}[$j]->{'cidr'}, '.') !== false )
+                    if (strpos($region->{'cidrs'}[$j]->{'cidr'}, '.') !== false)
                     {
                         $GLOBALS['CLOUDDETECTION']['CLOUD_IP'][] = $region->{'cidrs'}[$j]->{'cidr'};
                     }
-                    elseif ( strpos($region->{'cidrs'}[$j]->{'cidr'}, ':') !== false )
+                    elseif (strpos($region->{'cidrs'}[$j]->{'cidr'}, ':') !== false)
                     {
                         $GLOBALS['CLOUDDETECTION']['CLOUD_IPV6'][] = $region->{'cidrs'}[$j]->{'cidr'};
                     }
