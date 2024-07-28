@@ -29,7 +29,8 @@
 	},
 	"require-dev": {
 		"friendsofphp/php-cs-fixer": "^3.10",
-		"phpunit/phpunit": "^8.5 || ^9.3"
+		"phpunit/phpunit": "^8.5 || ^9.3",
+		"rector/rector": "^1.2"
 	},
 	"conflict": {
 		"contao/manager-plugin": "<2.0 || >=3.0"
