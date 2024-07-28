@@ -97,7 +97,7 @@ class ProviderCommunicationTest extends TestCase
     {
         // TODO Auto-generated ProviderCommunicationTest->testGetUpdateFromGithub()
         $this->markTestIncomplete("getUpdateFromGithub test not implemented");
-        
+
         //$this->providerCommunication->getUpdateFromGithub(/* parameters */);
     }
 

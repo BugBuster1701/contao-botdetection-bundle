@@ -107,12 +107,7 @@ class CheckBotReferrer
        	    $checkLocal = static::checkReferrerList($botreferrerlist, $referrer_DNS);
        	}
 
-       	if ($checkOwn === true || $checkLocal === true) 
-       	{
-       		return true;
-       	}
-
-        return false;
+        return $checkOwn === true || $checkLocal === true;
     }
 
     /*  .__        ,        ,      .

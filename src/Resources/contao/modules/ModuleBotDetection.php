@@ -34,7 +34,7 @@ class ModuleBotDetection extends System
     /**
      * Current version of the class.
      */
-    const BOTDETECTION_VERSION  = '1.12.0';
+    const BOTDETECTION_VERSION  = '1.14.0';
 
     const BOT_REFERRER_LIST     = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/bot-referrer-list.php";
     const BOT_REFERRER_PROVIDER = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/referrer-provider.php";
@@ -65,12 +65,8 @@ class ModuleBotDetection extends System
     {
         parent::__construct();
 
-        if (null === $rootDir) {
-            $this->rootDir = System::getContainer()->getParameter('kernel.project_dir');
-        }
-        else {
-            $this->rootDir = $rootDir;
-        }
+        $this->rootDir = null === $rootDir ? System::getContainer()->getParameter('kernel.project_dir') : $rootDir;
+
         $this->prefillCache();
         $this->deleteOldCache();
 
@@ -95,20 +91,14 @@ class ModuleBotDetection extends System
     public function checkBotAllTests($UserAgent = false): bool
     {
         $objUserAgent = new UserAgent($UserAgent);
-        if (false === $UserAgent) 
-        {            
-        	$UserAgent = $objUserAgent->getUserAgent();
-        }
-        else
-        {
-            $UserAgent = $objUserAgent->setUserAgent($UserAgent);
-        }
+        $UserAgent = false === $UserAgent ? $objUserAgent->getUserAgent() : $objUserAgent->setUserAgent($UserAgent);
+
         if (CheckBotAgentSimple::checkAgent($UserAgent) === true) //(BotsRough, BotsFine)
         {
             return true;
         }
 
-        if (true === (bool) CheckBotReferrer::checkReferrer(
+        if ((bool) CheckBotReferrer::checkReferrer(
             false,
             $this->rootDir . self::BOT_REFERRER_LIST,
             $this->rootDir . self::BOT_REFERRER_PROVIDER
@@ -175,12 +165,8 @@ class ModuleBotDetection extends System
     public function checkGetPostRequest(): bool
     {
         $RequestMethod = \Contao\Environment::get('requestMethod');
-        if ($RequestMethod == 'GET' || $RequestMethod == 'POST') 
-        {
-        	return true;
-        }
 
-        return false;
+        return $RequestMethod == 'GET' || $RequestMethod == 'POST';
     }
 
     private function prefillCache()

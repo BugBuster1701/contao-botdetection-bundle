@@ -33,6 +33,15 @@ function php-cs-fixer() {
   vendor/bin/php-cs-fixer fix -v --config .php-cs-fixer.legacy.php
 }
 
+function rector() {
+    if [[ ! -e ./vendor/bin/rector ]]; then
+      echo "The vendor/bin/rector file is missing. Did you install the dependencies?"
+      exit 1
+    fi
+
+    vendor/bin/rector process --no-progress-bar --dry-run
+    # "rector-fix": "rector process --no-progress-bar"
+}
 
 function usage() {
   cat <<HEREDOC
@@ -40,6 +49,7 @@ Usage: ./run [task]
   phpunit       Run PhpUnit in each bundle
   phpunitshort  Run PhpUnit in each bundle with max 100 tests for user agents and devices
   php-cs-fixer  Run the PHP-CS-Fixer in each bundle
+  rector        Run rector process --no-progress-bar --dry-run
 HEREDOC
 }
 
@@ -54,6 +64,10 @@ case "$1" in
   ;;  
   php-cs-fixer)
     php-cs-fixer
+    exit 0
+  ;;
+  rector)
+    rector
     exit 0
   ;;
   *)

@@ -83,7 +83,7 @@ class Blocker
             $blocklist    = file_get_contents($referrerlist);
         }
 
-        if (substr_count($blocklist, '|'. $this->getReferrer() .'|')) 
+        if (substr_count($blocklist, '|'. $this->getReferrer() .'|') !== 0) 
         {
             unset($blocklist);
 
