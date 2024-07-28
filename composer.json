@@ -20,16 +20,17 @@
 	},
 	"require":{
 		"php": ">=8.3.0,<8.4.0",
-		"contao/core-bundle": "^5.3",
+		"contao/core-bundle": "^5.4",
 		"contao/manager-plugin": "^2.6.2",
-		"bugbuster/browscap-php": "~7.2.1",
+		"browscap/browscap-php": "^7.3",
 		"jaybizzle/crawler-detect": "^1.2",
-		"symfony/http-client": "^5.4 || ^6.0",
-		"symfony/polyfill-intl-idn": "^1.0"
+		"symfony/http-client": "^6.4 || ^7.0",
+		"symfony/polyfill-intl-idn": "^1.0",
+		"monologue/monologue": "^3.5.0"
 	},
 	"require-dev": {
 		"friendsofphp/php-cs-fixer": "^3.10",
-		"phpunit/phpunit": "^8.5 || ^9.3",
+		"phpunit/phpunit": "^9.5.19",
 		"rector/rector": "^1.2"
 	},
 	"conflict": {
