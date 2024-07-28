@@ -91,7 +91,8 @@ class ProviderCommunication
             // Create the folder
             foreach ($arrChunks as $strFolder)
             {
-                $strPath .= ($strPath ? '/' : '') . $strFolder;
+                // $strPath .= ($strPath ? '/' : '') . $strFolder; / /rector
+                $strPath .= ($strPath !== '' && $strPath !== '0' ? '/' : '') . $strFolder;
                 @mkdir($strPath, 0775);
             }
         }
@@ -155,14 +156,7 @@ class ProviderCommunication
      */
     public function logMessage($strMessage, $strLog=null)
     {
-        if ($strLog === null)
-        {
-            $strLog = 'prod-' . date('Y-m-d') . '.log';
-        }
-        else
-        {
-            $strLog = 'prod-' . date('Y-m-d') . '-' . $strLog . '.log';
-        }
+        $strLog = $strLog === null ? 'prod-' . date('Y-m-d') . '.log' : 'prod-' . date('Y-m-d') . '-' . $strLog . '.log';
 
         $strLogsDir = null;
 

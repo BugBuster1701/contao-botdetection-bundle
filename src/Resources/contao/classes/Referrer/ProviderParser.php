@@ -28,7 +28,7 @@ class ProviderParser
      */
     private $cachePath;
 
-    private $arrReferrerSpammer;
+    private $arrReferrerSpammer = array();
 
     private $referrerProvider;
 
@@ -40,7 +40,6 @@ class ProviderParser
     {
         $this->referrerProvider    = $referrerProvider;
         $this->cachePath           = $cachePath;
-        $this->arrReferrerSpammer  = array();
     }
 
     public function getReferrerSpammer()
@@ -55,19 +54,14 @@ class ProviderParser
             return false;
         }
 
-        foreach($this->referrerProvider as $source => $url)
+        foreach(array_keys($this->referrerProvider) as $source)
         {
             $raw    = file_get_contents($this->cachePath .'/'. strtolower($source) . '.txt');
             $list   = explode("\n", $raw);
             $this->arrReferrerSpammer = array_merge($this->arrReferrerSpammer, $list);
         }
 
-        if (\count($this->arrReferrerSpammer))
-        {
-            return true;
-        }
-
-        return false;
+        return (bool) \count($this->arrReferrerSpammer);
     }
 
     public function cleanProviderList()
@@ -94,7 +88,7 @@ class ProviderParser
 
     public function writeProviderList()
     {
-        if (\count($this->arrReferrerSpammer))
+        if (\count($this->arrReferrerSpammer) > 0)
         {
             @unlink($this->cachePath .'/referrerblocked.txt');
             file_put_contents($this->cachePath .'/referrerblocked.txt', '|' . implode("|", $this->arrReferrerSpammer) . '|' . PHP_EOL);
@@ -120,9 +114,9 @@ class ProviderParser
         {
             return true; // update/anlegen notwendig
         }
-        foreach($this->referrerProvider as $source => $url)
+        foreach(array_keys($this->referrerProvider) as $source)
         {
-            if (true === file_exists($this->cachePath .'/'. strtolower($source) . '.txt') &&
+            if (file_exists($this->cachePath .'/'. strtolower($source) . '.txt') &&
                 $lastWeek > filemtime($this->cachePath .'/'. strtolower($source) . '.txt')
                )
             {
