@@ -50,6 +50,7 @@ class ModuleBotDetection extends System
     const CLOUD_AZURE_JSON      = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/cloud_azure.json";
     const CLOUD_GOOGLE_JSON     = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/cloud_google.json";
     const CLOUD_ORACLE_JSON     = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/cloud_oracle.json";
+    const CLOUD_HETZNER_JSON    = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/hetzner-cloud.json";
 
     /**
      * TL_ROOT over Container
@@ -146,6 +147,9 @@ class ModuleBotDetection extends System
         }
         if (CheckCloudIp::getCloud_oracle_json() === NULL) {
             CheckCloudIp::setCloud_oracle_json($this->rootDir . self::CLOUD_ORACLE_JSON);
+        }
+        if (CheckCloudIp::getCloud_hetzner_json() === NULL) {
+            CheckCloudIp::setCloud_hetzner_json($this->rootDir . self::CLOUD_HETZNER_JSON);
         }
 
         if (true === CheckCloudIp::checkIP())

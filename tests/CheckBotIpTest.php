@@ -26,6 +26,7 @@ class CheckBotIpTest extends TestCase
         CheckCloudIp::setCloud_azure_json(__DIR__ . '/../src/Resources/contao/config/cloud_azure.json');
         CheckCloudIp::setCloud_google_json(__DIR__ . '/../src/Resources/contao/config/cloud_google.json');
         CheckCloudIp::setCloud_oracle_json(__DIR__ . '/../src/Resources/contao/config/cloud_oracle.json');
+        CheckCloudIp::setCloud_hetzner_json(__DIR__ . '/../src/Resources/contao/config/hetzner-cloud.json');
     }
 
     /**
@@ -133,7 +134,8 @@ class CheckBotIpTest extends TestCase
             [true ,'2a01:0111:f403:e01a:0000:0000:0000:8888'],  // Cloud Azure, offizielle Liste
             [true ,'104.199.244.11'],                           // Cloud Google, offizielle Liste
             [true ,'2600:1900:4180:0000:0000:0000:0000:8888'],  // Cloud Google, offizielle Liste
-            [true, '129.151.48.11']                             // Cloud Oracle, offizielle Liste
+            [true, '129.151.48.11'],                            // Cloud Oracle, offizielle Liste
+            [true, '159.69.1.1']                                // Cloud Hetzner, manuell erstellt ipinfo.io
         ];
     }
 

@@ -55,6 +55,7 @@ class ModuleBotDetectionTest extends TestCase
         CheckCloudIp::setCloud_azure_json(__DIR__ . '/../src/Resources/contao/config/cloud_azure.json');
         CheckCloudIp::setCloud_google_json(__DIR__ . '/../src/Resources/contao/config/cloud_google.json');
         CheckCloudIp::setCloud_oracle_json(__DIR__ . '/../src/Resources/contao/config/cloud_oracle.json');
+        CheckCloudIp::setCloud_hetzner_json(__DIR__ . '/../src/Resources/contao/config/hetzner-cloud.json');
     }
 
     /**
@@ -73,7 +74,7 @@ class ModuleBotDetectionTest extends TestCase
     public function testGetVersion()
     {
         $actual = $this->moduleBotDetection->getVersion(/* parameters */);
-        $this->assertSame('1.12.0', $actual);
+        $this->assertSame('1.14.0', $actual);
     }
 
     /**

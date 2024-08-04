@@ -21,6 +21,12 @@ class CheckCloudIp
     protected static $cloud_azure_json;
     protected static $cloud_google_json;
     protected static $cloud_oracle_json;
+    protected static $cloud_hetzner_json;
+
+
+    /*
+    * START SETTER GETTER
+    */
 
     /**
      * Get the value of cloud_aws_json
@@ -85,6 +91,29 @@ class CheckCloudIp
     {
         static::$cloud_oracle_json = $cloud_oracle_json;
     }
+
+    /**
+     * Get the value of cloud_hetzner_json
+     */ 
+    public static function getCloud_hetzner_json()
+    {
+        return static::$cloud_hetzner_json;
+    }
+
+    /**
+     * Set the value of cloud_hetzner_json
+     *
+     * @return  self
+     */ 
+    public static function setCloud_hetzner_json($cloud_hetzner_json)
+    {
+        static::$cloud_hetzner_json = $cloud_hetzner_json;
+    }
+
+    /*
+    * END SETTER GETTER
+    */
+
 
     public static function getUserIP()
     {
@@ -275,6 +304,13 @@ class CheckCloudIp
 
             return true;
         }
+        static::loadHetznerJson();
+        if (static::checkIp4InCloud($UserIP))
+        {
+            unset($GLOBALS['CLOUDDETECTION']);
+
+            return true;
+        }
         unset($GLOBALS['CLOUDDETECTION']);
 
         return false;
@@ -334,6 +370,13 @@ class CheckCloudIp
             return true;
         }
         static::loadOracleJson();
+        if (static::checkIp6InCloud($UserIP))
+        {
+            unset($GLOBALS['CLOUDDETECTION']);
+
+            return true;
+        }
+        static::loadHetznerJson();
         if (static::checkIp6InCloud($UserIP))
         {
             unset($GLOBALS['CLOUDDETECTION']);
@@ -575,6 +618,32 @@ class CheckCloudIp
             }
             $i++;
         }
+    }
+
+    protected static function loadHetznerJson()
+    {
+        $cloudjson = file_get_contents(static::getCloud_hetzner_json());
+        $cloud = json_decode($cloudjson);
+        // Liste der IPs
+        $i=0;
+        while($cloud->{'prefixes'}[$i] ?? false)
+        {
+            if (!empty($cloud->{'prefixes'}[$i]->{'netblock'}))
+            {
+                $GLOBALS['CLOUDDETECTION']['CLOUD_IP'][] = $cloud->{'prefixes'}[$i]->{'netblock'};
+            }
+            $i++;
+        }
+        $i=0;
+        while($cloud->{'prefixes6'}[$i] ?? false)
+        {
+            if (!empty($cloud->{'prefixes6'}[$i]->{'netblock'}))
+            {
+                $GLOBALS['CLOUDDETECTION']['CLOUD_IPV6'][] = $cloud->{'prefixes6'}[$i]->{'netblock'};
+            }
+            $i++;
+        }
+
     }
 
     protected static function checkIp4InCloud($UserIP)

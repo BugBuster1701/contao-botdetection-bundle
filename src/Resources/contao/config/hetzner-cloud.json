@@ -1,0 +1,338 @@
+{
+    "asn": "AS24940",
+    "name": "Hetzner Online GmbH",
+    "country": "DE",
+    "allocated": "2002-06-03",
+    "registry": "ripe",
+    "domain": "hetzner.de",
+    "num_ips": 2451712,
+    "type": "hosting",
+    "prefixes": [
+        {
+            "netblock": "128.140.0.0/17",
+            "id": "DE-HETZNER-20111010",
+            "name": "Hetzner Online GmbH",
+            "country": "DE",
+            "size": "32768",
+            "status": "ALLOCATED PA",
+            "domain": "hetzner.de"
+        },
+        {
+            "netblock": "135.181.0.0/16",
+            "id": "DE-HETZNER-19931109",
+            "name": "Hetzner Online GmbH",
+            "country": "FI",
+            "size": "65536",
+            "status": "ALLOCATED PA",
+            "domain": "hetzner.de"
+        },
+        {
+            "netblock": "142.132.128.0/17",
+            "id": "DE-HETZNER-19900326",
+            "name": "Hetzner Online GmbH",
+            "country": "DE",
+            "size": "32768",
+            "status": "LEGACY",
+            "domain": "hetzner.de"
+        },
+        {
+            "netblock": "157.90.0.0/16",
+            "id": "DE-HETZNER-19911216",
+            "name": "Hetzner Online GmbH",
+            "country": "DE",
+            "size": "65536",
+            "status": "LEGACY",
+            "domain": "hetzner.de"
+        },
+        {
+            "netblock": "159.69.0.0/16",
+            "id": "DE-HETZNER-19920313",
+            "name": "Hetzner Online GmbH",
+            "country": "DE",
+            "size": "65536",
+            "status": "ALLOCATED PA",
+            "domain": "hetzner.de"
+        },
+        {
+            "netblock": "162.55.0.0/16",
+            "id": "DE-HETZNER-19920803",
+            "name": "Hetzner Online GmbH",
+            "country": "DE",
+            "size": "65536",
+            "status": "LEGACY",
+            "domain": "hetzner.de"
+        },
+        {
+            "netblock": "167.233.0.0/16",
+            "id": "DE-HETZNER-19931109",
+            "name": "Hetzner Online GmbH",
+            "country": "DE",
+            "size": "65536",
+            "status": "ALLOCATED PA",
+            "domain": "hetzner.de"
+        },
+        {
+            "netblock": "167.235.0.0/16",
+            "id": "DE-HETZNER-19940405",
+            "name": "Hetzner Online GmbH",
+            "country": "DE",
+            "size": "65536",
+            "status": "LEGACY",
+            "domain": "hetzner.de"
+        },
+        {
+            "netblock": "168.119.0.0/16",
+            "id": "DE-HETZNER-19940405",
+            "name": "Hetzner Online GmbH",
+            "country": "DE",
+            "size": "65536",
+            "status": "LEGACY",
+            "domain": "hetzner.de"
+        },
+        {
+            "netblock": "171.25.225.0/24",
+            "id": "DE-HSMITS-20200422",
+            "name": "HSM IT Services GmbH",
+            "country": "DE",
+            "size": "256",
+            "status": "ALLOCATED PA",
+            "domain": "hsm.de"
+        },
+        {
+            "netblock": "176.9.0.0/16",
+            "id": "DE-HETZNER-20110517",
+            "name": "Hetzner Online GmbH",
+            "country": "DE",
+            "size": "65536",
+            "status": "ALLOCATED PA",
+            "domain": "hetzner.de"
+        },
+        {
+            "netblock": "178.63.0.0/16",
+            "id": "DE-HETZNER-20100302",
+            "name": "Hetzner Online GmbH",
+            "country": "DE",
+            "size": "65536",
+            "status": "ALLOCATED PA",
+            "domain": "hetzner.de"
+        },
+        {
+            "netblock": "188.245.0.0/16",
+            "id": "DE-HETZNER-20110117",
+            "name": "Hetzner Online GmbH",
+            "country": "DE",
+            "size": "65536",
+            "status": "ALLOCATED PA",
+            "domain": "hetzner.de"
+        },
+        {
+            "netblock": "188.34.128.0/17",
+            "id": "DE-HETZNER-20090319",
+            "name": "Hetzner Online GmbH",
+            "country": "DE",
+            "size": "32768",
+            "status": "ALLOCATED PA",
+            "domain": "hetzner.de"
+        },
+        {
+            "netblock": "188.40.0.0/16",
+            "id": "DE-HETZNER-20090423",
+            "name": "Hetzner Online GmbH",
+            "country": "DE",
+            "size": "65536",
+            "status": "ALLOCATED PA",
+            "domain": "hetzner.de"
+        },
+        {
+            "netblock": "195.201.0.0/16",
+            "id": "DE-HETZNER-20120425",
+            "name": "Hetzner Online GmbH",
+            "country": "DE",
+            "size": "65536",
+            "status": "ALLOCATED PA",
+            "domain": "hetzner.de"
+        },
+        {
+            "netblock": "213.133.96.0/19",
+            "id": "DE-HETZNER-20020523",
+            "name": "Hetzner Online GmbH",
+            "country": "DE",
+            "size": "8192",
+            "status": "ALLOCATED PA",
+            "domain": "hetzner.de"
+        },
+        {
+            "netblock": "213.239.192.0/18",
+            "id": "DE-HETZNER-20030528",
+            "name": "Hetzner Online GmbH",
+            "country": "DE",
+            "size": "16384",
+            "status": "ALLOCATED PA",
+            "domain": "hetzner.de"
+        },
+        {
+            "netblock": "23.88.0.0/17",
+            "id": "DE-HETZNER-20130607",
+            "name": "Hetzner Online GmbH",
+            "country": "DE",
+            "size": "32768",
+            "status": "ALLOCATED PA",
+            "domain": "hetzner.de"
+        },
+        {
+            "netblock": "37.27.0.0/16",
+            "id": "DE-HETZNER-20111228",
+            "name": "Hetzner Online GmbH",
+            "country": "FI",
+            "size": "65536",
+            "status": "ALLOCATED PA",
+            "domain": "hetzner.de"
+        },
+        {
+            "netblock": "46.4.0.0/16",
+            "id": "DE-HETZNER-20100819",
+            "name": "Hetzner Online GmbH",
+            "country": "DE",
+            "size": "65536",
+            "status": "ALLOCATED PA",
+            "domain": "hetzner.de"
+        },
+        {
+            "netblock": "5.75.128.0/17",
+            "id": "DE-HETZNER-20120611",
+            "name": "Hetzner Online GmbH",
+            "country": "DE",
+            "size": "32768",
+            "status": "ALLOCATED PA",
+            "domain": "hetzner.de"
+        },
+        {
+            "netblock": "5.9.0.0/16",
+            "id": "DE-HETZNER-20120425",
+            "name": "Hetzner Online GmbH",
+            "country": "DE",
+            "size": "65536",
+            "status": "ALLOCATED PA",
+            "domain": "hetzner.de"
+        },
+        {
+            "netblock": "65.108.0.0/16",
+            "id": "DE-HETZNER-20010209",
+            "name": "Hetzner Online GmbH",
+            "country": "FI",
+            "size": "65536",
+            "status": "ALLOCATED PA",
+            "domain": "hetzner.de"
+        },
+        {
+            "netblock": "65.109.0.0/16",
+            "id": "DE-HETZNER-20010209",
+            "name": "Hetzner Online GmbH",
+            "country": "FI",
+            "size": "65536",
+            "status": "ALLOCATED PA",
+            "domain": "hetzner.de"
+        },
+        {
+            "netblock": "65.21.0.0/16",
+            "id": "DE-HETZNER-20010926",
+            "name": "Hetzner Online GmbH",
+            "country": "FI",
+            "size": "65536",
+            "status": "ALLOCATED PA",
+            "domain": "hetzner.de"
+        },
+        {
+            "netblock": "78.46.0.0/15",
+            "id": "DE-HETZNER-20070416",
+            "name": "Hetzner Online GmbH",
+            "country": "DE",
+            "size": "131072",
+            "status": "ALLOCATED PA",
+            "domain": "hetzner.de"
+        },
+        {
+            "netblock": "85.10.192.0/18",
+            "id": "DE-HETZNER-20050223",
+            "name": "Hetzner Online GmbH",
+            "country": "DE",
+            "size": "16384",
+            "status": "ALLOCATED PA",
+            "domain": "hetzner.de"
+        },
+        {
+            "netblock": "88.198.0.0/16",
+            "id": "DE-HETZNER-20051227",
+            "name": "Hetzner Online GmbH",
+            "country": "DE",
+            "size": "65536",
+            "status": "ALLOCATED PA",
+            "domain": "hetzner.de"
+        },
+        {
+            "netblock": "88.99.0.0/16",
+            "id": "DE-HETZNER-20050803",
+            "name": "Hetzner Online GmbH",
+            "country": "DE",
+            "size": "65536",
+            "status": "ALLOCATED PA",
+            "domain": "hetzner.de"
+        },
+        {
+            "netblock": "91.107.128.0/17",
+            "id": "DE-HETZNER-20120621",
+            "name": "Hetzner Online GmbH",
+            "country": "DE",
+            "size": "32768",
+            "status": "ALLOCATED PA",
+            "domain": "hetzner.de"
+        },
+        {
+            "netblock": "94.130.0.0/16",
+            "id": "DE-HETZNER-20080623",
+            "name": "Hetzner Online GmbH",
+            "country": "DE",
+            "size": "65536",
+            "status": "ALLOCATED PA",
+            "domain": "hetzner.de"
+        },
+        {
+            "netblock": "95.216.0.0/16",
+            "id": "DE-HETZNER-20090224",
+            "name": "Hetzner Online GmbH",
+            "country": "FI",
+            "size": "65536",
+            "status": "ALLOCATED PA",
+            "domain": "hetzner.de"
+        },
+        {
+            "netblock": "95.217.0.0/16",
+            "id": "DE-HETZNER-20090224",
+            "name": "Hetzner Online GmbH",
+            "country": "FI",
+            "size": "65536",
+            "status": "ALLOCATED PA",
+            "domain": "hetzner.de"
+        }
+    ],
+    "prefixes6": [
+        {
+            "netblock": "2a01:4f8::/32",
+            "id": "DE-HETZNER-20071010",
+            "name": "Hetzner Online GmbH",
+            "country": "DE",
+            "size": "79228162514264337593543950336",
+            "status": "ALLOCATED-BY-RIR",
+            "domain": "hetzner.de"
+        },
+        {
+            "netblock": "2a01:4f9::/32",
+            "id": "DE-HETZNER-20071010",
+            "name": "Hetzner Online GmbH",
+            "country": "DE",
+            "size": "79228162514264337593543950336",
+            "status": "ALLOCATED-BY-RIR",
+            "domain": "hetzner.de"
+        }
+    ]
+}
