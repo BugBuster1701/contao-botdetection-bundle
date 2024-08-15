@@ -26,7 +26,7 @@
 		"jaybizzle/crawler-detect": "^1.2",
 		"symfony/http-client": "^6.4 || ^7.0",
 		"symfony/polyfill-intl-idn": "^1.0",
-		"monologue/monologue": "^3.5.0"
+		"monolog/monolog": "^3.5.0"
 	},
 	"require-dev": {
 		"friendsofphp/php-cs-fixer": "^3.10",
