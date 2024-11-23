@@ -80,14 +80,15 @@ class CheckBotReferrer
                    )
                 {
                     $proPar->cleanProviderList();
-                    $proPar->writeProviderList();
+                    if (true === $proPar->writeProviderList())
+                    {
+                        $blocker = new Blocker($referrer_DNS, $cachePath);
+                        if ($blocker->isReferrerSpam()) 
+                        {
+                            return true;
+                        }
+                    }
                 }   
-                $blocker = new Blocker($referrer_DNS, $cachePath);
-                if ($blocker->isReferrerSpam()) 
-                {
-                    return true;
-                }
-
             }
         }
 
