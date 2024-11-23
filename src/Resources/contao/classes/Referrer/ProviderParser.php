@@ -97,9 +97,11 @@ class ProviderParser
         if (\count($this->arrReferrerSpammer))
         {
             @unlink($this->cachePath .'/referrerblocked.txt');
-            file_put_contents($this->cachePath .'/referrerblocked.txt', '|' . implode("|", $this->arrReferrerSpammer) . '|' . PHP_EOL);
-
-            return true;
+            $ret = file_put_contents($this->cachePath .'/referrerblocked.txt', '|' . implode("|", $this->arrReferrerSpammer) . '|' . PHP_EOL);
+            if (false !== $ret)
+            {
+                return true;
+            }
         }
 
         return false;
