@@ -80,7 +80,7 @@ class Blocker
         if (false === $blocklist) 
         {
             $referrerlist = $this->getCachePath() .'/referrerblocked.txt';
-            $blocklist    = file_get_contents($referrerlist);
+            $blocklist    = @file_get_contents($referrerlist) ?: 'Failed to open stream';
         }
 
         if (substr_count($blocklist, '|'. $this->getReferrer() .'|')) 
