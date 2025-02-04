@@ -22,7 +22,7 @@
 		"php": ">=8.3.0,<8.5.0",
 		"contao/core-bundle": "^5.3",
 		"contao/manager-plugin": "^2.6.2",
-		"browscap/browscap-php": "~7.5.0",
+		"bugbuster/browscap-php": "~7.2.1",
 		"jaybizzle/crawler-detect": "^1.2",
 		"symfony/http-client": "^5.4 || ^6.0",
 		"symfony/polyfill-intl-idn": "^1.0"
