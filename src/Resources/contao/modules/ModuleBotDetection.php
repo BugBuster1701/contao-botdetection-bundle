@@ -25,7 +25,7 @@ use Contao\System;
 /**
  * Class ModuleBotDetection
  *
- * @copyright  Glen Langer 2007..2020 <http://contao.ninja>
+ * @copyright  Glen Langer 2007..2025 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  */
 class ModuleBotDetection extends System
@@ -34,7 +34,7 @@ class ModuleBotDetection extends System
     /**
      * Current version of the class.
      */
-    const BOTDETECTION_VERSION  = '1.12.1';
+    const BOTDETECTION_VERSION  = '1.12.2';
 
     const BOT_REFERRER_LIST     = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/bot-referrer-list.php";
     const BOT_REFERRER_PROVIDER = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/referrer-provider.php";
