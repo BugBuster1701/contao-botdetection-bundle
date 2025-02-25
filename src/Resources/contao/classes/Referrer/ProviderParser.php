@@ -72,7 +72,7 @@ class ProviderParser
 
     public function cleanProviderList()
     {
-        $this->arrReferrerSpammer = array_unique($this->arrReferrerSpammer); // doppelte Elemente löschen
+        $this->arrReferrerSpammer = array_filter(array_unique($this->arrReferrerSpammer)); // doppelte Elemente löschen
 
         foreach ($this->arrReferrerSpammer as &$url)
         {
