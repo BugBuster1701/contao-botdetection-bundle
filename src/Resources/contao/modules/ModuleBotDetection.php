@@ -34,7 +34,7 @@ class ModuleBotDetection extends System
     /**
      * Current version of the class.
      */
-    const BOTDETECTION_VERSION  = '1.8.4';
+    const BOTDETECTION_VERSION  = '1.8.5';
 
     const BOT_REFERRER_LIST     = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/bot-referrer-list.php";
     const BOT_REFERRER_PROVIDER = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/referrer-provider.php";
