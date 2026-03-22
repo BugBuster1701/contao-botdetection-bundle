@@ -19,7 +19,7 @@
 		"forum":"https://community.contao.org/de/forumdisplay.php?119-Sonstige-Erweiterungen"
 	},
 	"require":{
-		"php": "^7.4 || ^8.0",
+		"php": "^8.3",
 		"contao/core-bundle": "^4.13",
 		"bugbuster/browscap-php": "~7.2.1",
 		"jaybizzle/crawler-detect": "^1.2",
