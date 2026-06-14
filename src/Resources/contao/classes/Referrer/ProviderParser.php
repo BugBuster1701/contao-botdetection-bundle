@@ -77,7 +77,7 @@ class ProviderParser
             }
             $url = strtolower($referrerHost);
             $url = trim($url);
-            if ((!empty($url)) && ($url = idn_to_ascii($url)) === false)
+            if ( empty($url) || ((!empty($url)) && ($url = idn_to_ascii($url)) === false) )
             {
                 unset($url);
             }
