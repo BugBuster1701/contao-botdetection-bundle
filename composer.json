@@ -31,7 +31,7 @@
 	"require-dev": {
 		"friendsofphp/php-cs-fixer": "^3.10",
 		"phpunit/phpunit": "^9.5.19",
-		"rector/rector": "^1.2"
+		"rector/rector": "^2.4"
 	},
 	"conflict": {
 		"contao/manager-plugin": "<2.0 || >=3.0"
