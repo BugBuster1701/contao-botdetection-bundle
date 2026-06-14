@@ -28,7 +28,8 @@ class ProviderParserTest extends TestCase
         $this->referrerProvider = [
             'Stevie_Ray'    => 'https://raw.githubusercontent.com/Stevie-Ray/referrer-spam-blocker/master/src/domains.txt',
             'Flameeyes'     => 'https://raw.githubusercontent.com/Flameeyes/modsec-flameeyes/main/rules/flameeyes_bad_referrers.data',
-            'desbma'        => 'https://raw.githubusercontent.com/desbma/referer-spam-domains-blacklist/master/spammers.txt'
+            'desbma'        => 'https://raw.githubusercontent.com/desbma/referer-spam-domains-blacklist/master/spammers.txt',
+            'mitchellkrogza' => 'https://raw.githubusercontent.com/mitchellkrogza/apache-ultimate-bad-bot-blocker/master/_generator_lists/bad-referrers.list'
         ];
         $this->providerParser = new ProviderParser($this->referrerProvider, 'tests/cache');
     }
