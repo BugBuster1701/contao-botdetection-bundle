@@ -166,7 +166,7 @@ class ModuleBotDetectionTest extends TestCase
     {
         // weitere über CheckBotIpTest.php
         BugBuster\BotDetection\CheckBotIp::setBotIpv4List(__DIR__ . '/../src/Resources/contao/config/bot-ip-list-ipv4.txt');
-        $actual = BugBuster\BotDetection\CheckBotIp::checkIP('66.249.79.99');
+        $actual = BugBuster\BotDetection\CheckBotIp::checkIP('207.46.47.11');
         $this->assertSame(true, $actual);
     }
     

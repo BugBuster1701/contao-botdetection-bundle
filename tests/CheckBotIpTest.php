@@ -127,7 +127,7 @@ class CheckBotIpTest extends TestCase
         return [
             [true ,'52.230.152.11'],                            // GPT Bot, offizielle Liste
             [true ,'3.5.140.11'],                               // Cloud AWS, offizielle Liste
-            [true ,'2a05:d034:8000:0000:0000:0000:0000:0001'],  // Cloud AWS, offizielle Liste
+            [true ,'2a05:d036:8000:0000:0000:0000:0000:0001'],  // Cloud AWS, offizielle Liste
             [true ,'13.70.74.112'],                             // Cloud AzureBotService, offizielle Liste
             [true ,'2603:1030:0010:0001:0000:0000:0000:0020'],  // Cloud AzureBotService, offizielle Liste
             [true ,'4.149.0.0'],                                // Cloud Azure, offizielle Liste
