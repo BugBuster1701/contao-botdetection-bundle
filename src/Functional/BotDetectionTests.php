@@ -284,18 +284,19 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
         }
         for ($x = 0; $x < $y; ++$x) {
             $nr = ($x < 10) ? '&nbsp;'.$x : $x;
-            if (false === $arrTest[$x][0]) { // false Test
+            if (false === $arrTest[$x][0]) {
+                // false Test
                 if ($arrTest[$x][0] === $result[$x]) {
                     $out .= '<span style="color:green;">';
                 } else {
                     $out .= '<span style="color:red;">';
                 }
-            } else { // true Test
-                if ($arrTest[$x][2] === $result[$x]) { // $arrTest[$x][0]
-                    $out .= '<span style="color:green;">';
-                } else {
-                    $out .= '<span style="color:red;">';
-                }
+            } elseif ($arrTest[$x][2] === $result[$x]) {
+                // true Test
+                // $arrTest[$x][0]
+                $out .= '<span style="color:green;">';
+            } else {
+                $out .= '<span style="color:red;">';
             }
             $out .= 'TestNr: '.$nr.'&nbsp;&nbsp;Expectation/Result: '.var_export($arrTest[$x][0], true).'/'.var_export($result[$x], true).' ('.$arrTest[$x][2].')';
             $out .= '</span><br>';
@@ -340,7 +341,7 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
         // output
         for ($x = 0; $x < 4; ++$x) {
             $nr = ($x < 10) ? '&nbsp;'.$x : $x;
-            if (true === $result[$x]) {
+            if ($result[$x]) {
                 $return .= '<span style="color:green;">';
             } else {
                 $return .= '<span style="color:red;">';
@@ -363,19 +364,20 @@ wget --no-cache --referer="https://16.semalt.com/crawler.php?u=http://gl.de" --u
         }
         for ($x = 0; $x < $y; ++$x) {
             $nr = ($x < 10) ? '&nbsp;'.$x : $x;
-            if (false === $arrReferrerTest[$x][0]) { // false Test
+            if (false === $arrReferrerTest[$x][0]) {
+                // false Test
                 if ($arrReferrerTest[$x][0] === $result[$x]) {
                     $out .= '<span style="color:green;">';
                 } else {
                     $out .= '<span style="color:red;">';
                 }
-            } else { // true Test
-                if ($arrReferrerTest[$x][0] === $result[$x]) {
-                    $out .= '<span style="color:green;">';
-                } else {
-                    $out .= '<span style="color:red;">';
-                }
+            } elseif ($arrReferrerTest[$x][0] === $result[$x]) {
+                // true Test
+                $out .= '<span style="color:green;">';
+            } else {
+                $out .= '<span style="color:red;">';
             }
+
             $out .= 'TestNr: '.$nr.'&nbsp;&nbsp;Expectation/Result: '.var_export($arrReferrerTest[$x][0], true).'/'.var_export($result[$x], true).' ('.$arrReferrerTest[$x][1].')';
             $out .= '</span><br>';
         }

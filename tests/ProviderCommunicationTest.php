@@ -27,7 +27,8 @@ class ProviderCommunicationTest extends TestCase
         $this->referrerProvider = [
             'Stevie_Ray'    => 'https://raw.githubusercontent.com/Stevie-Ray/referrer-spam-blocker/master/src/domains.txt',
             'Flameeyes'     => 'https://raw.githubusercontent.com/Flameeyes/modsec-flameeyes/main/rules/flameeyes_bad_referrers.data',
-            'desbma'        => 'https://raw.githubusercontent.com/desbma/referer-spam-domains-blacklist/master/spammers.txt'
+            'desbma'        => 'https://raw.githubusercontent.com/desbma/referer-spam-domains-blacklist/master/spammers.txt',
+            'mitchellkrogza' => 'https://raw.githubusercontent.com/mitchellkrogza/apache-ultimate-bad-bot-blocker/master/_generator_lists/bad-referrers.list'
         ];
         //Cache Verzeichnis löschen
         /*
@@ -88,6 +89,7 @@ class ProviderCommunicationTest extends TestCase
         $this->assertTrue(is_file('tests/cache/desbma.txt'));
         $this->assertTrue(is_file('tests/cache/flameeyes.txt'));
         $this->assertTrue(is_file('tests/cache/stevie_ray.txt'));
+        $this->assertTrue(is_file('tests/cache/mitchellkrogza.txt'));
     }
 
     /**
@@ -97,7 +99,7 @@ class ProviderCommunicationTest extends TestCase
     {
         // TODO Auto-generated ProviderCommunicationTest->testGetUpdateFromGithub()
         $this->markTestIncomplete("getUpdateFromGithub test not implemented");
-        
+
         //$this->providerCommunication->getUpdateFromGithub(/* parameters */);
     }
 

@@ -21,6 +21,12 @@ class CheckCloudIp
     protected static $cloud_azure_json;
     protected static $cloud_google_json;
     protected static $cloud_oracle_json;
+    protected static $cloud_hetzner_json;
+
+
+    /*
+    * START SETTER GETTER
+    */
 
     /**
      * Get the value of cloud_aws_json
@@ -86,6 +92,29 @@ class CheckCloudIp
         static::$cloud_oracle_json = $cloud_oracle_json;
     }
 
+    /**
+     * Get the value of cloud_hetzner_json
+     */ 
+    public static function getCloud_hetzner_json()
+    {
+        return static::$cloud_hetzner_json;
+    }
+
+    /**
+     * Set the value of cloud_hetzner_json
+     *
+     * @return  self
+     */ 
+    public static function setCloud_hetzner_json($cloud_hetzner_json)
+    {
+        static::$cloud_hetzner_json = $cloud_hetzner_json;
+    }
+
+    /*
+    * END SETTER GETTER
+    */
+
+
     public static function getUserIP()
     {
         // 1. HTTP_CF_CONNECTING_IP CloudFlare? 
@@ -111,7 +140,7 @@ class CheckCloudIp
 
         foreach ($ipkeys as $key)
         {
-            if (\array_key_exists($key, $_SERVER) === true)
+            if (\array_key_exists($key, $_SERVER))
             {
                 foreach (explode(',', $_SERVER[$key]) as $ip)
                 {
@@ -176,20 +205,31 @@ class CheckCloudIp
         }
 
         // Test for IPv6
-        if (substr_count($ip, ":") < 2) return false; // ::1 or 2001::0db8
-        if (substr_count($ip, "::") > 1) return false; // one allowed
+        if (substr_count($ip, ":") < 2) {
+            // ::1 or 2001::0db8
+            return false;
+        }
+        if (substr_count($ip, "::") > 1) {
+            // one allowed
+            return false;
+        }
 
         $groups = explode(':', $ip);
         $num_groups = \count($groups);
-        if (($num_groups > 8) || ($num_groups < 3)) return false;
+        if (($num_groups > 8) || ($num_groups < 3)) 
+        {
+            return false;
+        }
 
         $empty_groups = 0;
         foreach ($groups as $group)
         {
             $group = trim($group);
-            if (!empty($group) && !(is_numeric($group) && ($group == 0)))
+            if ($group !== '' && $group !== '0' && !(is_numeric($group) && ($group == 0)))
             {
-                if (!preg_match('#([a-fA-F0-9]{0,4})#', $group)) return false;
+                if (!preg_match('#([a-fA-F0-9]{0,4})#', $group)) {
+                    return false;
+                }
             }
             else
             {
@@ -264,6 +304,13 @@ class CheckCloudIp
 
             return true;
         }
+        static::loadHetznerJson();
+        if (static::checkIp4InCloud($UserIP))
+        {
+            unset($GLOBALS['CLOUDDETECTION']);
+
+            return true;
+        }
         unset($GLOBALS['CLOUDDETECTION']);
 
         return false;
@@ -323,6 +370,13 @@ class CheckCloudIp
             return true;
         }
         static::loadOracleJson();
+        if (static::checkIp6InCloud($UserIP))
+        {
+            unset($GLOBALS['CLOUDDETECTION']);
+
+            return true;
+        }
+        static::loadHetznerJson();
         if (static::checkIp6InCloud($UserIP))
         {
             unset($GLOBALS['CLOUDDETECTION']);
@@ -564,6 +618,32 @@ class CheckCloudIp
             }
             $i++;
         }
+    }
+
+    protected static function loadHetznerJson()
+    {
+        $cloudjson = file_get_contents(static::getCloud_hetzner_json());
+        $cloud = json_decode($cloudjson);
+        // Liste der IPs
+        $i=0;
+        while($cloud->{'prefixes'}[$i] ?? false)
+        {
+            if (!empty($cloud->{'prefixes'}[$i]->{'netblock'}))
+            {
+                $GLOBALS['CLOUDDETECTION']['CLOUD_IP'][] = $cloud->{'prefixes'}[$i]->{'netblock'};
+            }
+            $i++;
+        }
+        $i=0;
+        while($cloud->{'prefixes6'}[$i] ?? false)
+        {
+            if (!empty($cloud->{'prefixes6'}[$i]->{'netblock'}))
+            {
+                $GLOBALS['CLOUDDETECTION']['CLOUD_IPV6'][] = $cloud->{'prefixes6'}[$i]->{'netblock'};
+            }
+            $i++;
+        }
+
     }
 
     protected static function checkIp4InCloud($UserIP)

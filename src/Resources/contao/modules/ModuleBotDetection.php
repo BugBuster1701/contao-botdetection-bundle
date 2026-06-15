@@ -34,7 +34,7 @@ class ModuleBotDetection extends System
     /**
      * Current version of the class.
      */
-    const BOTDETECTION_VERSION  = '1.12.2';
+    const BOTDETECTION_VERSION  = '1.15.2';
 
     const BOT_REFERRER_LIST     = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/bot-referrer-list.php";
     const BOT_REFERRER_PROVIDER = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/referrer-provider.php";
@@ -50,6 +50,7 @@ class ModuleBotDetection extends System
     const CLOUD_AZURE_JSON      = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/cloud_azure.json";
     const CLOUD_GOOGLE_JSON     = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/cloud_google.json";
     const CLOUD_ORACLE_JSON     = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/cloud_oracle.json";
+    const CLOUD_HETZNER_JSON    = "/vendor/bugbuster/contao-botdetection-bundle/src/Resources/contao/config/hetzner-cloud.json";
 
     /**
      * TL_ROOT over Container
@@ -65,12 +66,8 @@ class ModuleBotDetection extends System
     {
         parent::__construct();
 
-        if (null === $rootDir) {
-            $this->rootDir = System::getContainer()->getParameter('kernel.project_dir');
-        }
-        else {
-            $this->rootDir = $rootDir;
-        }
+        $this->rootDir = null === $rootDir ? System::getContainer()->getParameter('kernel.project_dir') : $rootDir;
+
         $this->prefillCache();
         $this->deleteOldCache();
 
@@ -95,20 +92,14 @@ class ModuleBotDetection extends System
     public function checkBotAllTests($UserAgent = false): bool
     {
         $objUserAgent = new UserAgent($UserAgent);
-        if (false === $UserAgent) 
-        {            
-        	$UserAgent = $objUserAgent->getUserAgent();
-        }
-        else
-        {
-            $UserAgent = $objUserAgent->setUserAgent($UserAgent);
-        }
+        $UserAgent = false === $UserAgent ? $objUserAgent->getUserAgent() : $objUserAgent->setUserAgent($UserAgent);
+
         if (CheckBotAgentSimple::checkAgent($UserAgent) === true) //(BotsRough, BotsFine)
         {
             return true;
         }
 
-        if (true === (bool) CheckBotReferrer::checkReferrer(
+        if ((bool) CheckBotReferrer::checkReferrer(
             false,
             $this->rootDir . self::BOT_REFERRER_LIST,
             $this->rootDir . self::BOT_REFERRER_PROVIDER
@@ -157,6 +148,9 @@ class ModuleBotDetection extends System
         if (CheckCloudIp::getCloud_oracle_json() === NULL) {
             CheckCloudIp::setCloud_oracle_json($this->rootDir . self::CLOUD_ORACLE_JSON);
         }
+        if (CheckCloudIp::getCloud_hetzner_json() === NULL) {
+            CheckCloudIp::setCloud_hetzner_json($this->rootDir . self::CLOUD_HETZNER_JSON);
+        }
 
         if (true === CheckCloudIp::checkIP())
         {
@@ -175,12 +169,8 @@ class ModuleBotDetection extends System
     public function checkGetPostRequest(): bool
     {
         $RequestMethod = \Contao\Environment::get('requestMethod');
-        if ($RequestMethod == 'GET' || $RequestMethod == 'POST') 
-        {
-        	return true;
-        }
 
-        return false;
+        return $RequestMethod == 'GET' || $RequestMethod == 'POST';
     }
 
     private function prefillCache()

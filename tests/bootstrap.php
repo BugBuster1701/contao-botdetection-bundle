@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 error_reporting(E_ALL);
 
-require 'vendor/autoload.php';
+#require __DIR__ . '/vendor/autoload.php';
 
 if (!file_exists('tests/cache/referrerblocked.txt')) 
 {
     @unlink('tests/cache/desbma.txt');
     @unlink('tests/cache/flameeyes.txt');
     @unlink('tests/cache/stevie_ray.txt');
+    @unlink('tests/cache/mitchellkrogza.txt');
     @rmdir('tests/cache');
 }
 

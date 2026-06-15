@@ -28,7 +28,9 @@ use Symfony\Component\HttpKernel\KernelInterface;
 class Plugin implements BundlePluginInterface, RoutingPluginInterface
 {
     /**
-     * {@inheritdoc}
+     * Gets a list of autoload configurations for this bundle.
+     *
+     * @return array<ConfigInterface>
      */
     public function getBundles(ParserInterface $parser): array
     {
@@ -40,7 +42,11 @@ class Plugin implements BundlePluginInterface, RoutingPluginInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Returns a collection of routes for this bundle.
+     *
+     * @param LoaderResolverInterface $resolver
+     * @param KernelInterface $kernel
+     * @return RouteCollection|null
      */
     public function getRouteCollection(LoaderResolverInterface $resolver, KernelInterface $kernel)
     {

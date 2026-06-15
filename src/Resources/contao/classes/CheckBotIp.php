@@ -123,7 +123,7 @@ class CheckBotIp
 
         foreach ($ipkeys as $key)
         {
-            if (\array_key_exists($key, $_SERVER) === true)
+            if (\array_key_exists($key, $_SERVER))
             {
                 foreach (explode(',', $_SERVER[$key]) as $ip)
                 {
@@ -465,20 +465,30 @@ class CheckBotIp
         }
 
         // Test for IPv6
-        if (substr_count($ip, ":") < 2) return false; // ::1 or 2001::0db8
-        if (substr_count($ip, "::") > 1) return false; // one allowed
+        if (substr_count($ip, ":") < 2) {
+            // ::1 or 2001::0db8
+            return false; 
+        }
+        if (substr_count($ip, "::") > 1) {
+            // one allowed
+            return false; 
+        }
 
         $groups = explode(':', $ip);
         $num_groups = \count($groups);
-        if (($num_groups > 8) || ($num_groups < 3)) return false;
+        if (($num_groups > 8) || ($num_groups < 3)) {
+            return false;
+        }
 
         $empty_groups = 0;
         foreach ($groups as $group)
         {
             $group = trim($group);
-            if (!empty($group) && !(is_numeric($group) && ($group == 0)))
+            if ($group !== '' && $group !== '0' && !(is_numeric($group) && ($group == 0)))
             {
-                if (!preg_match('#([a-fA-F0-9]{0,4})#', $group)) return false;
+                if (!preg_match('#([a-fA-F0-9]{0,4})#', $group)) {
+                    return false;
+                }
             }
             else
             {
